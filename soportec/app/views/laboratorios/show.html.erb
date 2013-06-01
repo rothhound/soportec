@@ -1,30 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+    <div class="small-8 large-centered columns">
+        <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Numero:</b>
-  <%= @laboratorio.numero %>
-</p>
+        <p>
+            <b>Numero:</b>
+            <%= @laboratorio.numero %>
+        </p>
 
-<p>
-  <b>Piso:</b>
-  <%= @laboratorio.piso %>
-</p>
+        <p>
+            <b>Piso:</b>
+            <%= @laboratorio.piso %>
+        </p>
 
-<p>
-  <b>Encargado:</b>
-  <%= @laboratorio.encargado_id %>
-</p>
+        <p>
+            <b>Encargado:</b>
+            <%= @laboratorio.encargado_id %>
+        </p>
 
-<p>
-  <b>Aforo:</b>
-  <%= @laboratorio.aforo %>
-</p>
+        <p>
+            <b>Aforo:</b>
+            <%= @laboratorio.aforo %>
+        </p>
 
-<p>
-  <b>Num maquinas:</b>
-  <%= @laboratorio.num_maquinas %>
-</p>
+        <p>
+            <b>Num maquinas:</b>
+            <%= @laboratorio.num_maquinas %>
+        </p>
 
 
-<%= link_to 'Edit', edit_laboratorio_path(@laboratorio) %> |
-<%= link_to 'Back', laboratorios_path %>
+        <%= link_to 'Editar', edit_laboratorio_path(@laboratorio), :class => 'small button' %> |
+        <%= link_to 'Atrás', laboratorios_path, :class => 'small button' %>
+    </div>
+</div>
