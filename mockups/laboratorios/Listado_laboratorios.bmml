@@ -5,8 +5,8 @@
         <text>Soportec%0Ahttp%3A//soportec.sistemas.edu.pe/laboratorios</text>
       </controlProperties>
     </control>
-    <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="204" y="114" w="922" h="88" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1"/>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::Canvas" x="204" y="580" w="922" h="70" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1"/>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="204" y="114" w="914" h="88" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Canvas" x="204" y="580" w="914" h="70" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1"/>
     <control controlID="3" controlTypeID="com.balsamiq.mockups::LinkBar" x="912" y="166" w="-1" h="-1" measuredW="198" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Home%2C%20Servicios%2C%20Contacto</text>
@@ -50,13 +50,13 @@
     <control controlID="19" controlTypeID="com.balsamiq.mockups::Canvas" x="590" y="237" w="139" h="122" measuredW="100" measuredH="70" zOrder="12" locked="false" isInGroup="-1"/>
     <control controlID="20" controlTypeID="com.balsamiq.mockups::Paragraph" x="597" y="245" w="124" h="115" measuredW="200" measuredH="140" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Laboratorio%2001%0AOcupado%0ASistemas%20Digitales%0AEAPIS%0AW.%20Contreras</text>
+        <text>Laboratorio%2002%0AEn%20espera%0ASistemas%20Digitales%0AEAPIS%0AW.%20Contrera</text>
       </controlProperties>
     </control>
     <control controlID="31" controlTypeID="com.balsamiq.mockups::Canvas" x="751" y="239" w="139" h="122" measuredW="100" measuredH="70" zOrder="14" locked="false" isInGroup="-1"/>
     <control controlID="32" controlTypeID="com.balsamiq.mockups::Paragraph" x="758" y="249" w="124" h="115" measuredW="200" measuredH="140" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Laboratorio%2001%0AOcupado%0ASistemas%20Digitales%0AEAPIS%0AW.%20Contreras</text>
+        <text>Laboratorio%2003%0AEn%20espera%0ADNI%3B%2012344567%0ACOD%3A%2022030003</text>
       </controlProperties>
     </control>
     <control controlID="33" controlTypeID="com.balsamiq.mockups::Canvas" x="430" y="372" w="139" h="122" measuredW="100" measuredH="70" zOrder="16" locked="false" isInGroup="-1"/>
