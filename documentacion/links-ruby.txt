@@ -2,3 +2,5 @@ http://jonforums.github.io/ruby/2010/11/30/devkit-jruby-c-extensions.html
 http://ruby.railstutorial.org/ruby-on-rails-tutorial-book
 http://pragprog.com/magazines/2013-02/deploying-with-jruby-in-the-cloud
 http://blog.rubyrockers.com/2011/03/rails3-application-jruby/
+
+http://guides.rubyonrails.org/getting_started.html
