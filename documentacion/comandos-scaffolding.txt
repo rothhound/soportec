@@ -1,0 +1,3 @@
+rails generate scaffold Laboratorio numero:integer piso:integer encargado_id:integer aforo:integer num_maquinas:integer
+
+rails generate scaffold Usuario codigo:integer email:string password:string nombre:string apellidos:string role_id:integer
