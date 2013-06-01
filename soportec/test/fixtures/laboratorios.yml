@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  numero: 1
+  piso: 1
+  encargado_id: 1
+  aforo: 1
+  num_maquinas: 1
+
+two:
+  numero: 1
+  piso: 1
+  encargado_id: 1
+  aforo: 1
+  num_maquinas: 1
