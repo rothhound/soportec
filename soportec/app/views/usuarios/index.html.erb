@@ -1,33 +1,37 @@
-<h1>Listing usuarios</h1>
-
-<table>
-  <tr>
-    <th>Codigo</th>
-    <th>Email</th>
-    <th>Password</th>
-    <th>Nombre</th>
-    <th>Apellidos</th>
-    <th>Role</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @usuarios.each do |usuario| %>
-  <tr>
-    <td><%= usuario.codigo %></td>
-    <td><%= usuario.email %></td>
-    <td><%= usuario.password %></td>
-    <td><%= usuario.nombre %></td>
-    <td><%= usuario.apellidos %></td>
-    <td><%= usuario.role_id %></td>
-    <td><%= link_to 'Show', usuario %></td>
-    <td><%= link_to 'Edit', edit_usuario_path(usuario) %></td>
-    <td><%= link_to 'Destroy', usuario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Usuario', new_usuario_path %>
+<div class='row'>
+    <div class="small-8 large-centered columns">
+		<h1>Listado de usuarios</h1>
+		
+		<table>
+		  <tr>
+		    <th>Codigo</th>
+		    <th>Email</th>
+		    <th>Password</th>
+		    <th>Nombre</th>
+		    <th>Apellidos</th>
+		    <th>Role</th>
+		    <th></th>
+		    <th></th>
+		    <th></th>
+		  </tr>
+		
+		<% @usuarios.each do |usuario| %>
+		  <tr>
+		    <td><%= usuario.codigo %></td>
+		    <td><%= usuario.email %></td>
+		    <td><%= usuario.password %></td>
+		    <td><%= usuario.nombre %></td>
+		    <td><%= usuario.apellidos %></td>
+		    <td><%= usuario.role_id %></td>
+		    <td><%= link_to 'Mostrar', usuario %></td>
+		    <td><%= link_to 'Editar', edit_usuario_path(usuario) %></td>
+		    <td><%= link_to 'Eliminar', usuario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		  </tr>
+		<% end %>
+		</table>
+		
+		<br />
+		
+		<%= link_to 'Nuevo usuario', new_usuario_path, :class => 'small button' %>
+	</div>
+</div>	
