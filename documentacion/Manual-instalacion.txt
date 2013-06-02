@@ -1,0 +1,18 @@
+Pasos para la instalación del Jruby y el rails
+-Descargar el instalador del jruby desde http://jruby.org/download, alli escoja la version que se acomode a la arquitectura de su computadora
+-Instalar el JRuby, no necesita ninguna configuracion
+-Una vez instalado en consola escriba el comando jruby -v para probar, si aparece la version del jruby entonces el jruby se instalo correctamente
+-Para instalar el rails en la misma consola escribir jruby -S gem install rails, esperar un rato a que se instale el rails
+-Cuando termine le saldra un mensaje de que el rails esta instalado, para comprobar que el rails   se instalo correectamente escribir en consola rails ---version
+-En caso de que le salga error por que no encuentra el archivo rake 10.0.4, escribir en la consola gem install rake, en consola se le indicara que ya la instalo, luego escribir de nuevo el comando de version
+-Si aparece la version del rails entonces ya tiene instalado el rails
+
+Pasos para iniciar el servidor
+-Abra en consola la carpeta en nuestro caso seria /soportec/soportec en esta carpeta se encuentran toda la instalacion del sistema
+-Para las vistas usamos un framework llamadO fundation, para instalarlos en consola se debe escribir bundle install, para instalar el fundation
+-Ahora para iniciar el servidor en la misma consola(en donde esta abierta la carpeta) esribir rails server,
+ahora saldra informacion sobre el booteo del servidor
+-Ahora en cualquier explorador escribir:
+	localhost:3000		Para home
+	localhost:3000/usuarios	Para home usuarios
+	localhost:3000/Laboratorios	Para home laboratorios
