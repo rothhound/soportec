@@ -1,0 +1,22 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1150" measuredH="511" mockupW="930" mockupH="500">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::FieldSet" x="240" y="103" w="892" h="370" measuredW="200" measuredH="170" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>1</backgroundAlpha>
+        <text>Menu%20-%20Users</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="257" y="127" w="860" h="331" measuredW="200" measuredH="241" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <position>left</position>
+        <text>Usuario%0A%20%20Perfil%20de%20usuario%0A%20%20Configuraci%F3n%20de%20cuenta%0ALaboratorios%09%0A%20%20Listado%20de%20Laboratorios%0A%20%20Buscar%20Dispo%20Lab%0A%20%20Laboratorio%20Asignado</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="220" y="11" w="930" h="500" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%20Web%20Page%0Ahttp%3A//www.soportec.com</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
