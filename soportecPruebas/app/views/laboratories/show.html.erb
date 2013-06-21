@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Number:</b>
+  <%= @laboratory.number %>
+</p>
+
+<p>
+  <b>Capacity:</b>
+  <%= @laboratory.capacity %>
+</p>
+
+<p>
+  <b>Floor:</b>
+  <%= @laboratory.floor %>
+</p>
+
+<p>
+  <b>Number of computers:</b>
+  <%= @laboratory.numComputers %>
+</p>
+
+<p>
+  <b>Air conditioning:</b>
+  <%= @laboratory.airConditioning %>
+</p>
+
+<p>
+  <b>Projector:</b>
+  <%= @laboratory.projector %>
+</p>
+
+<p>
+  <b>Sound:</b>
+  <%= @laboratory.sound %>
+</p>
+
+
+<%= link_to 'Edit', edit_laboratory_path(@laboratory) %> |
+<%= link_to 'Back', laboratories_path %>

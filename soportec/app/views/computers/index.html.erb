@@ -1,0 +1,35 @@
+<h1>Listing computers</h1>
+
+<table>
+  <tr>
+    <th>Ram</th>
+    <th>Processor</th>
+    <th>Motherboard</th>
+    <th>Display</th>
+    <th>Mouse</th>
+    <th>Keyboard</th>
+    <th>Videocard</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @computers.each do |computer| %>
+  <tr>
+    <td><%= computer.ram %></td>
+    <td><%= computer.processor %></td>
+    <td><%= computer.motherboard %></td>
+    <td><%= computer.display %></td>
+    <td><%= computer.mouse %></td>
+    <td><%= computer.keyboard %></td>
+    <td><%= computer.videocard %></td>
+    <td><%= link_to 'Show', computer %></td>
+    <td><%= link_to 'Edit', edit_computer_path(computer) %></td>
+    <td><%= link_to 'Destroy', computer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Computer', new_computer_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  dateR: 2013-06-19 17:33:23
+  numHours: 1
+  responsible: MyString
+  reason: MyString
+
+two:
+  dateR: 2013-06-19 17:33:23
+  numHours: 1
+  responsible: MyString
+  reason: MyString

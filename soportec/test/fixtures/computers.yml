@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ram: MyString
+  processor: MyString
+  motherboard: MyString
+  display: MyString
+  mouse: MyString
+  keyboard: MyString
+  videocard: MyString
+
+two:
+  ram: MyString
+  processor: MyString
+  motherboard: MyString
+  display: MyString
+  mouse: MyString
+  keyboard: MyString
+  videocard: MyString
