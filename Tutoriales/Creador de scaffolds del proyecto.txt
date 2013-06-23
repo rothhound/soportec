@@ -1,0 +1,22 @@
+rails g scaffold Computer ram:string processor:string motherboard:string display:string mouse:string keyboard:string videocard:string
+
+rails g scaffold Laboratory number:integer capacity:integer floor:integer numComputers:integer airConditioning:integer projector:integer sound:integer
+
+rails g scaffold Software name:string version:string
+
+rails g scaffold Schedule star:string end:string day:string
+
+rails g scaffold Course code:string name:string group:string
+
+rails g scaffold Professor code:string name:string lastname:string
+
+rails g scaffold Reservation dateR:datetime numHours:integer responsible:string reason:string
+
+
+rails g scaffold Category description:string
+
+rails g scaffold EAP name:string
+
+rails g model State description:string
+
+rails g model Role name:string

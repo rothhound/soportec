@@ -1,0 +1,80 @@
+TUTORIAL CREACION DB 
+
+1. Generar el proyecto en consola:
+rails new soportec -m http://jruby.org/rails3.rb
+
+2. Crear la DB en MySQL vacia, llamada soportec.
+
+3. Modificar el Gemfile del proyecto agregando lo siguiente:
+gem 'activerecord-jdbcmysql-adapter'
+gem 'devise'
+gem 'cancan'
+
+4. Modificar el archivo database.yml en la ruta soportec/config en lo siguiente:
+development:
+  adapter: jdbcmysql
+  database: soportec
+  username: root
+  password: root (sino tiene pass, dejarlo en blanco)
+
+5. En consola, ejecutar:
+bundle install
+
+6. Crear los scaffold de las tablas básicas, ver "Creador de scaffolds del proyecto"
+
+7. Crear las tablas de relacion entre las tablas, ademas de agregar las relaciones adicionales. 
+rails g migration LaboratoriesHaveAndBelongsToManySoftwares
+
+rails g migration CoursesHaveAndBelongsToManyProfessors
+
+8. Modificar los modelos para que se vea la relacion entre las tablas y modelos.
+
+has_many :softwares
+Si es de uno a muchos. La clase tiene muchos softwares (plural)
+
+has_one :computer
+Si es de uno a uno. La clase solo tiene una computadoras.
+
+belongs_to :category
+Si es de uno a muchos o unos a unos. Es el otro lado de la relación. En esta clase se realiza la llave foranea.
+
+has_and_belongs_to_many :laboratories
+Si es de muchos a muchos. Es directo (crea una clase con los identificadores)
+
+
+
+9. Instalar el devise usando:
+rails generate devise:install
+
+5.Para poder cerrar sesion, en la ruta config/initializers/devise.rb modificar lo siguiente:
+config.sign_out_via = :delete por
+config.sign_out_via = :get
+
+6. Cree el modelo devise usando:
+rails generate devise User
+
+7. Genera las vistas con el comando 
+rails g devise:views
+
+8. Modificar el modelo y el schema para adicionar los atributos adicionales al generado por devise.
+
+9. Generar el modelo de roles:
+rails g model Role name:string
+
+10. Modifcar para relacionar los modelos usuarios y roles.
+
+11. Realizar el controlador de usuarios y las vistas de usuarios para CRUD.
+
+12. Modificar el modelo usuario con los recursos de rol.
+
+13. Modificar la vista form de roles para seleccionar los roles (ver tutorial)
+
+14. Generar la clase Ability con el cancan en consola:
+rails g cancan:ability
+
+15. Modificar la clase segun el tutorial para adicionar los permisos
+
+----------Actual---------------
+
+14. Migrar la base de datos a MySQL con el comando
+rake db:migrate

@@ -1,0 +1,10 @@
+X Una categoria tiene mucho softwares
+X muchos softwares tienen muchos laboratorios
+X Un laboratorio tiene un compu (tipo de compu)
+
+X Un laboratorio tiene muchos horarios
+X Un curso tiene varios horarios
+
+X Muchos cursos tienen muchos profesores
+X Una Eap tiene varios cursos
+X Un horario tiene una reservación
