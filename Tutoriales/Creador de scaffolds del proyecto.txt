@@ -4,19 +4,21 @@ rails g scaffold Laboratory number:integer capacity:integer floor:integer numCom
 
 rails g scaffold Software name:string version:string
 
-rails g scaffold Schedule star:string end:string day:string
+rails g scaffold Category description:string
 
-rails g scaffold Course code:string name:string group:string
+rails g scaffold Course code:string name:string
 
 rails g scaffold Professor code:string name:string lastname:string
 
-rails g scaffold Reservation dateR:datetime numHours:integer responsible:string reason:string
-
-
-rails g scaffold Category description:string
-
 rails g scaffold EAP name:string
+
+rails g model Role name:string
+
+
+rails g scaffold Schedule star:datetime end:datetime
+
+rails g scaffold Group name:string
 
 rails g model State description:string
 
-rails g model Role name:string
+rails g model Day description:string

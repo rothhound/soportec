@@ -9,6 +9,7 @@ rails new soportec -m http://jruby.org/rails3.rb
 gem 'activerecord-jdbcmysql-adapter'
 gem 'devise'
 gem 'cancan'
+gem 'bootstrap-sass'
 
 4. Modificar el archivo database.yml en la ruta soportec/config en lo siguiente:
 development:
@@ -19,6 +20,8 @@ development:
 
 5. En consola, ejecutar:
 bundle install
+
+---Listo hasta antes---
 
 6. Crear los scaffold de las tablas básicas, ver "Creador de scaffolds del proyecto"
 
@@ -41,17 +44,17 @@ Si es de uno a muchos o unos a unos. Es el otro lado de la relación. En esta cla
 has_and_belongs_to_many :laboratories
 Si es de muchos a muchos. Es directo (crea una clase con los identificadores)
 
-
+---Listo hasta siguiente marca---
 
 9. Instalar el devise usando:
-rails generate devise:install
+rails g devise:install
 
 5.Para poder cerrar sesion, en la ruta config/initializers/devise.rb modificar lo siguiente:
 config.sign_out_via = :delete por
 config.sign_out_via = :get
 
 6. Cree el modelo devise usando:
-rails generate devise User
+rails g devise User
 
 7. Genera las vistas con el comando 
 rails g devise:views
@@ -60,6 +63,8 @@ rails g devise:views
 
 9. Generar el modelo de roles:
 rails g model Role name:string
+
+---Listo hasta antes---
 
 10. Modifcar para relacionar los modelos usuarios y roles.
 
