@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  number: 1
+  capacity: 1
+  floor: 1
+  numComputers: 1
+  airConditioning: 1
+  projector: 1
+  sound: 1
+
+two:
+  number: 1
+  capacity: 1
+  floor: 1
+  numComputers: 1
+  airConditioning: 1
+  projector: 1
+  sound: 1

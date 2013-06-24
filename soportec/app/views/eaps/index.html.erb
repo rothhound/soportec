@@ -1,0 +1,23 @@
+<h1>Listing eaps</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @eaps.each do |eap| %>
+  <tr>
+    <td><%= eap.name %></td>
+    <td><%= link_to 'Show', eap %></td>
+    <td><%= link_to 'Edit', edit_eap_path(eap) %></td>
+    <td><%= link_to 'Destroy', eap, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Eap', new_eap_path %>
