@@ -1,4 +1,8 @@
-body {
+@import "bootstrap";
+body { padding-top: 60px; }
+@import "bootstrap-responsive";
+
+/*body {
   background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
@@ -67,3 +71,4 @@ div {
     list-style: square;
   }
 }
+*/
