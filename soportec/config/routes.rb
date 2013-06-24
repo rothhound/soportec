@@ -1,29 +1,25 @@
 Soportec::Application.routes.draw do
   resources :groups
 
+  resources :users
+
+  resources :roles
 
   resources :schedules
-
 
   devise_for :users
 
   resources :eaps
 
-
   resources :courses
-
 
   resources :professors
 
-
   resources :categories
-
 
   resources :softwares
 
-
   resources :laboratories
-
 
   resources :computers
 
