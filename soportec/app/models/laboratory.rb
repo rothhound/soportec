@@ -3,4 +3,6 @@ class Laboratory < ActiveRecord::Base
 
   has_one :computer
   has_and_belongs_to_many :softwares
+  has_many :schedules
+  has_one :state
 end

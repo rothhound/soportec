@@ -4,6 +4,10 @@ class CreateSchedules < ActiveRecord::Migration
       t.datetime :star
       t.datetime :end
 
+      t.integer :laboratory_id
+      t.integer :course_id
+      t.integer :day_id
+
       t.timestamps
     end
   end

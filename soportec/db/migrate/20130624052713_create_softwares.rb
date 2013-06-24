@@ -4,6 +4,7 @@ class CreateSoftwares < ActiveRecord::Migration
       t.string :name
       t.string :version
 
+      t.integer :category_id
       t.timestamps
     end
   end

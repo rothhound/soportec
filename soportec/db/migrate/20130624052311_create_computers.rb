@@ -9,6 +9,7 @@ class CreateComputers < ActiveRecord::Migration
       t.string :keyboard
       t.string :videocard
 
+      t.integer :laboratory_id
       t.timestamps
     end
   end
