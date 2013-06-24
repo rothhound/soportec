@@ -27,8 +27,9 @@ ActiveRecord::Schema.define(:version => 20130624153430) do
     t.string   "mouse"
     t.string   "keyboard"
     t.string   "videocard"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "laboratory_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "courses", :force => true do |t|
@@ -95,21 +96,26 @@ ActiveRecord::Schema.define(:version => 20130624153430) do
   create_table "schedules", :force => true do |t|
     t.datetime "star"
     t.datetime "end"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "laboratory_id"
+    t.integer  "course_id"
+    t.integer  "day_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "softwares", :force => true do |t|
     t.string   "name"
     t.string   "version"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "states", :force => true do |t|
     t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "laboratory_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -118,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20130624153430) do
     t.string   "name"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
+    t.integer  "role_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
