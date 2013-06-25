@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+  <title>Soportec</title>
+  <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+		body {
+			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+		}
+    </style>
+  	<%= stylesheet_link_tag    "application", :media => "all" %>
+  	<%= javascript_include_tag "application" %>
+  	<%= csrf_meta_tags %>
+</head>
+<header>
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+		            	<span class="icon-bar"></span>
+		            	<span class="icon-bar"></span>
+		            	<span class="icon-bar"></span>
+					</button>
+					<a class="brand" href="index.html"><img style="height: 50px" src="assets/soportec.png" alt="assets/soportec.png" height="50"></a>
+					<div class="nav-collapse pull-right">
+						<ul class="nav">
+							<li class="active"><a href="#">Inicio</a></li>
+							<li><a href="#about">Acerca de</a></li>
+							<li><a href="#contact">Contacto</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+<body>
+<%= yield %>
+</body>
+<footer>
+		<div class="container">
+			<p class="pull-right">
+				Créditos
+			</p>
+			<p class="muted credit">
+				<a href="#">Facultad de Ingeniería de Sistemas e Informática</a>
+				
+				<br>
+				Universidad Nacional Mayor de San Marcos
+			</p>
+		</div>
+	</footer>
+</html>
