@@ -1,8 +1,8 @@
 class CreateSchedules < ActiveRecord::Migration
   def change
     create_table :schedules do |t|
-      t.datetime :star
-      t.datetime :end
+      t.time :star
+      t.time :end
 
       t.integer :laboratory_id
       t.integer :course_id
