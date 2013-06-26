@@ -1,24 +1,21 @@
 <!doctype html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
   <title>Soportec</title>
     <style>
-		body {
-			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-		}
+        body {
+            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        }
     </style>
-  	<%= stylesheet_link_tag    "application", :media => "all" %>
-  	<%= javascript_include_tag "application" %>
-  	<%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
 </head>
-<header>
-		<%= render 'elements/header' %>
-	</header>
-<body>
-<%= yield %>
-</body>
-<footer>
-		<%= render 'elements/footer' %>
-	</footer>
+    <body>
+        <%= render 'elements/header' %>
+        <%= yield %>
+        <%= render 'elements/footer' %>
+    </body>
 </html>
