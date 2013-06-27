@@ -131,7 +131,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-jdbcmysql-adapter
   activerecord-jdbcsqlite3-adapter
-  bootstrap-sass
+  bootstrap-sass (~> 2.3.2.0)
   cancan
   coffee-rails (~> 3.2.1)
   devise
