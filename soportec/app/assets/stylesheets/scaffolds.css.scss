@@ -1,6 +1,14 @@
 @import "bootstrap";
-body { padding-top: 100px; }
+body { padding-top: 60px; }
 @import "bootstrap-responsive";
+
+.navbar .brand {
+  padding: 0px;
+}
+
+li {
+  line-height: 28px;
+}
 
 /*body {
   background-color: #fff;
