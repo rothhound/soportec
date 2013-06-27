@@ -1,6 +1,9 @@
 Soportec::Application.routes.draw do
   root :to => "main#index"
 
+  devise_for :users
+#  devise_for :users, :path_names => { :sign_up => "register" }
+
   resources :groups
 
   resources :users
@@ -8,8 +11,6 @@ Soportec::Application.routes.draw do
   resources :roles
 
   resources :schedules
-
-  devise_for :users
 
   resources :eaps
 

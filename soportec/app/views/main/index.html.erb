@@ -4,22 +4,30 @@
 </div>
 
 <div class="span5 centered">
-    <form>
-        <h2>Login</h2>
+    <h2>Ingresar</h2>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
         <div class="control-group">
             <div class="controls">
                 <div class="input-prepend">
                     <span class="add-on"><i class="icon-envelope"></i></span>
-                    <input type="text" class="input-block-level" placeholder="E-mail"></input>
+                    <%= f.email_field :email, :placeholder => 'Usuario' %>
                 </div>
             </div>
             <div class="controls">
                 <div class="input-prepend">
                     <span class="add-on"> <i class="icon-asterisk"></i> </span>
-                    <input type="password" class="input-block-level" placeholder="Contraseña"></input>
+                    <%= f.password_field :password, :placeholder => 'Password' %>
                 </div>
             </div>
-            <button class="btn btn-medium btn-primary" type="submit">Ingresar</button>
+            <% if devise_mapping.rememberable? -%>
+                <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+            <% end -%>
+            <%= f.submit "Ingresar", :class => 'btn btn-medium btn-primary' %>
         </div>
-    </form>
+    <% end %>
 </div>
+
+<!-- <div>
+    Mayor info de como colocar el formulario de devise en cualquier lado:
+    http://stackoverflow.com/questions/9381817/devise-sign-up-form-on-the-home-page-as-well
+</div> -->
