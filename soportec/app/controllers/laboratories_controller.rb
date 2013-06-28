@@ -1,6 +1,7 @@
 class LaboratoriesController < ApplicationController
   # GET /laboratories
   # GET /laboratories.json
+
   def index
     @laboratories = Laboratory.all
 
@@ -80,4 +81,13 @@ class LaboratoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def form
+    @laboratory = Laboratory.find(params[:codigo_labo])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @laboratory }
+    end
+  end
+
 end

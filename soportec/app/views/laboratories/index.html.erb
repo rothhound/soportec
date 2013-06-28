@@ -33,3 +33,11 @@
 <br />
 
 <%= link_to 'New Laboratory', new_laboratory_path, :class => 'btn btn-primary' %>
+<br />
+
+<h1>Prueba de busqueda de laboratorio <%= @codigo %></h1>
+<%= form_tag :action => 'form' do%>
+    <p>Codigo:</p>
+    <%= text_field_tag 'codigo_labo' %>
+    <%= submit_tag 'Buscar' %>
+<%end%>

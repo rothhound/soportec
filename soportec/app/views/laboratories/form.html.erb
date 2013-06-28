@@ -1,0 +1,32 @@
+<h1>Prueba de busqueda de laboratorio <%= @codigo %></h1>
+
+<table class="table">
+  <tr>
+    <th>Number</th>
+    <th>Capacity</th>
+    <th>Floor</th>
+    <th>Numcomputers</th>
+    <th>Airconditioning</th>
+    <th>Projector</th>
+    <th>Sound</th>
+    <th></th>
+  </tr>
+
+    <tr>
+      <td><%= @laboratory.number %></td>
+      <td><%= @laboratory.capacity %></td>
+      <td><%= @laboratory.floor %></td>
+      <td><%= @laboratory.numComputers %></td>
+      <td><%= @laboratory.airConditioning %></td>
+      <td><%= @laboratory.projector %></td>
+      <td><%= @laboratory.sound %></td>
+      <td><%= link_to 'Show', @laboratory %></td>
+    </tr>
+
+  </table>
+
+<%= form_tag :action => 'form' do%>
+    <p>Codigo:</p>
+    <%= text_field_tag 'codigo_labo' %>
+    <%= submit_tag 'Buscar' %>
+<%end%>
