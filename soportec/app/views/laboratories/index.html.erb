@@ -36,7 +36,7 @@
 <br />
 
 <h1>Prueba de busqueda de laboratorio <%= @codigo %></h1>
-<%= form_tag :action => 'form' do%>
+<%= form_tag :action => 'buscar' do%>
     <p>Codigo:</p>
     <%= text_field_tag 'codigo_labo' %>
     <%= submit_tag 'Buscar' %>

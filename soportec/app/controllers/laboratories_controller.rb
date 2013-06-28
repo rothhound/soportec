@@ -82,7 +82,7 @@ class LaboratoriesController < ApplicationController
     end
   end
 
-  def form
+  def buscar
     @laboratory = Laboratory.find(params[:codigo_labo])
     respond_to do |format|
       format.html # show.html.erb
