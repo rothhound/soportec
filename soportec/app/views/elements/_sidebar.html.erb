@@ -1,23 +1,63 @@
 <div class="accordion" id="leftMenu">
     <div class="accordion-group">
         <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#">
-                  <i class="icon-home"></i> Dashboard
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseOne">
+                  <i class="icon-home"></i> Usuario
             </a>
+        </div>
+        <div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
+            <div class="accordion-inner">
+                <ul>
+                    
+                    <li><%= link_to 'Perfil de Usuario', :controller=>"users", :action=>"show", :id=>current_user.id %></li>
+                    <li><%= link_to 'Configuracion de Cuenta', :controller=>"users", :action=>"edit", :id=>current_user.id %></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseTwo">
-                <i class="icon-th"></i> Layout
+                <i class="icon-th"></i> Gestion
             </a>
         </div>
         <div id="collapseTwo" class="accordion-body collapse" style="height: 0px; ">
             <div class="accordion-inner">
                 <ul>
-                    <li>This is one</li>
-                    <li>This is two</li>
-                    <li>This is Three</li>
+                    <div class="accordion" id="leftMenu1">
+                    	<div class="accordion-group">
+					        <div class="accordion-heading">
+					            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu1" href="#collapseOneOne">
+					                  <i class="icon-file"></i> Laboratorio
+					            </a>
+					        </div>
+					        <div id="collapseOneOne" class="accordion-body collapse" style="height: 0px; ">
+					            <div class="accordion-inner">
+					                <ul>
+					                    <li>Asignar Responsable</li>                 
+					                </ul>
+					            </div>
+					        </div>
+					    </div>
+                    </div>
+                    <div class="accordion" id="leftMenu2">
+                    	<div class="accordion-group">
+					        <div class="accordion-heading">
+					            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu2" href="#collapseOneTwo">
+					                  <i class="icon-cog"></i> Horario
+					            </a>
+					        </div>
+					        <div id="collapseOneTwo" class="accordion-body collapse" style="height: 0px; ">
+					            <div class="accordion-inner">
+					                <ul>
+					                    <li>Asignar de Horario Semanal</li>
+					                    <li>Ver Horario Actual</li>
+					                    <li>Modificar Actual</li>
+					                </ul>
+					            </div>
+					        </div>
+					    </div>
+                    </div>                   
                 </ul>
             </div>
         </div>
@@ -25,65 +65,18 @@
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseThree">
-                <i class="icon-th-list"></i> UI Components
+                <i class="icon-th-list"></i> Mantenimiento
             </a>
         </div>
         <div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
             <div class="accordion-inner">
                 <ul>
-                    <li>This is one</li>
-                    <li>This is two</li>
-                    <li>This is Three</li>
+                    <li><%= link_to 'Usuarios', :controller=>"users", :action=>"index" %></li>
+                    <li><%= link_to 'Cursos', :controller=>"courses", :action=>"index"%></li>
+                    <li><%= link_to 'Profesores', :controller=>"professors", :action=>"index"%></li>
                 </ul>                 
             </div>
          </div>
     </div>
-    <div class="accordion-group">
-        <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseFour">
-                <i class="icon-list-alt"></i> Forms
-            </a>
-        </div>
-        <div id="collapseFour" class="accordion-body collapse" style="height: 0px; ">
-            <div class="accordion-inner">
-                <ul>
-                    <li>This is one</li>
-                    <li>This is two</li>
-                    <li>This is Three</li>
-                </ul>                 
-            </div>
-         </div>
-    </div>
-    <div class="accordion-group">
-        <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseFive">
-                <i class="icon-cog"></i> Plugins
-            </a>
-        </div>
-        <div id="collapseFive" class="accordion-body collapse" style="height: 0px; ">
-            <div class="accordion-inner">
-                <ul>
-                    <li>This is one</li>
-                    <li>This is two</li>
-                    <li>This is Three</li>
-                </ul>                 
-            </div>
-         </div>
-    </div>
-    <div class="accordion-group">
-        <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseSix">
-                <i class="icon-file"></i> Templates
-            </a>
-        </div>
-        <div id="collapseSix" class="accordion-body collapse" style="height: 0px; ">
-            <div class="accordion-inner">
-                <ul>
-                    <li>This is one</li>
-                    <li>This is two</li>
-                    <li>This is Three</li>
-                </ul>                 
-            </div>
-         </div>
-    </div>
+    
 </div>
