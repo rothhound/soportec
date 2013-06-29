@@ -67,13 +67,24 @@ footer {
 
 #new_user {
     max-width: 300px;
-    padding: 19px 29px 29px;
+    padding: 30px 70px;
     margin: 0 auto 20px;
     background-color: #fff;
     border: 1px solid #e5e5e5;
     border-radius: 5px;
-    #submit {
-        text-align: left;
+
+    input {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    label {
+        margin-bottom: 10px;
+    }
+    
+    input[type="checkbox"] {
+        float: left;
+        margin: 3px 8px;
     }
 }
 
