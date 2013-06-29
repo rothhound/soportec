@@ -1,39 +1,41 @@
 <h2>Detalles del usuario</h2>
 <div class="span4 centered">
-	<img src="http://www.wiisworld.com/images/news/pokemon.jpg"/>
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Nombre</th>
-				<td><%= @user.name %></td>
-			</tr>
-			<tr>
-				<th>Código</th>
-				<td><%= @user.code %></td>
-			</tr>
-			<tr>
-				<th>Email</th>
-				<td><%= @user.email %></td>
-			</tr>
-			<tr>
-				<th>Username</th>
-				<td><%= @user.username %></td>
-			</tr>
-			<tr>
-				<th>Laboratorio</th>
-				<td><%= "Sin Laboratorio" %></td>
-			</tr>
-			<tr>
-				<th>Último Ingreso</th>
-				<td><%= @user.last_sign_in_at %></td>
-			</tr>
-		</tbody>
-	</table>
+    <div class="text-centered">
+        <img src="http://www.wiisworld.com/images/news/pokemon.jpg"/>
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nombre</th>
+                <td><%= @user.name %></td>
+            </tr>
+            <tr>
+                <th>Código</th>
+                <td><%= @user.code %></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><%= @user.email %></td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td><%= @user.username %></td>
+            </tr>
+            <tr>
+                <th>Laboratorio</th>
+                <td><%= "Sin Laboratorio" %></td>
+            </tr>
+            <tr>
+                <th>Último Ingreso</th>
+                <td><%= @user.last_sign_in_at %></td>
+            </tr>
+        </tbody>
+    </table>
 
-	<div class="span2 centered">
-		<%= link_to 'Editar ', edit_user_path(@user), :class => 'btn btn-primary', :style => 'margin-right: 2em;' %>
-		<%= link_to 'Back', users_path, :class=> 'btn'  %>
-	</div>
+    <div class="span2 centered">
+        <%= link_to 'Editar ', edit_user_path(@user), :class => 'btn btn-primary', :style => 'margin-right: 2em;' %>
+        <%= link_to 'Volver', users_path, :class=> 'btn'  %>
+    </div>
 </div>
 
 

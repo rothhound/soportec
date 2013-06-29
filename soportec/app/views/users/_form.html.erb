@@ -43,6 +43,6 @@
 		<%= f.collection_select :role_id, @roles ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
 	</div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Actualizar', :class => 'btn btn-primary' %>
   </div>
 <% end %>
