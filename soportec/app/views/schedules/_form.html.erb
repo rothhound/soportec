@@ -1,6 +1,6 @@
 <%= form_for(@schedule) do |f| %>
   <% if @schedule.errors.any? %>
-    <div id="error_explanation">
+    <div id="alert alert-error">
       <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
 
       <ul>
