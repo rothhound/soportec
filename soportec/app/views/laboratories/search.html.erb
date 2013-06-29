@@ -1,29 +1,33 @@
 <h1>Prueba de busqueda de laboratorio <%= @codigo %></h1>
 
 <table class="table">
+<table class="table">
   <tr>
-    <th>Number</th>
-    <th>Capacity</th>
-    <th>Floor</th>
-    <th>Numcomputers</th>
-    <th>Airconditioning</th>
-    <th>Projector</th>
-    <th>Sound</th>
+    <th>Dia</th>
+    <th>Inicio</th>
+    <th>Fin</th>
+    <th>Curso</th>
+    <th>Profesor</th>
+    
+    <th></th>
+    <th></th>
     <th></th>
   </tr>
-
-    <tr>
-      <td><%= @laboratory.number %></td>
-      <td><%= @laboratory.capacity %></td>
-      <td><%= @laboratory.floor %></td>
-      <td><%= @laboratory.numComputers %></td>
-      <td><%= @laboratory.airConditioning %></td>
-      <td><%= @laboratory.projector %></td>
-      <td><%= @laboratory.sound %></td>
-      <td><%= link_to 'Show', @laboratory %></td>
-    </tr>
+  <% @laboratories.each do |laboratory| %>
+  <tr>
+    <td><%= laboratory.day_id %></td>
+    <td><%= laboratory.star %></td>
+    <td><%= laboratory.end %></td>
+    <td><%= laboratory.course_name %></td>
+    <td><%= laboratory.profesor_name%><%= laboratory.lastname%></td>
+    <td><%= link_to 'Show', laboratory %></td>
+    <td><%= link_to 'Edit', edit_laboratory_path(laboratory) %></td>
+    <td><%= link_to 'Destroy', laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
 
   </table>
+
 
 <%= form_tag :action => 'search' do%>
     <p>Codigo:</p>

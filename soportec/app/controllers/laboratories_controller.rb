@@ -85,7 +85,9 @@ class LaboratoriesController < ApplicationController
   end
 
   def search
-    @laboratory = Laboratory.find(params[:codigo_labo])
+    #@laboratory = Laboratory.find(params[:codigo_labo])
+    #@laboratories = Laboratory.joins(schedules: [{course: :professors}])
+    @laboratories = Laboratory.find(:all ,:joins => {:schedules  => {course: :professors}}, :select => "*, laboratories.id as lab_id,courses.name as course_name, professors.name as profesor_name", :conditions => {:number => params[:codigo_labo]})
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @laboratory }
