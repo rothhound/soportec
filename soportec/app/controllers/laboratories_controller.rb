@@ -1,4 +1,6 @@
 class LaboratoriesController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /laboratories
   # GET /laboratories.json
 

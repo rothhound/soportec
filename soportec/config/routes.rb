@@ -1,5 +1,5 @@
 Soportec::Application.routes.draw do
-  root :to => "main#index"
+  root :to => "laboratories#index"
 
   devise_for :users
 #  devise_for :users, :path_names => { :sign_up => "register" }

@@ -4,7 +4,7 @@
 </div>
 
 <div class="span5 centered">
-    <h2>Ingresar</h2>
+    <h1>Ingresar</h1>
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
         <div class="control-group">
             <div class="controls">
@@ -22,7 +22,7 @@
             <% if devise_mapping.rememberable? -%>
                 <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
             <% end -%>
-            <%= f.submit "Ingresar", :class => 'btn btn-medium btn-primary' %>
+            <%= f.submit "Ingresar", :class => "btn btn-medium btn-primary" %>
         </div>
     <% end %>
 </div>

@@ -1,0 +1,100 @@
+@import "bootstrap";
+body { 
+    padding-top: 50px; 
+    background-color: #f5f5f5;
+}
+@import "bootstrap-responsive";
+
+html {
+    overflow-y: scroll;
+}
+
+/* Tipografia */ 
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1;
+}
+
+h1 {
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.7em;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: normal;
+    color: #999;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.7em;
+}
+
+.navbar .brand {
+    padding: 0px;
+}
+
+li {
+    line-height: 28px;
+}
+
+footer {
+    padding: 20px 0px;
+    border-top: 1px solid #eaeaea;
+    background-color: #e7e7e7;
+    color: #999;
+    small {
+        font-size: 13px;
+    }
+
+    .pull-right{
+        line-height: 45px;
+    }
+}
+
+.centered{
+    height: 350px;
+    float: none;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+#new_user {
+    max-width: 300px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    #submit {
+        text-align: left;
+    }
+}
+
+#container {
+    margin: 20px auto;
+}
+
+.span8 {   
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+}
+
+/* miscellaneous */
+.debug dump {
+    clear: both;
+    float: left;
+    width: 100%;
+    margin-top: 45px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
