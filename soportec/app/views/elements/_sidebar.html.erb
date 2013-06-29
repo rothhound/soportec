@@ -2,13 +2,13 @@
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseOne">
-                  <i class="icon-home"></i> Usuario
+                  <i class="icon-home icon-white"></i> Usuario
             </a>
         </div>
         <div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
             <div class="accordion-inner">
                 <ul>
-                    
+                    <li><%= link_to 'Laboratorio asignado', '#' %></li>
                     <li><%= link_to 'Perfil de Usuario', :controller=>"users", :action=>"show", :id=>current_user.id %></li>
                     <li><%= link_to 'Configuracion de Cuenta', :controller=>"users", :action=>"edit", :id=>current_user.id %></li>
                 </ul>
@@ -18,62 +18,49 @@
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseTwo">
-                <i class="icon-th"></i> Gestion
+                <i class="icon-th icon-white"></i> Laboratorios
             </a>
         </div>
         <div id="collapseTwo" class="accordion-body collapse" style="height: 0px; ">
             <div class="accordion-inner">
                 <ul>
-                    <div class="accordion" id="leftMenu1">
-                    	<div class="accordion-group">
-					        <div class="accordion-heading">
-					            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu1" href="#collapseOneOne">
-					                  <i class="icon-file"></i> Laboratorio
-					            </a>
-					        </div>
-					        <div id="collapseOneOne" class="accordion-body collapse" style="height: 0px; ">
-					            <div class="accordion-inner">
-					                <ul>
-					                    <li>Asignar Responsable</li>                 
-					                </ul>
-					            </div>
-					        </div>
-					    </div>
-                    </div>
-                    <div class="accordion" id="leftMenu2">
-                    	<div class="accordion-group">
-					        <div class="accordion-heading">
-					            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu2" href="#collapseOneTwo">
-					                  <i class="icon-cog"></i> Horario
-					            </a>
-					        </div>
-					        <div id="collapseOneTwo" class="accordion-body collapse" style="height: 0px; ">
-					            <div class="accordion-inner">
-					                <ul>
-					                    <li>Asignar de Horario Semanal</li>
-					                    <li>Ver Horario Actual</li>
-					                    <li>Modificar Actual</li>
-					                </ul>
-					            </div>
-					        </div>
-					    </div>
-                    </div>                   
+                    <li><%= link_to 'Verificar Estado Actual', '#' %></li>
+                    <li><%= link_to 'Asignar Responsable', '#' %></li>
                 </ul>
             </div>
         </div>
     </div>
+
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseThree">
-                <i class="icon-th-list"></i> Mantenimiento
+                <i class="icon-th icon-white"></i> Horario
             </a>
         </div>
         <div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
             <div class="accordion-inner">
                 <ul>
-                    <li><%= link_to 'Usuarios', :controller=>"users", :action=>"index" %></li>
-                    <li><%= link_to 'Cursos', :controller=>"courses", :action=>"index"%></li>
-                    <li><%= link_to 'Profesores', :controller=>"professors", :action=>"index"%></li>
+                    <li><%= link_to 'Verificar Horario Actual', '#' %></li>
+                    <li><%= link_to 'Modificar Horario Actual', '#' %></li>
+                    <li><%= link_to 'Asignar Horario Semestral', '#' %></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseFour">
+                <i class="icon-th-list icon-white"></i> Mantenimiento
+            </a>
+        </div>
+        <div id="collapseFour" class="accordion-body collapse" style="height: 0px; ">
+            <div class="accordion-inner">
+                <ul>
+                    <li><%= link_to 'Laboratorios', :controller => 'laboratories', :action => 'index' %></li>
+                    <li><%= link_to 'Usuarios', :controller => 'users', :action => 'index' %></li>
+                    <li><%= link_to 'Profesores', :controller => 'professors', :action => 'index' %></li>
+                    <li><%= link_to 'Cursos', :controller => 'courses', :action => 'index' %></li>
                 </ul>                 
             </div>
          </div>
