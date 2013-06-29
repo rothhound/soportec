@@ -29,23 +29,19 @@
   </div>
   <% if @current_method == "new" %>
     <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password %>
+      	<%= f.label :password %><br />
+      	<%= f.password_field :password %>
     </div>
     <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %>
+      	<%= f.label :password_confirmation %><br />
+    	<%= f.password_field :password_confirmation %>
     </div>
-  <% end %>
-
-  <%= f.label :Role %><br />
-  <% for role in Role.find(:all) %>
-    <div>
-      <%= radio_button_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
-      <%= role.name %>
-    </div>
-  <% end %>
-
+    
+<% end %>
+<div class="field">
+	  	<%= f.label :role%>
+		<%= f.collection_select :role_id, @roles ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+	</div>
   <div class="actions">
     <%= f.submit %>
   </div>
