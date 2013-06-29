@@ -1,5 +1,5 @@
 class Schedule < ActiveRecord::Base
-  attr_accessible :end, :star
+  attr_accessible :end, :start
 
   belongs_to :day
   belongs_to :laboratory

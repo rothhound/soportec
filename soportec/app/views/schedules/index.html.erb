@@ -11,7 +11,7 @@
 
 <% @schedules.each do |schedule| %>
   <tr>
-    <td><%= schedule.star %></td>
+    <td><%= schedule.start %></td>
     <td><%= schedule.end %></td>
     <td><%= link_to 'Show', schedule %></td>
     <td><%= link_to 'Edit', edit_schedule_path(schedule) %></td>
