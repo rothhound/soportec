@@ -9,8 +9,6 @@ html {
     overflow-y: scroll;
 }
 
-/* Tipografia */ 
-
 h1, h2, h3, h4, h5, h6 {
     line-height: 1;
 }
@@ -22,6 +20,7 @@ h1 {
     text-align: center;
 }
 
+
 h2 {
     font-size: 1.7em;
     letter-spacing: -1px;
@@ -31,17 +30,10 @@ h2 {
     color: #999;
 }
 
+
 p {
     font-size: 1.1em;
     line-height: 1.7em;
-}
-
-.navbar .brand {
-    padding: 0px;
-}
-
-li {
-    line-height: 28px;
 }
 
 footer {
@@ -101,7 +93,6 @@ footer {
     border-radius: 5px;
 }
 
-/* miscellaneous */
 .debug dump {
     clear: both;
     float: left;
