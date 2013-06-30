@@ -16,7 +16,7 @@
   <% @laboratories.each do |laboratory| %>
   <tr>
     <td><%= laboratory.day_id %></td>
-    <td><%= laboratory.star %></td>
+    <td><%= laboratory.start %></td>
     <td><%= laboratory.end %></td>
     <td><%= laboratory.course_name %></td>
     <td><%= laboratory.profesor_name%><%= laboratory.lastname%></td>
@@ -31,6 +31,6 @@
 
 <%= form_tag :action => 'search' do%>
     <p>Codigo:</p>
-    <%= text_field_tag 'codigo_labo' %>
-    <%= submit_tag 'search' %>
+    <%= collection_select :codigo_labo, :number, @laboratory1, :number, :number %>
+    <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
 <%end%>
