@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-06-2013 a las 12:32:48
+-- Tiempo de generación: 30-06-2013 a las 02:01:16
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -415,7 +415,16 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Administrador', '2013-06-28 04:07:49', '2013-06-28 04:07:49'),
+(2, 'Secretaria', '2013-06-28 04:07:49', '2013-06-28 04:07:49'),
+(3, 'Bolsista', '2013-06-28 04:07:49', '2013-06-28 04:07:49');
 
 -- --------------------------------------------------------
 
@@ -425,7 +434,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 
 CREATE TABLE IF NOT EXISTS `schedules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `star` time DEFAULT NULL,
+  `start` time DEFAULT NULL,
   `end` time DEFAULT NULL,
   `laboratory_id` int(11) DEFAULT NULL,
   `course_id` int(11) DEFAULT NULL,
@@ -439,7 +448,7 @@ CREATE TABLE IF NOT EXISTS `schedules` (
 -- Volcado de datos para la tabla `schedules`
 --
 
-INSERT INTO `schedules` (`id`, `star`, `end`, `laboratory_id`, `course_id`, `day_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `schedules` (`id`, `start`, `end`, `laboratory_id`, `course_id`, `day_id`, `created_at`, `updated_at`) VALUES
 (1, '08:00:00', '10:00:00', 1, 30, 1, '2013-06-26 20:00:55', '2013-06-26 20:00:55'),
 (2, '12:00:00', '14:00:00', 1, 59, 1, '2013-06-26 20:03:01', '2013-06-26 20:03:12'),
 (3, '14:00:00', '16:00:00', 1, 75, 1, '2013-06-26 20:03:28', '2013-06-26 20:03:28'),
@@ -490,7 +499,8 @@ INSERT INTO `schema_migrations` (`version`) VALUES
 ('20130624153128'),
 ('20130624153150'),
 ('20130624153331'),
-('20130624153430');
+('20130624153430'),
+('20130629232725');
 
 -- --------------------------------------------------------
 
@@ -550,7 +560,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `code`, `username`, `name`, `email`, `encrypted_password`, `role_id`, `reset_password_token`, `reset_password_sent_at`, `remember_created_at`, `sign_in_count`, `current_sign_in_at`, `last_sign_in_at`, `current_sign_in_ip`, `last_sign_in_ip`, `created_at`, `updated_at`) VALUES
+(3, '10200054', 'andxxi', 'andre', 'andxxi@gmail.com', '$2a$10$OxTRLEViACNM5JX5yfilvOrFZLaPyZOtv9SrUUKX4np6z2ecrRlce', 3, NULL, NULL, NULL, 9, '2013-06-29 22:34:37', '2013-06-29 07:55:12', '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1', '2013-06-28 23:48:29', '2013-06-29 22:34:37');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

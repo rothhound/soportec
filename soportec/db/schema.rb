@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(:version => 20130629232725) do
   end
 
   create_table "schedules", :force => true do |t|
-    t.datetime "start"
-    t.datetime "end"
+    t.time     "start"
+    t.time     "end"
     t.integer  "laboratory_id"
     t.integer  "course_id"
     t.integer  "day_id"
