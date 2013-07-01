@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+      <%= f.label :Dia%>
+      <%= f.collection_select :day_id, @day,:description,:description, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+  </div>
   <div class="field">
     <%= f.label :start %><br />
     <%= f.time_select :start %>
@@ -19,7 +22,18 @@
     <%= f.label :end %><br />
     <%= f.time_select :end %>
   </div>
+
+  <div class="field">
+      <%= f.label :Curso%>
+      <%= f.collection_select :course_id, @course, :code, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+  </div>
+  <div class="field">
+      <%= f.label :Profesor%>
+      <%= f.collection_select :id, @professor ,:lastname, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+  </div>
+
   <div class="actions">
-    <%= f.submit %>
+      <%= f.submit 'Registrar', :class => 'btn btn-primary' %>
   </div>
 <% end %>
+
