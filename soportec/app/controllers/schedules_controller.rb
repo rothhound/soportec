@@ -5,6 +5,7 @@ class SchedulesController < ApplicationController
     @schedules = Schedule.all
     @course = Course.all
     @professor = Professor.all 
+    @laboratory= Laboratory.all
     @day = Day.all
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +19,7 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.find(params[:id])
     @course = Course.all
     @professor = Professor.all
+    @laboratory= Laboratory.all
     @day = Day.all
     respond_to do |format|
       format.html # show.html.erb
@@ -31,6 +33,7 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.new
     @course = Course.all
     @professor = Professor.all
+    @laboratory= Laboratory.all
     @day = Day.all
     @current_method = "new"
     respond_to do |format|
@@ -45,6 +48,7 @@ class SchedulesController < ApplicationController
     @course = Course.all
     @professor = Professor.all
     @day = Day.all
+    @laboratory= Laboratory.all
     @current_method = "update"
   end
 
@@ -54,6 +58,7 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.new(params[:schedule])
     @course = Course.all
     @professor = Professor.all
+    @laboratory= Laboratory.all
     @day = Day.all
     respond_to do |format|
       if @schedule.save
