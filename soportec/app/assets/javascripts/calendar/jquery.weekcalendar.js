@@ -57,12 +57,7 @@
         minDate: null,
         maxDate: null,
         showHeader: true,
-        buttons: true,
-        buttonText: {
-          today: 'today',
-          lastWeek: 'previous',
-          nextWeek: 'next'
-        },
+        buttons: false,
         switchDisplay: {},
         scrollToHourMillis: 500,
         allowEventDelete: false,
@@ -324,30 +319,12 @@
       /*
        * Go to this week
        */
-      today: function() {
-        this._clearCalendar();
-        this._loadCalEvents(new Date());
-      },
+      
 
       /*
        * Go to the previous week relative to the currently displayed week
        */
-      prevWeek: function() {
-        //minus more than 1 day to be sure we're in previous week - account for daylight savings or other anomolies
-        var newDate = new Date(this.element.data('startDate').getTime() - (MILLIS_IN_WEEK / 6));
-        this._clearCalendar();
-        this._loadCalEvents(newDate);
-      },
 
-      /*
-        * Go to the next week relative to the currently displayed week
-        */
-      nextWeek: function() {
-          //add 8 days to be sure of being in prev week - allows for daylight savings or other anomolies
-          var newDate = new Date(this.element.data('startDate').getTime() + MILLIS_IN_WEEK + MILLIS_IN_DAY);
-          this._clearCalendar();
-          this._loadCalEvents(newDate);
-      },
 
       /*
         * Reload the calendar to whatever week the date passed in falls on.
@@ -488,27 +465,7 @@
         return calEvents;
       },
 
-      next: function() {
-        if (this._startOnFirstDayOfWeek()) {
-          return this.nextWeek();
-        }
-        var newDate = new Date(this.element.data('startDate').getTime());
-        newDate.setDate(newDate.getDate() + this.options.daysToShow);
-
-        this._clearCalendar();
-        this._loadCalEvents(newDate);
-      },
-
-      prev: function() {
-        if (this._startOnFirstDayOfWeek()) {
-          return this.prevWeek();
-        }
-        var newDate = new Date(this.element.data('startDate').getTime());
-        newDate.setDate(newDate.getDate() - this.options.daysToShow);
-
-        this._clearCalendar();
-        this._loadCalEvents(newDate);
-      },
+ 
       getCurrentFirstDay: function() {
         return this._dateFirstDayOfWeek(this.options.date || new Date());
       },
@@ -694,80 +651,14 @@
       _renderCalendarButtons: function($calendarContainer) {
         var self = this, options = this.options;
         if ( !options.showHeader ) return;
-        if (options.buttons) {
-            var calendarNavHtml = '';
-
-            calendarNavHtml += '<div class=\"ui-widget-header wc-toolbar\">';
-              calendarNavHtml += '<div class=\"wc-display\"></div>';
-              calendarNavHtml += '<div class=\"wc-nav\">';
-                calendarNavHtml += '<button class=\"wc-prev\">' + options.buttonText.lastWeek + '</button>';
-                calendarNavHtml += '<button class=\"wc-today\">' + options.buttonText.today + '</button>';
-                calendarNavHtml += '<button class=\"wc-next\">' + options.buttonText.nextWeek + '</button>';
-              calendarNavHtml += '</div>';
-              calendarNavHtml += '<h1 class=\"wc-title\"></h1>';
-            calendarNavHtml += '</div>';
-
-            $(calendarNavHtml).appendTo($calendarContainer);
-
-            $calendarContainer.find('.wc-nav .wc-today')
-              .button({
-                icons: {primary: 'ui-icon-home'}})
-              .click(function() {
-                    self.today();
-                    return false;
-                  });
-
-            $calendarContainer.find('.wc-nav .wc-prev')
-              .button({
-                text: false,
-                icons: {primary: 'ui-icon-seek-prev'}})
-              .click(function() {
-                  self.element.weekCalendar('prev');
-                  return false;
-                });
-
-            $calendarContainer.find('.wc-nav .wc-next')
-              .button({
-                text: false,
-                icons: {primary: 'ui-icon-seek-next'}})
-              .click(function() {
-                  self.element.weekCalendar('next');
-                  return false;
-                });
-
-            // now add buttons to switch display
-            if (this.options.switchDisplay && $.isPlainObject(this.options.switchDisplay)) {
-              var $container = $calendarContainer.find('.wc-display');
-              $.each(this.options.switchDisplay, function(label, option) {
-                      var _id = 'wc-switch-display-' + option;
-                      var _input = $('<input type="radio" id="' + _id + '" name="wc-switch-display" class="wc-switch-display"/>');
-                      var _label = $('<label for="' + _id + '"></label>');
-                      _label.html(label);
-                      _input.val(option);
-                      if (parseInt(self.options.daysToShow, 10) === parseInt(option, 10)) {
-                        _input.attr('checked', 'checked');
-                      }
-                      $container
-                        .append(_input)
-                        .append(_label);
-                    });
-              $container.find('input').change(function() {
-                  self.setDaysToShow(parseInt($(this).val(), 10));
-                });
-            }
-            $calendarContainer.find('.wc-nav, .wc-display').buttonset();
-            var _height = $calendarContainer.find('.wc-nav').outerHeight();
-            $calendarContainer.find('.wc-title')
-              .height(_height)
-              .css('line-height', _height + 'px');
-        }else{
+        
             var calendarNavHtml = '';
             calendarNavHtml += '<div class=\"ui-widget-header wc-toolbar\">';
               calendarNavHtml += '<h1 class=\"wc-title\"></h1>';
             calendarNavHtml += '</div>';
             $(calendarNavHtml).appendTo($calendarContainer);
 
-        }
+        
       },
 
       /**

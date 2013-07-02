@@ -37,6 +37,6 @@
 <h2>Busqueda de Laboratorios <%= @codigo %></h2>
 <%= form_tag :action => 'search' do%>
     <span>Codigo:</span>
-    <%= collection_select :codigo_labo, :number, @laboratories, :number, :number %>
+    <%= collection_select :id, :number, @laboratories, :number, :number %>
     <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
 <% end %>

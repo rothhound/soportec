@@ -18,7 +18,7 @@
     <td><%= laboratory.day_id %></td>
     <td><%= laboratory.start %></td>
     <td><%= laboratory.end %></td>
-    <td><%= laboratory.course_name %></td>
+    <td><%= laboratory.title %></td>
     <td><%= laboratory.profesor_name%><%= laboratory.lastname%></td>
     <td><%= link_to 'Show', laboratory %></td>
     <td><%= link_to 'Edit', edit_laboratory_path(laboratory) %></td>
@@ -28,9 +28,10 @@
 
   </table>
 
+<div id="calendar"></div>
 
-<%= form_tag :action => 'search' do%>
+<%= form_tag :action => 'search', :method=>"GET" do%>
     <p>Codigo:</p>
-    <%= collection_select :codigo_labo, :number, @laboratory1, :number, :number %>
+    <%= collection_select :id, :number, @laboratory1, :number, :number %>
     <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
 <%end%>
