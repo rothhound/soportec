@@ -148,31 +148,29 @@ $(document).ready(function() {
    }
 
 
-   function getEventData() {
+ function getEventData() {
       var year = new Date().getFullYear();
       var month = new Date().getMonth();
       var day = new Date().getDate();
       var dia = new Date().getDay();
-      console.log(dia);
       var json = (function () {
     var json = null;
-    json=$.ajax({
+    $.ajax({
         'async': false,
         'global': false,
         'url': "/laboratories/search/1.json",
         'dataType': "json",
         'success': function (data) {
         	for(horario in data){
-	  			data[horario].end=new Date(year, month, day, parseInt(data[horario].end));
-	  			data[horario].start=new Date(year, month, day, parseInt(data[horario].start));
+	  			data[horario].end=new Date(year, month, day+data[horario].day_id-dia, parseInt(data[horario].end));
+	  			data[horario].start=new Date(year, month, day+data[horario].day_id-dia, parseInt(data[horario].start));
 	  		//console.log(data[horario]);
 	  		}
             json = data;
         }
     });
     return json;
-})();
-console.log(json[0].day_id);
+})(); 
       return json;
    }
 
