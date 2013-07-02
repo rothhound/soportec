@@ -22,7 +22,11 @@ Soportec::Application.routes.draw do
 
   resources :softwares
 
-  resources :laboratories
+  resources :laboratories do
+    collection do
+      get 'search'
+    end
+  end
 
   resources :computers
 
