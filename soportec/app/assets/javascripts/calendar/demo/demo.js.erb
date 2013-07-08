@@ -35,7 +35,7 @@ $(document).ready(function() {
       resizable : function(calEvent, $event) {
          return calEvent.readOnly != true;
       },
-      eventNew : function(calEvent, $event) {
+      /*eventNew : function(calEvent, $event) {
          var $dialogContent = $("#event_edit_container");
          resetForm($dialogContent);
          var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
@@ -74,7 +74,7 @@ $(document).ready(function() {
          $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
          setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));
 
-      },
+      },*/
       eventDrop : function(calEvent, $event) {
         
       },
@@ -103,7 +103,7 @@ $(document).ready(function() {
                $('#calendar').weekCalendar("removeUnsavedEvents");
             },
             buttons: {
-               save : function() {
+               /*save : function() {
 
                   calEvent.start = new Date(startField.val());
                   calEvent.end = new Date(endField.val());
@@ -116,7 +116,7 @@ $(document).ready(function() {
                "delete" : function() {
                   $calendar.weekCalendar("removeEvent", calEvent.id);
                   $dialogContent.dialog("close");
-               },
+               },*/
                cancel : function() {
                   $dialogContent.dialog("close");
                }
@@ -148,19 +148,23 @@ $(document).ready(function() {
    }
 
 
- function getEventData() {
+   function getEventData() {
       var year = new Date().getFullYear();
       var month = new Date().getMonth();
       var day = new Date().getDate();
-      var dia = new Date().getDay();
+      var dia = new Date().getDay();       
+	  console.log(document.URL.concat(".json"));
       var json = (function () {
     var json = null;
     $.ajax({
         'async': false,
         'global': false,
-        'url': "/laboratories/search/1.json",
+        'url': document.URL.concat(".json"),
         'dataType': "json",
         'success': function (data) {
+        	if(dia==0){
+        		dia=7;
+        	}
         	for(horario in data){
 	  			data[horario].end=new Date(year, month, day+data[horario].day_id-dia, parseInt(data[horario].end));
 	  			data[horario].start=new Date(year, month, day+data[horario].day_id-dia, parseInt(data[horario].start));
@@ -170,7 +174,8 @@ $(document).ready(function() {
         }
     });
     return json;
-})(); 
+})();
+//console.log(json[0]);
       return json;
    }
 
