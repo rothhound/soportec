@@ -19,7 +19,7 @@
     <td><%= laboratory.start %></td>
     <td><%= laboratory.end %></td>
     <td><%= laboratory.title %></td>
-    <td><%= laboratory.profesor_name%><%= laboratory.lastname%></td>
+    <td><%= laboratory.body%><%= laboratory.lastname%></td>
     <td><%= link_to 'Show', laboratory %></td>
     <td><%= link_to 'Edit', edit_laboratory_path(laboratory) %></td>
     <td><%= link_to 'Destroy', laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -27,8 +27,7 @@
 <% end %>
 
   </table>
-
-<div id="calendar"></div>
+<div id='calendar'></div>
 <div id="event_edit_container">
 		<form>
 			<input type="hidden" />
@@ -37,20 +36,21 @@
 					<span>Date: </span><span class="date_holder"></span> 
 				</li>
 				<li>
-					<label for="start">Start Time: </label><select name="start"><option value="">Select Start Time</option></select>
+					<label for="start">Start Time: </label><span class="start1"></span>
 				</li>
 				<li>
-					<label for="end">End Time: </label><select name="end"><option value="">Select End Time</option></select>
+					<label for="end">End Time: </label><span class="end1"></span>
 				</li>
 				<li>
-					<label for="title">Title: </label><input type="text" name="title" />
+					<label for="title">Curso: </label><span class="title1"></span>
 				</li>
 				<li>
-					<label for="body">Body: </label><textarea name="body"></textarea>
+					<label for="body">Docente: </label><span class="body1"></span>
 				</li>
 			</ul>
 		</form>
 	</div>
+
 <%= form_tag :action => 'search', :method=>"GET" do%>
     <p>Codigo:</p>
     <%= collection_select :id, :number, @laboratory1, :number, :number %>
