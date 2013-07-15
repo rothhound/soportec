@@ -1,3 +1,4 @@
+
 <%= form_for(@schedule) do |f| %>
   <% if @schedule.errors.any? %>
     <div id="alert alert-error">
@@ -26,11 +27,16 @@
     <%= f.label :end %><br />
     <%= f.time_select :end %>
   </div>
+  
 
-  <div class="field">
-      <%= f.label :Curso%>
-      <%= f.collection_select :course_id, @course, :code, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
-  </div>
+  <p>
+  <label for="eap">EAP:</label>
+  <%= collection_select :id, @eap, :id, :name, :prompt => "Select a eap" %>
+</p>
+<p id="course_field">
+  <label for="course_id">Curso:</label>
+  <%= f.collection_select :course_id, @course, :id, :name, {:prompt => "Select a course" }%>
+</p>
   <div class="field">
       <%= f.label :Profesor%>
       <%= f.collection_select :id, @professor ,:lastname, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>

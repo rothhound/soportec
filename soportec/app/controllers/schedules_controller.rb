@@ -34,6 +34,7 @@ class SchedulesController < ApplicationController
     @course = Course.all
     @professor = Professor.all
     @laboratory= Laboratory.all
+    @eap=Eap.all
     @day = Day.all
     @current_method = "new"
     respond_to do |format|
@@ -48,6 +49,7 @@ class SchedulesController < ApplicationController
     @course = Course.all
     @professor = Professor.all
     @day = Day.all
+    @eap=Eap.all
     @laboratory= Laboratory.all
     @current_method = "update"
   end
@@ -59,6 +61,7 @@ class SchedulesController < ApplicationController
     @course = Course.all
     @professor = Professor.all
     @laboratory= Laboratory.all
+    @eap=Eap.all
     @day = Day.all
     respond_to do |format|
       if @schedule.save
@@ -97,5 +100,10 @@ class SchedulesController < ApplicationController
       format.html { redirect_to schedules_url }
       format.json { head :no_content }
     end
+  end
+
+  #dynamic courses
+  def dynamic_course
+  	@courses = Courses.join(:eap)
   end
 end
