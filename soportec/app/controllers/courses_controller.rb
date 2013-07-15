@@ -80,4 +80,14 @@ class CoursesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # GET /manage
+  def manage
+    @courses = Course.all
+
+    respond_to do |format|
+      format.html # manage.html.erb
+      format.json { render json: @courses }
+    end
+  end
 end

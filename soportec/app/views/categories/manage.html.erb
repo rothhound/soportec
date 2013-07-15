@@ -1,0 +1,23 @@
+<h1>Mantenimiento de Categorias de Software</h1>
+
+<table class="table">
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.description %></td>
+    <td><%= link_to 'Ver', category %></td>
+    <td><%= link_to 'Editar', edit_category_path(category) %></td>
+    <td><%= link_to 'Eliminar', category, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nueva Categoria', new_category_path, :class => 'btn btn-primary' %>

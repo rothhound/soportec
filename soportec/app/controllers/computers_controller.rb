@@ -80,4 +80,14 @@ class ComputersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # GET /manage
+  def manage
+    @computers = Computer.all
+
+    respond_to do |format|
+      format.html # manage.html.erb
+      format.json { render json: @computers }
+    end
+  end
 end

@@ -1,0 +1,27 @@
+<h1>Mantenimiento de Profesores</h1>
+
+<table class="table">
+  <tr>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Lastname</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @professors.each do |professor| %>
+  <tr>
+    <td><%= professor.code %></td>
+    <td><%= professor.name %></td>
+    <td><%= professor.lastname %></td>
+    <td><%= link_to 'Ver', professor %></td>
+    <td><%= link_to 'Editar', edit_professor_path(professor) %></td>
+    <td><%= link_to 'Eliminar', professor, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nuevo Profesor', new_professor_path, :class => 'btn btn-primary' %>

@@ -86,4 +86,14 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  # GET /manage
+  def manage
+    @users = User.all
+    @roles = Role.all
+    respond_to do |format|
+      format.html # manage.html.erb
+      format.xml  { render :xml => @users }
+    end
+  end
 end

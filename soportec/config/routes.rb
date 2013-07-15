@@ -6,29 +6,57 @@ Soportec::Application.routes.draw do
 
   resources :groups
 
-  resources :users
+  resources :users do
+    collection do
+      get 'manage'
+    end
+  end
 
-  resources :roles
+  resources :roles do
+    collection do
+      get 'manage'
+    end
+  end
 
   resources :schedules
 
   resources :eaps
 
-  resources :courses
-
-  resources :professors
-
-  resources :categories
-
-  resources :softwares
-
-  resources :laboratories do
+  resources :courses do
     collection do
-      get 'search'
+      get 'manage'
     end
   end
 
-  resources :computers
+  resources :professors do
+    collection do
+      get 'manage'
+    end
+  end
+
+  resources :categories do
+    collection do
+      get 'manage'
+    end
+  end
+
+  resources :softwares do
+    collection do
+      get 'manage'
+    end
+  end
+
+  resources :laboratories do
+    collection do
+      get 'manage'
+    end
+  end
+
+  resources :computers  do
+    collection do
+      get 'manage'
+    end
+  end
 
 
   # The priority is based upon order of creation:

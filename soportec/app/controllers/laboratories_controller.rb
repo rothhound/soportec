@@ -93,4 +93,13 @@ class LaboratoriesController < ApplicationController
     end
   end
 
+  # GET /manage
+  def manage
+    @laboratories = Laboratory.all
+
+    respond_to do |format|
+      format.html # manage.html.erb
+      format.json { render json: @laboratories }
+    end
+  end
 end
