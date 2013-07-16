@@ -34,16 +34,6 @@ ActiveRecord::Schema.define(:version => 20130716051651) do
 
   add_index "computers", ["laboratory_id"], :name => "index_computers_on_laboratory_id"
 
-  create_table "course_professors", :force => true do |t|
-    t.integer  "course_id"
-    t.integer  "professor_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "course_professors", ["course_id"], :name => "index_course_professors_on_course_id"
-  add_index "course_professors", ["professor_id"], :name => "index_course_professors_on_professor_id"
-
   create_table "courses", :force => true do |t|
     t.string   "code"
     t.string   "name"
@@ -52,9 +42,6 @@ ActiveRecord::Schema.define(:version => 20130716051651) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "courses", ["eap_id"], :name => "index_courses_on_eap_id"
-  add_index "courses", ["group_id"], :name => "index_courses_on_group_id"
 
   create_table "days", :force => true do |t|
     t.string   "description"
@@ -87,23 +74,26 @@ ActiveRecord::Schema.define(:version => 20130716051651) do
     t.datetime "updated_at",      :null => false
   end
 
-  create_table "laboratory_softwares", :force => true do |t|
+  create_table "laboratories_softwares", :force => true do |t|
     t.integer  "laboratory_id"
     t.integer  "software_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
 
-  add_index "laboratory_softwares", ["laboratory_id"], :name => "index_laboratory_softwares_on_laboratory_id"
-  add_index "laboratory_softwares", ["software_id"], :name => "index_laboratory_softwares_on_software_id"
+  add_index "laboratories_softwares", ["laboratory_id"], :name => "index_laboratories_softwares_on_laboratory_id"
+  add_index "laboratories_softwares", ["software_id"], :name => "index_laboratories_softwares_on_software_id"
 
   create_table "professors", :force => true do |t|
     t.string   "code"
     t.string   "name"
     t.string   "lastname"
+    t.integer  "course_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "professors", ["course_id"], :name => "index_professors_on_course_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

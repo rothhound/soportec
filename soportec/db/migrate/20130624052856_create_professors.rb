@@ -4,8 +4,10 @@ class CreateProfessors < ActiveRecord::Migration
       t.string :code
       t.string :name
       t.string :lastname
+      t.references :course
 
       t.timestamps
     end
+    add_index :professors, :course_id
   end
 end

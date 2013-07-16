@@ -8,7 +8,5 @@ class CreateCourses < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :courses, :eap_id
-    add_index :courses, :group_id
   end
 end
