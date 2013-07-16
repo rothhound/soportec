@@ -1,27 +1,19 @@
-<h1>Listing professors</h1>
+<h1>Mantenimiento de Profesores</h1>
 
-<table class="table">
-  <tr>
-    <th>Code</th>
-    <th>Name</th>
-    <th>Lastname</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row centered">
+  <% @professors.each do |professor| %>
+    <div class="profile-box">
+      <h4><%= link_to "#{professor.name} #{professor.lastname}", professor %></h4>
+      <p><%= professor.code  %></p>
 
-<% @professors.each do |professor| %>
-  <tr>
-    <td><%= professor.code %></td>
-    <td><%= professor.name %></td>
-    <td><%= professor.lastname %></td>
-    <td><%= link_to 'Show', professor %></td>
-    <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
-    <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <%= link_to 'Editar', edit_professor_path(professor) %>
+      <%= link_to 'Eliminar', professor, method: :delete, data: { confirm: '¿Está seguro?' } %>
+    </div>
+
+  <% end %>  
+</div>
+
 
 <br />
 
-<%= link_to 'New Professor', new_professor_path, :class => 'btn btn-primary' %>
+<%= link_to 'Nuevo Profesor', new_professor_path, :class => 'btn btn-primary' %>

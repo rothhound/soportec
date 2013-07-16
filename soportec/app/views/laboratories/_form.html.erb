@@ -1,45 +1,94 @@
-<%= form_for(@laboratory) do |f| %>
-  <% if @laboratory.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@laboratory.errors.count, "error") %> prohibited this laboratory from being saved:</h2>
+<div class="span6 centered">
+  <%= form_for(@laboratory, html: {class: "form-horizontal"}) do |f| %>
+    <% if @laboratory.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@laboratory.errors.count, "error") %> prohibited this laboratory from being saved:</h2>
 
-      <ul>
-      <% @laboratory.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @laboratory.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="control-group">
+      <%= f.label :number, "Número:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :number %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :capacity, "Capacidad:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :capacity %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :floor, "Piso:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :floor %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :numComputers, "Número de Computadoras:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :numComputers %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :airConditioning, "Aire Acondicionado:", :class => "control-label" %>
+      <div class="controls">
+        <div style="display:inline-block; margin-right:40px;">
+          <%= f.radio_button :airConditioning, "1" %>
+          <%= f.label :airConditioning, "Si" %>
+        </div>
+        <div style="display:inline-block;">
+          <%= f.radio_button :airConditioning, "0", :checked => true %>
+          <%= f.label :airConditioning, "No" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :projector, "Proyector:", :class => "control-label" %>
+      <div class="controls">
+        <div style="display:inline-block; margin-right:40px;">
+          <%= f.radio_button :projector, "1" %>
+          <%= f.label :projector, "Si" %>
+        </div>
+        <div style="display:inline-block;">
+          <%= f.radio_button :projector, "0", :checked => true %>
+          <%= f.label :projector, "No" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :sound, "Sonido:", :class => "control-label" %>
+      <div class="controls">
+        <div style="display:inline-block; margin-right:40px;">
+          <%= f.radio_button :sound, "1" %>
+          <%= f.label :sound, "Si" %>
+        </div>
+        <div style="display:inline-block;">
+          <%= f.radio_button :sound, "0", :checked => true %>
+          <%= f.label :sound, "No" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <div class="button">
+        <%= f.submit "Ingresar", :class => "btn btn-primary" %>
+      </div>
+      <div class="button">
+        <%= link_to 'Atrás', laboratories_path %>
+      </div>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :number %><br />
-    <%= f.number_field :number %>
-  </div>
-  <div class="field">
-    <%= f.label :capacity %><br />
-    <%= f.number_field :capacity %>
-  </div>
-  <div class="field">
-    <%= f.label :floor %><br />
-    <%= f.number_field :floor %>
-  </div>
-  <div class="field">
-    <%= f.label :numComputers %><br />
-    <%= f.number_field :numComputers %>
-  </div>
-  <div class="field">
-    <%= f.label :airConditioning %><br />
-    <%= f.number_field :airConditioning %>
-  </div>
-  <div class="field">
-    <%= f.label :projector %><br />
-    <%= f.number_field :projector %>
-  </div>
-  <div class="field">
-    <%= f.label :sound %><br />
-    <%= f.number_field :sound %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
