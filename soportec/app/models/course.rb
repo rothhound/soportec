@@ -6,7 +6,7 @@ class Course < ActiveRecord::Base
   has_many :schedules
 
   has_many :courses_professors
-  has_many :professors, :through :courses_professors
+  has_many :professors, :through => :courses_professors
 
   validates :code, :name, :eap_id, :group_id, presence: true
   validates :code, numericality: {greater_than_or_equal_to: 201001}
