@@ -1,0 +1,27 @@
+<h1>Busqueda de Cursos</h1>
+
+<%= form_tag :action => 'search', :method=>"GET" do%>
+
+    <!--%= label :nombre %><br /-->
+    <!--%= text_field :name %-->
+
+	<%= label_tag(:name, "Nombre:") %>
+  	<%= text_field_tag(:name) %>
+    <br />
+
+    <%= label_tag(:profesor, "Profesor:") %>
+  	<%= text_field_tag(:profesor) %>
+    <br />
+
+    EAP:
+    <%= collection_select :eap_id, :name, @eaps, :name, :name,:prompt => "SELECCIONE UNA EAP" %>
+    <br />
+
+    Grupo:
+    <%= collection_select :group_id, :name, @groups, :name, :name, :prompt => "SELECCIONE UN GRUPO" %>
+    <br />
+
+    <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
+
+
+<%end%>

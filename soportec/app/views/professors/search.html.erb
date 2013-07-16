@@ -1,0 +1,19 @@
+<h1>Busqueda de Profesores</h1>
+
+<%= form_tag :action => 'search', :method=>"GET" do%>
+
+    <%= label_tag(:name, "Nombre:") %>
+    <%= text_field_tag(:name) %>
+    <br />
+    
+    <%= label_tag(:lastname, "Apellido:") %>
+    <%= text_field_tag(:lastname) %>
+    <br />
+
+
+    Curso:
+    <%= collection_select :id, :name, @courses, :name, :name, :prompt => "SELECCIONE UN CURSO" %>
+    <br />
+
+    <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
+<%end%>

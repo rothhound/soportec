@@ -1,0 +1,39 @@
+<h1>Busqueda de Softwares</h1>
+
+<%= form_tag :action => 'search', :method=>"POST" do%>
+
+    <%= label_tag(:name, "Nombre:") %>
+    <%= text_field_tag(:name) %>
+    <br />
+
+
+    Categoria:
+    <%= collection_select :category_id, :description, @categories, :description, :description, :prompt => "SELECCIONE UNA CATEGORIA" %>
+
+    <br />
+
+    <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
+
+    <br />
+    <br />
+    <p>Resultados:</p>
+    <br />    
+
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Version</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @softwares.each do |software| %>
+      <tr>
+        <td><%= software.name %></td>
+        <td><%= software.version %></td>
+      </tr>
+    <% end %>
+    </table>
+
+<%end%>
