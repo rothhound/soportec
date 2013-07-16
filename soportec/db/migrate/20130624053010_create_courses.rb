@@ -3,11 +3,12 @@ class CreateCourses < ActiveRecord::Migration
     create_table :courses do |t|
       t.string :code
       t.string :name
-
-      t.integer :eap_id
-      t.integer :group_id
+      t.references :eap
+      t.references :group
 
       t.timestamps
     end
+    add_index :courses, :eap_id
+    add_index :courses, :group_id
   end
 end

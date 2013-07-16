@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130629232725) do
+ActiveRecord::Schema.define(:version => 20130716051651) do
 
   create_table "categories", :force => true do |t|
     t.string   "description"
@@ -32,6 +32,18 @@ ActiveRecord::Schema.define(:version => 20130629232725) do
     t.datetime "updated_at",    :null => false
   end
 
+  add_index "computers", ["laboratory_id"], :name => "index_computers_on_laboratory_id"
+
+  create_table "course_professors", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "professor_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "course_professors", ["course_id"], :name => "index_course_professors_on_course_id"
+  add_index "course_professors", ["professor_id"], :name => "index_course_professors_on_professor_id"
+
   create_table "courses", :force => true do |t|
     t.string   "code"
     t.string   "name"
@@ -41,10 +53,8 @@ ActiveRecord::Schema.define(:version => 20130629232725) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "courses_professors", :id => false, :force => true do |t|
-    t.integer "course_id"
-    t.integer "professor_id"
-  end
+  add_index "courses", ["eap_id"], :name => "index_courses_on_eap_id"
+  add_index "courses", ["group_id"], :name => "index_courses_on_group_id"
 
   create_table "days", :force => true do |t|
     t.string   "description"
@@ -65,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20130629232725) do
   end
 
   create_table "laboratories", :force => true do |t|
+    t.string   "name"
     t.integer  "number"
     t.integer  "capacity"
     t.integer  "floor"
@@ -76,10 +87,15 @@ ActiveRecord::Schema.define(:version => 20130629232725) do
     t.datetime "updated_at",      :null => false
   end
 
-  create_table "laboratories_softwares", :id => false, :force => true do |t|
-    t.integer "laboratory_id"
-    t.integer "software_id"
+  create_table "laboratory_softwares", :force => true do |t|
+    t.integer  "laboratory_id"
+    t.integer  "software_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
+
+  add_index "laboratory_softwares", ["laboratory_id"], :name => "index_laboratory_softwares_on_laboratory_id"
+  add_index "laboratory_softwares", ["software_id"], :name => "index_laboratory_softwares_on_software_id"
 
   create_table "professors", :force => true do |t|
     t.string   "code"
@@ -105,6 +121,10 @@ ActiveRecord::Schema.define(:version => 20130629232725) do
     t.datetime "updated_at",    :null => false
   end
 
+  add_index "schedules", ["course_id"], :name => "index_schedules_on_course_id"
+  add_index "schedules", ["day_id"], :name => "index_schedules_on_day_id"
+  add_index "schedules", ["laboratory_id"], :name => "index_schedules_on_laboratory_id"
+
   create_table "softwares", :force => true do |t|
     t.string   "name"
     t.string   "version"
@@ -113,12 +133,16 @@ ActiveRecord::Schema.define(:version => 20130629232725) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "softwares", ["category_id"], :name => "index_softwares_on_category_id"
+
   create_table "states", :force => true do |t|
     t.string   "description"
     t.integer  "laboratory_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  add_index "states", ["laboratory_id"], :name => "index_states_on_laboratory_id"
 
   create_table "users", :force => true do |t|
     t.string   "code"

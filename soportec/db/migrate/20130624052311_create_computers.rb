@@ -8,9 +8,10 @@ class CreateComputers < ActiveRecord::Migration
       t.string :mouse
       t.string :keyboard
       t.string :videocard
+      t.references :laboratory
 
-      t.integer :laboratory_id
       t.timestamps
     end
+    add_index :computers, :laboratory_id
   end
 end

@@ -1,14 +1,16 @@
 class CreateSchedules < ActiveRecord::Migration
   def change
     create_table :schedules do |t|
-      t.time :star
+      t.time :start
       t.time :end
-
-      t.integer :laboratory_id
-      t.integer :course_id
-      t.integer :day_id
+      t.references :laboratory
+      t.references :course
+      t.references :day
 
       t.timestamps
     end
+    add_index :schedules, :laboratory_id
+    add_index :schedules, :course_id
+    add_index :schedules, :day_id
   end
 end

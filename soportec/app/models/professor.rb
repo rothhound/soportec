@@ -1,5 +1,6 @@
 class Professor < ActiveRecord::Base
   attr_accessible :code, :lastname, :name
 
-  has_and_belongs_to_many :courses
+  has_many :courses_professors
+  has_many :courses, :through => :courses_professors
 end
