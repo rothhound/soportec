@@ -8,5 +8,5 @@ class Course < ActiveRecord::Base
 
   validates :code, :name, :eap_id, :group_id, presence: true
   validates :code, numericality: {greater_than_or_equal_to: 201001}
-  validates :code, uniqueness: true
+  validates :code, :name, :eap_id, :group_id, uniqueness: true
 end

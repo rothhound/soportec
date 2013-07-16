@@ -1,22 +1,30 @@
-<div class="alert alert-info">
-    <%= notice %>
+<div class="span4 centered">
+  <% if notice.present? %>
+    <div class="alert alert-info">
+        <%= notice %>
+    </div>
+  <% end %>
+
+  <p>
+    <b>Code:</b>
+    <%= @professor.code %>
+  </p>
+
+  <p>
+    <b>Name:</b>
+    <%= @professor.name %>
+  </p>
+
+  <p>
+    <b>Lastname:</b>
+    <%= @professor.lastname %>
+  </p>
+  <div class="button-container">
+    <div class="button">
+      <%= link_to 'Editar', edit_professor_path(@professor), :class => "btn btn-primary" %>
+    </div>
+    <div class="button">
+      <%= link_to 'Atrás', professors_path %>
+    </div>
+  </div>
 </div>
-
-<p>
-  <b>Code:</b>
-  <%= @professor.code %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @professor.name %>
-</p>
-
-<p>
-  <b>Lastname:</b>
-  <%= @professor.lastname %>
-</p>
-
-
-<%= link_to 'Edit', edit_professor_path(@professor) %> |
-<%= link_to 'Back', professors_path %>
