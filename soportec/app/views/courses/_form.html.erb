@@ -1,25 +1,38 @@
-<%= form_for(@course) do |f| %>
-  <% if @course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+<div class="span4 centered">
+  <%= form_for(@course) do |f| %>
+    <% if @course.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@course.errors.count, "error") %> no pudo ser creado:</h2>
 
-      <ul>
-      <% @course.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @course.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :code, "Código" %><br />
+      <%= f.text_field :code %>
     </div>
-  <% end %>
+    <div class="field">
+      <%= f.label :name, "Nombre" %><br />
+      <%= f.text_field :name %>
+    </div>
 
-  <div class="field">
-    <%= f.label :code %><br />
-    <%= f.text_field :code %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label :eap_id, "E.A.P." %>
+      <%= f.collection_select :eap_id, Eap.find(:all), :id, :name, :prompt => "Seleccione una EAP" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :group_id, "Grupo" %>
+      <%= f.collection_select :group_id, Group.find(:all), :id, :name, :prompt => "Seleccione un Grupo" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Ingresar", :class => 'btn btn-primary' %>
+    </div>
+  <% end %>  
+</div>
