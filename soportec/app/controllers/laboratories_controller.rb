@@ -103,7 +103,7 @@ class LaboratoriesController < ApplicationController
     end
   end
 
-  def assing
+  def assign
     @laboratory = Laboratory.all
     respond_to do |format|
         format.html # search.html.erb
@@ -111,7 +111,7 @@ class LaboratoriesController < ApplicationController
     end
   end
 
-  def assinguser
+  def assignuser
     @laboratory = Laboratory.find(params[:id])
     @user = User.all
     respond_to do |format|
