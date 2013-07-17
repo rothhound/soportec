@@ -1,37 +1,45 @@
 <h1>Laboratorios</h1>
-
 <h2>Listado</h2>
-<table class="table">
-  <tr>
-    <th>Number</th>
-    <th>Capacity</th>
-    <th>Floor</th>
-    <th>Numcomputers</th>
-    <th>Airconditioning</th>
-    <th>Projector</th>
-    <th>Sound</th>
-    <th colspan="3"></th>
-  </tr>
 
 <% @laboratories.each do |laboratory| %>
-  <tr>
-    <td><%= laboratory.number %></td>
-    <td><%= laboratory.capacity %></td>
-    <td><%= laboratory.floor %></td>
-    <td><%= laboratory.numComputers %></td>
-    <td><%= laboratory.airConditioning %></td>
-    <td><%= laboratory.projector %></td>
-    <td><%= laboratory.sound %></td>
-    <td><%= link_to 'Show', laboratory %></td>
-    <td><%= link_to 'Edit', edit_laboratory_path(laboratory) %></td>
-    <td><%= link_to 'Destroy', laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<div class="row">
+  <div class="span5 well centered">
+    <h4><%= link_to "Laboratorio #{laboratory.number}", laboratory %></h4>
+    <table class="table table-condensed">
+      <tbody>
 
+        <tr>
+          <% user = laboratory.user == nil ? "No asignado" : laboratory.user[:name] %>
+          <th>Responsable</th><td><%= user %></td>
+        </tr>
+        <tr>
+          <th>Capacidad</th><td><%= laboratory.capacity %></td>
+        </tr>
+        <tr>
+          <th>Numero de Computadoras</th><td><%= laboratory.numComputers %></td>
+        </tr>
+        <tr>
+          <th>Aire Acondicionado</th><td><%= laboratory.airConditioning == 1 ?  "Si" : "No"%></td>
+        </tr>
+        <tr>
+          <th>Proyector</th><td><%= laboratory.capacity == 1 ?  "Si" : "No" %></td>
+        </tr>
+        <tr>
+          <th>Sonido</th><td><%= laboratory.sound == 1 ?  "Si" : "No" %></td>
+        </tr>
+        <tr>
+          <th>Proyector</th><td><%= laboratory.capacity == 1 ?  "Si" : "No" %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to 'Editar', edit_laboratory_path(laboratory) %>
+    <%= link_to 'Eliminar', laboratory, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>
 <br />
+<% end %>
 
-<%= link_to 'New Laboratory', new_laboratory_path, :class => 'btn btn-primary' %>
+<%= link_to 'Nuevo Laboratory', new_laboratory_path, :class => 'btn btn-primary' %>
 <br />
 
 <h2>Busqueda de Laboratorios <%= @codigo %></h2>

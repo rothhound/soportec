@@ -1,49 +1,53 @@
-<div class="alert alert-info">
-    <%= notice %>
+<% if notice.present? %>
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <%= notice %>
+    </div>
+<% end %>
+
+<h1>Detalles del Laboratorio <%= @laboratory.number %></h1>
+<div class="span4 centered">
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Capacidad</th>
+        <td><%= @laboratory.capacity %></td>
+      </tr>
+      <tr>
+        <th>Piso</th>
+        <td><%= @laboratory.floor %></td>
+      </tr>
+      <tr>
+        <th>Numero de Computadoras</th>
+        <td><%= @laboratory.numComputers %></td>
+      </tr>
+      <tr>
+        <th>Aire Acondicionado</th>
+        <td><%= @laboratory.airConditioning == 1 ?  "Si" : "No" %></td>
+      </tr>
+      <tr>
+        <th>Proyector</th>
+        <td><%= @laboratory.projector == 1 ?  "Si" : "No" %></td>
+      </tr>
+      <tr>
+        <th>Sound</th>
+        <td><%= @laboratory.sound == 1 ?  "Si" : "No" %></td>
+      </tr>
+
+    </tbody>
+  </table>
+  
+  <div class="button-container">
+    <div class="button">
+      <%= link_to 'Editar', edit_laboratory_path(@laboratory), :class => "btn btn-primary" %>
+    </div>
+    <div class="button">
+      <%= link_to 'Atrás', laboratories_path, :class => "btn" %>
+    </div>
+  </div>
 </div>
-
-<p>
-  <b>Number:</b>
-  <%= @laboratory.number %>
-</p>
-
-<p>
-  <b>Capacity:</b>
-  <%= @laboratory.capacity %>
-</p>
-
-<p>
-  <b>Floor:</b>
-  <%= @laboratory.floor %>
-</p>
-
-<p>
-  <b>Numcomputers:</b>
-  <%= @laboratory.numComputers %>
-</p>
-
-<p>
-  <b>Airconditioning:</b>
-  <%= @laboratory.airConditioning %>
-</p>
-
-<p>
-  <b>Projector:</b>
-  <%= @laboratory.projector %>
-</p>
-
-<p>
-  <b>Sound:</b>
-  <%= @laboratory.sound %>
-</p>
 
 <p>Lo de arriba lo ordenamos luego</p>
-<div class="span10 well ">
-  <img src="http://placehold.it/1000X400" alt="">
-
-</div>
-<hr>
-<div class="span12">
-<%= link_to 'Edit', edit_laboratory_path(@laboratory) %> |
-<%= link_to 'Back', laboratories_path %>
+  <div class="span7 well">
+  <img src="http://placehold.it/660X400" alt="">
 </div>
