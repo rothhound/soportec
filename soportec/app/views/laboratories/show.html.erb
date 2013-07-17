@@ -9,10 +9,9 @@
 <div class="span4 centered">
   <table class="table">
     <tbody>
-      <% resp = @laboratory.user == nil ? "No tiene responsable asignado" : @laboratory.user[:name] %>
       <tr>
-        <th>Responsable</th>
-        <td><%= resp %></td>
+        <% user = laboratory.user == nil ? "No asignado" : laboratory.user[:name] %>
+        <th>Responsable</th><td><%= user %></td>
       </tr>
       <tr>
         <th>Capacidad</th>
