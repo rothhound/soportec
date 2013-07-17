@@ -1,5 +1,5 @@
-<div class="span4 centered">
-  <%= form_for(@course) do |f| %>
+<div class="span6 centered">
+  <%= form_for(@course, html: { class: "form-horizontal"}) do |f| %>
     <% if @course.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@course.errors.count, "error") %> no pudo ser creado:</h2>
@@ -12,27 +12,42 @@
       </div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :code, "Código" %><br />
-      <%= f.text_field :code %>
-    </div>
-    <div class="field">
-      <%= f.label :name, "Nombre" %><br />
-      <%= f.text_field :name %>
+    <div class="control-group">
+      <%= f.label :code, "Código:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :code %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :eap_id, "E.A.P." %>
-      <%= f.collection_select :eap_id, Eap.find(:all), :id, :name, :prompt => "Seleccione una EAP" %>
+    <div class="control-group">
+      <%= f.label :name, "Nombre:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :name %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :group_id, "Grupo" %>
-      <%= f.collection_select :group_id, Group.find(:all), :id, :name, :prompt => "Seleccione un Grupo" %>
+    <div class="control-group">
+      <%= f.label :eap_id, "E.A.P.:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.collection_select :eap_id, Eap.find(:all), :id, :name, :prompt => "Seleccione una EAP" %>
+      </div>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Ingresar", :class => 'btn btn-primary' %>
+    <div class="control-group">
+      <%= f.label :group_id, "Grupo:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.collection_select :group_id, Group.find(:all), :id, :name, :prompt => "Seleccione un Grupo" %>
+      </div>
     </div>
+  
+    <div class="button-container">
+      <div class="button">
+        <%= f.submit "Ingresar", :class => 'btn btn-primary' %>
+      </div>
+      <div class="button">
+        <%= link_to "Cancelar", courses_path, :class => 'btn' %>
+      </div>
+    </div>
+
   <% end %>  
 </div>
