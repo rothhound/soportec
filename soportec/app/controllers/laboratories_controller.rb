@@ -5,7 +5,8 @@ class LaboratoriesController < ApplicationController
   # GET /laboratories.json
 
   def index
-    @laboratories = Laboratory.all
+    # Ordenamos por numero de laboratorio
+    @laboratories = Laboratory.order("number ASC").all
 
     respond_to do |format|
       format.html # index.html.erb
