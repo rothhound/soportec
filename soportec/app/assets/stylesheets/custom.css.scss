@@ -125,3 +125,91 @@ footer {
     display: inline-block;
     width: 320px;
 }
+
+.navbar {
+  *position: relative;
+  *z-index: 2;
+  margin-bottom: 20px;
+  overflow: visible;
+
+  .brand {
+    display: block;
+    float: left;
+    padding: 0;
+    margin-left: -20px;
+  }
+  .nav {
+    margin: 4px auto;
+    li {
+      a {
+        color: #e3e3e3;
+        text-shadow: none;
+        &:hover {
+          background-color: #4273B1;
+          color: #fff;
+        }
+      }
+    }
+    li.active {
+      a {
+        background-color: #4273B1;
+        border-color: #4273B1;
+        color: #e3e3e3;
+        text-shadow: none;
+        &:hover {
+          background-color: #4273B1;
+          color: #fff;
+        }
+      }
+    }
+
+    li.dropdown {
+      a.dropdown-toggle {
+        color: #e3e3e3;
+        text-shadow: none;
+        .white-caret {
+          border-top-color: #e3e3e3 !important;
+          border-bottom-color: #e3e3e3 !important;
+        }
+      }
+      .dropdown-menu {
+        li {
+          a {
+            color: #000;
+            &:hover {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+
+    li.dropdown.open{
+      a {
+        &:hover, &:focus{
+          color: #fff;
+          background-color: #4273B1;
+          border-color: #4273B1;
+        }
+      }
+    }
+  }
+}
+
+.navbar-inner {
+  min-height: 40px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: #0C4EA2;
+  background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
+  background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: linear-gradient(to bottom, #0C4EA2, #0C4EA2);
+  background-repeat: repeat-x;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+  *zoom: 1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+}
