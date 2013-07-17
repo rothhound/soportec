@@ -13,12 +13,12 @@
   	<%= text_field_tag(:profesor) %>
     <br />
 
-    EAP:
-    <%= collection_select :eap_id, :name, @eaps, :name, :name,:prompt => "SELECCIONE UNA EAP" %>
+    <%= label_tag(:eap_id, "E.A.P.:") %>
+    <%= collection_select :eap_id, :name, @eaps, :name, :name,:prompt => "Seleccione una EAP" %>
     <br />
 
-    Grupo:
-    <%= collection_select :group_id, :name, @groups, :name, :name, :prompt => "SELECCIONE UN GRUPO" %>
+    <%= label_tag(:group_id, "Grupo:") %>
+    <%= collection_select :group_id, :name, @groups, :name, :name, :prompt => "Seleccione un grupo" %>
     <br />
 
     <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>

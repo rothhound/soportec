@@ -2,7 +2,8 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    #@courses = Course.all
+    @courses = Course.find(:all, :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,8 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @course = Course.find(params[:id])
+    #@course = Course.find(params[:id])
+    @course = Course.find(params[:id], :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
 
     respond_to do |format|
       format.html # show.html.erb
@@ -83,7 +85,7 @@ class CoursesController < ApplicationController
 
   # GET /manage
   def manage
-    @courses = Course.all
+    @courses = Course.find(:all, :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
 
     respond_to do |format|
       format.html # manage.html.erb

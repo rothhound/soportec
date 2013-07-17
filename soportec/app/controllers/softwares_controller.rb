@@ -2,7 +2,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares
   # GET /softwares.json
   def index
-    @softwares = Software.all
+    @softwares = Software.find(:all, :joins => [:category] ,:select =>"softwares.id, softwares.name, softwares.version,categories.description as description")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares/1
   # GET /softwares/1.json
   def show
-    @software = Software.find(params[:id])
+    @software = Software.find(params[:id], :joins => [:category] ,:select =>"softwares.id, softwares.name, softwares.version,categories.description as description")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -83,11 +83,30 @@ class SoftwaresController < ApplicationController
 
   # GET /manage
   def manage
-    @softwares = Software.all
+    @softwares = Software.find(:all, :joins => [:category] ,:select =>"softwares.id, softwares.name, softwares.version,categories.description as description")
 
     respond_to do |format|
       format.html # manage.html.erb
       format.json { render json: @softwares }
+    end
+  end
+
+  def search
+    @softwares = Software.all
+    @categories = Category.all
+
+    searchN = params[:name]
+    searchC = params[:category_id]
+    
+  if(searchN != '' or searchC != '')
+      @softwareN = Software.find(:all,:joins => [:category] ,:select => "softwares.*,categories.description as description",:conditions => ['name like ?' , "%#{searchN}%"])
+  #    @softwareC = Software.find(:all,:joins => [:category] ,:select => "softwares.*,categories.description as description" ,:conditions => ["category_id = ?", searchC[:categoria]])
+  end
+
+    respond_to do |format|
+      format.html # manage.html.erb
+      #format.json { render json: @softwares }
+      format.json { render json: @softwareN }
     end
   end
 end

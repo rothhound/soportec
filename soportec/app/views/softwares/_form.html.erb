@@ -1,25 +1,33 @@
-<%= form_for(@software) do |f| %>
-  <% if @software.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@software.errors.count, "error") %> prohibited this software from being saved:</h2>
+<div class="span4 centered">
+  <%= form_for(@software) do |f| %>
+    <% if @software.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@software.errors.count, "error") %> prohibited this software from being saved:</h2>
 
-      <ul>
-      <% @software.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @software.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name, "Nombre"%><br />
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :version,"Version" %><br />
+      <%= f.text_field :version %>
+    </div>
+
+     <div class="field">
+      <%= f.label :category_id,"Categoria" %><br />
+      <%= f.collection_select :category_id, Category.find(:all) ,:id, :description,:prompt => "Seleccione una categoria" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Ingresar", :class => 'btn btn-primary' %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :version %><br />
-    <%= f.text_field :version %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

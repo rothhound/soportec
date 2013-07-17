@@ -1,11 +1,11 @@
-<h1>Mantenimiento de Computadoras</h1>
+<h1>Mantenimiento de Cursos</h1>
 
 <table class="table">
   <tr>
     <th>Código</th>
     <th>Nombre</th>
-    <th></th>
-    <th></th>
+    <th>Grupo</th>
+    <th>E.A.P.</th>
     <th></th>
   </tr>
 
@@ -13,6 +13,8 @@
   <tr>
     <td><%= course.code %></td>
     <td><%= course.name %></td>
+    <td><%= course.groups %></td>
+    <td><%= course.eaps %></td>
     <td><%= link_to 'Ver', course %></td>
     <td><%= link_to 'Editar', edit_course_path(course) %></td>
     <td><%= link_to 'Eliminar', course, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
