@@ -19,7 +19,7 @@
     <br />
 
     <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %> |
-    <%= link_to 'Back', courses_path %>
+    <%= link_to 'Atras', {controller: "courses" ,action: "manage"}, :class => 'btn-small btn-primary' %>
 <%end%>
 
 <% if @courses.present? %>
