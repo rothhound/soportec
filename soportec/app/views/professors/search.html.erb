@@ -10,34 +10,10 @@
     <%= text_field_tag(:lastname) %>
     <br />
 
-    <%= label_tag(:curso, "Curso:") %>
-    <%= collection_select :curso,:curso_id, @courses, :curso, :dato , :prompt => "Select a course" %>
+
+    Curso:
+    <%= collection_select :course_id, :name, @courses, :name, :name, :prompt => "SELECCIONE UN CURSO" %>
     <br />
 
     <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
 <%end%>
-
-    <br />
-    <br />
-
-<% if @professorsA.present? %>
-    RESULTADOS:
-    <table class="table">
-      <tr>
-        <th>Code</th>
-        <th>Name</th>
-        <th>Lastname</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-
-    <% @professorsA.each do |professor| %>
-      <tr>
-        <td><%= professor.code %></td>
-        <td><%= professor.name %></td>
-        <td><%= professor.lastname %></td>
-      </tr>
-    <% end %> 
-<% end %>
-
