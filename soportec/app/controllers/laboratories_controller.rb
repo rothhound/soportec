@@ -102,4 +102,22 @@ class LaboratoriesController < ApplicationController
       format.json { render json: @laboratories }
     end
   end
+
+  def assing
+    @laboratory = Laboratory.all
+    respond_to do |format|
+        format.html # search.html.erb
+        format.json { render json: @laboratory }
+    end
+  end
+
+  def assinguser
+    @laboratory = Laboratory.find(params[:id])
+    @user = User.all
+    respond_to do |format|
+        format.html # search.html.erb
+        format.json { render json: @laboratory }
+    end
+  end
+
 end

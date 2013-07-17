@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   belongs_to :role
+  has_one :laboratory
+  validates :code, :username, :name, :email, uniqueness: true
 end

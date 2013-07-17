@@ -1,0 +1,11 @@
+<h1>Asignar Responsable</h1>
+<%= form_for(@laboratory) do |f| %>
+<div class="field">
+    <%= f.label :user_id%>
+    <%= f.collection_select :user_id, @user ,:id, :name, :prompt => "Seleccione un Responsable"%>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Asignar', :class => 'btn btn-primary' %>
+  </div>
+<%end%>
+

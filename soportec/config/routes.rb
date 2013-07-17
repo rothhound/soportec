@@ -49,6 +49,8 @@ Soportec::Application.routes.draw do
   resources :laboratories do
     collection do
       get 'manage'
+      match 'assing'
+      match 'assinguser'
     end
   end
 

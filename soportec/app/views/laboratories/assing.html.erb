@@ -1,0 +1,24 @@
+<h1>Asignacion de responsables</h1>
+
+<h2>Listado</h2>
+<table class="table">
+  <tr>
+    <th>Laboratorio</th>
+    <th>Responsable</th>
+    <th colspan="1"></th>
+  </tr>
+
+<% @laboratory.each do |laboratory| %>
+  <tr>
+    <td><%= laboratory.number %></td>
+    <td><% if laboratory.user_id == nil %>
+              No tiene 
+        <% else %>
+              <%= laboratory.user[:name] %>
+        <% end %>
+    </td>
+    <td><%= link_to 'Asignar responsable', :controller=>"laboratories", :action=>"assinguser", :id=>laboratory.id %>
+    </td>
+  </tr>
+  <%end%>
+</table>
