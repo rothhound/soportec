@@ -25,12 +25,14 @@ Soportec::Application.routes.draw do
   resources :courses do
     collection do
       get 'manage'
+      get 'search'
     end
   end
 
   resources :professors do
     collection do
       get 'manage'
+      get 'search'
     end
   end
 
@@ -43,6 +45,7 @@ Soportec::Application.routes.draw do
   resources :softwares do
     collection do
       get 'manage'
+      get 'search'
     end
   end
 
