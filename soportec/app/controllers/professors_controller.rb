@@ -3,7 +3,6 @@ class ProfessorsController < ApplicationController
   # GET /professors.json
   def index
     @professors = Professor.all
-    @courses = Course.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +14,6 @@ class ProfessorsController < ApplicationController
   # GET /professors/1.json
   def show
     @professor = Professor.find(params[:id])
-    @courses = Course.all
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +25,6 @@ class ProfessorsController < ApplicationController
   # GET /professors/new.json
   def new
     @professor = Professor.new
-    @courses = Course.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,14 +35,12 @@ class ProfessorsController < ApplicationController
   # GET /professors/1/edit
   def edit
     @professor = Professor.find(params[:id])
-    @courses = Course.all
   end
 
   # POST /professors
   # POST /professors.json
   def create
     @professor = Professor.new(params[:professor])
-    @courses = Course.all
 
     respond_to do |format|
       if @professor.save
@@ -62,7 +57,6 @@ class ProfessorsController < ApplicationController
   # PUT /professors/1.json
   def update
     @professor = Professor.find(params[:id])
-    @courses = Course.all
 
     respond_to do |format|
       if @professor.update_attributes(params[:professor])
@@ -79,7 +73,6 @@ class ProfessorsController < ApplicationController
   # DELETE /professors/1.json
   def destroy
     @professor = Professor.find(params[:id])
-    @courses = Course.all
     @professor.destroy
 
     respond_to do |format|
@@ -91,7 +84,6 @@ class ProfessorsController < ApplicationController
   # GET /manage
   def manage
     @professors = Professor.all
-    @courses = Course.all
 
     respond_to do |format|
       format.html # manage.html.erb
@@ -100,15 +92,40 @@ class ProfessorsController < ApplicationController
   end
 
   def search
-    @professors = Professor.all
-    @courses = Course.all
+    
+    #@courses = Professor.find(:all,:joins => [:course], :select => "professors.course_id as curso, CONVERT(CONCAT(courses.name,' - G',courses.group_id,' - 20.',courses.eap_id) USING utf8) as dato")
+    @courses = Course.find(:all,:select => "DISTINCT courses.name")
 
-    @professorsN = Professor.find(:all,:conditions => ["name like ?" , params[:name]])
-    @professorsA = Professor.find(:all,:conditions => ["lastname like ?" , params[:lastname]])
-    #@professorsC = Professor.find()
+    searchN =  params[:name]
+    searchA =  params[:lastname]
+    searchC =  params[:curso] 
+
+    if(searchN.present? or searchA.present? or searchC.present?)
+      @professors = Professor.find(:all,:joins => [:course] ,:select => "professors.*, courses.name as curso")
+
+      if(searchN != '' and searchN.present?)
+        @professorsN = Professor.find(:all,:joins => [:course] ,:select => "professors.*, courses.name as curso",:conditions => ['professors.name like ?' , "%#{searchN}%"])
+        @professors = @professors & @professorsN
+      end
+
+      if(searchA != '' and searchA.present?)
+        @professorsA = Professor.find(:all,:joins => [:course] ,:select => "professors.*, courses.name as curso",:conditions => ['lastname like ?' , "%#{searchA}%"])
+        @professors = @professors & @professorsA
+      end
+
+      search = searchC[:curso_name]
+
+      if(searchC.present? and search.present?)
+        @professorsC = Professor.find(:all,:joins => [:course] ,:select => "professors.*, courses.name as curso",:conditions => ['courses.name like ?' , "#{search}"])
+        @professors = @professors & @professorsC
+      end
+      if(searchN.blank? and searchA.blank? and search.blank?)
+        @professors = nil
+      end
+    end
 
     respond_to do |format|
-      format.html # manage.html.erb
+      format.html # search.html.erb
       format.json { render json: @professors }
     end
   end

@@ -25,7 +25,6 @@ class SoftwaresController < ApplicationController
   # GET /softwares/new.json
   def new
     @software = Software.new
-    @categories = Category.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,14 +35,12 @@ class SoftwaresController < ApplicationController
   # GET /softwares/1/edit
   def edit
     @software = Software.find(params[:id])
-    @categories = Category.all
   end
 
   # POST /softwares
   # POST /softwares.json
   def create
     @software = Software.new(params[:software])
-    @categories = Category.all
 
     respond_to do |format|
       if @software.save
@@ -60,7 +57,6 @@ class SoftwaresController < ApplicationController
   # PUT /softwares/1.json
   def update
     @software = Software.find(params[:id])
-    @categories = Category.all
 
     respond_to do |format|
       if @software.update_attributes(params[:software])
@@ -77,7 +73,6 @@ class SoftwaresController < ApplicationController
   # DELETE /softwares/1.json
   def destroy
     @software = Software.find(params[:id])
-    @categories = Category.all
     @software.destroy
 
     respond_to do |format|
@@ -88,8 +83,7 @@ class SoftwaresController < ApplicationController
 
   # GET /manage
   def manage
-    @softwares = Software.all
-    @categories = Category.all
+    @softwares = Software.find(:all, :joins => [:category] ,:select =>"softwares.id, softwares.name, softwares.version,categories.description as description")
 
     respond_to do |format|
       format.html # manage.html.erb
@@ -98,25 +92,35 @@ class SoftwaresController < ApplicationController
   end
 
   def search
-    @softwares = Software.all
     @categories = Category.all
+    @softwares = nil
+
+    searchN = params[:name]
+    searchC = params[:category_id]
     
+  if(searchN.present? or searchC.present?)
+      @softwares = Software.find(:all, :joins => [:category] ,:select =>"softwares.id, softwares.name, softwares.version,categories.description as description")
+      
+      if(searchN.present? and searchN !='')
+        @softwareN = Software.find(:all, :joins => [:category] ,:select =>"softwares.id, softwares.name, softwares.version,categories.description as description",:conditions => ['name like ?' , "%#{searchN}%"])
+        @softwares = @softwares & @softwareN
+      end 
 
-    @SoftwareN = Software.find(:all,:conditions => ["name like ?" , params[:name]])
-    @SoftwareC = Software.find(:all,:joins => [:category] ,:select => "softwares.*,categories.description" ,:conditions => ["category_id = ?", params[:category_id]])
+      search = searchC[:categoria]
 
-    #if(){
+      if(searchC.present? and search.present?)
+        @softwareC = Software.find(:all,:joins => [:category] ,:select => "softwares.id, softwares.name, softwares.version,categories.description as description" ,:conditions => ["category_id = ?", search])
+        @softwares = @softwares & @softwareC
+      end
+  end
 
-    #}
-
-    #else{
-
-    #}
+  if(searchN.blank? and search.blank?)
+    @softwares = nil
+  end
 
     respond_to do |format|
       format.html # manage.html.erb
       format.json { render json: @softwares }
-      format.json { render json: @softwareN }
     end
   end
 end

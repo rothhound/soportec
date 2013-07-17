@@ -2,8 +2,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @professors = Professor.all
-
+    #@courses = Course.all
     @courses = Course.find(:all, :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
 
     respond_to do |format|
@@ -17,9 +16,6 @@ class CoursesController < ApplicationController
   def show
     #@course = Course.find(params[:id])
     @course = Course.find(params[:id], :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
-    @eaps = Eap.all
-    @groups =Group.all
-    @professors = Professor.all
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,9 +27,6 @@ class CoursesController < ApplicationController
   # GET /courses/new.json
   def new
     @course = Course.new
-    @eaps = Eap.all
-    @groups =Group.all
-    @professors = Professor.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,18 +37,12 @@ class CoursesController < ApplicationController
   # GET /courses/1/edit
   def edit
     @course = Course.find(params[:id])
-    @eaps = Eap.all
-    @groups =Group.all
-    @professors = Professor.all
   end
 
   # POST /courses
   # POST /courses.json
   def create
     @course = Course.new(params[:course])
-    @eaps = Eap.all
-    @groups =Group.all
-    @professors = Professor.all
 
     respond_to do |format|
       if @course.save
@@ -72,9 +59,6 @@ class CoursesController < ApplicationController
   # PUT /courses/1.json
   def update
     @course = Course.find(params[:id])
-    @eaps = Eap.all
-    @groups =Group.all
-    @professors = Professor.all
 
     respond_to do |format|
       if @course.update_attributes(params[:course])
@@ -91,9 +75,6 @@ class CoursesController < ApplicationController
   # DELETE /courses/1.json
   def destroy
     @course = Course.find(params[:id])
-    @eaps = Eap.all
-    @groups =Group.all
-    @professors = Professor.all
     @course.destroy
 
     respond_to do |format|
@@ -104,11 +85,7 @@ class CoursesController < ApplicationController
 
   # GET /manage
   def manage
-    @courses = Course.all
-
-    @eaps = Eap.all
-    @groups =Group.all
-    @professors = Professor.all
+    @courses = Course.find(:all, :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
 
     respond_to do |format|
       format.html # manage.html.erb
@@ -117,21 +94,52 @@ class CoursesController < ApplicationController
   end
 
   def search
-    @courses = Course.all
-    @eaps = Eap.all
-    @groups =Group.all
-    #@eaps[0]=Eap.new("---SELECCIONE ELEMENTO---")
-    #@groups[0]=Group.new(0,"---SELECCIONE ELEMENTO---")
-    @professors = Professor.all
+      @eaps = Eap.all
+      @groups =Group.all
 
-    @coursesN = Course.find(:all,:conditions => ["name like ?" , params[:name]])
-    #@coursesP = Course.find(:all,:conditions => ["name like ?" , params[:name]])
-    @coursesE = Course.find(:all,:conditions => ["eap_id = ?", params[:eap_id]])
-    @coursesG = Course.find(:all,:conditions => ["group_id = ?", params[:group_id]])
+      searchN = params[:name]
+      searchP = params[:profesor]
+      searchE = params[:eap_id]
+      searchG = params[:group_id]
+
+    if(searchN.present? or searchE.present? or searchG.present? or searchP.present?)
+
+      @courses = Course.find(:all,:joins => [:eap , :group, :professor] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups, CONCAT(professors.name,' ',professors.lastname) as profesor")
+
+      if(searchN.present? and searchN != '')
+        @coursesN = Course.find(:all,:joins => [:eap , :group, :professor] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups, CONCAT(professors.name,' ',professors.lastname) as profesor",:conditions => ['courses.name like ?' , "%#{searchN}%"])
+        @courses = @courses & @coursesN
+      end
+
+      if(searchP.present? and searchP != '' )
+        @coursesP = Course.find(:all,:joins => [:eap , :group, :professor] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups, CONCAT(professors.name,' ',professors.lastname) as profesor",:conditions => ['CONCAT(professors.name, ? ,professors.lastname) like ?' ,"#" ""  ,"%#{searchP}%"])
+        @courses = @courses & @coursesP
+      end
+
+      search1=searchE[:eap]
+
+      if(searchE.present? and search1.present?)
+        @coursesE = Course.find(:all,:joins => [:eap , :group, :professor] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups, CONCAT(professors.name,' ',professors.lastname) as profesor",:conditions => ['courses.eap_id = ?' , search1])
+        @courses = @courses & @coursesE
+      end
+
+      search2=searchG[:group]
+      
+      if(searchG.present? and search2.present?)
+        @coursesG = Course.find(:all,:joins => [:eap , :group, :professor] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups, CONCAT(professors.name,' ',professors.lastname) as profesor",:conditions => ['courses.group_id = ?' , search2])
+        @courses = @courses & @coursesG
+      end
+
+      if(searchN.blank? and searchP.blank? and search1.blank? and search2.blank?)
+        @courses = nil
+      end
     
-    respond_to do |format|
-      format.html # search.html.erb
-      format.json { render json: @courses }
     end
-  end
+      
+      respond_to do |format|
+        format.html # search.html.erb
+        format.json { render json: @courses }
+      end
+    end
+
 end
