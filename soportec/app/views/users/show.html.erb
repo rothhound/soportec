@@ -32,9 +32,10 @@
                 <th>Laboratorio</th>
                 <td><%= "Sin Laboratorio" %></td>
             </tr>
-            <tr>
+            <% role = @user.role == nil ? "No tiene rol asignado" : @user.role[:name] %>
+             <tr>
                 <th>Rol</th>
-                <td><%= @user.role[:name] %></td>
+                <td><%= role %></td>
             </tr>
             <tr>
                 <th>Último Ingreso</th>
