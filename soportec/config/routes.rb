@@ -63,6 +63,8 @@ Soportec::Application.routes.draw do
     end
   end
 
+  match 'about' => 'main#about', :as => :about
+  match 'contact' => 'main#contact', :as => :contact
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
