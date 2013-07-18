@@ -1,6 +1,6 @@
 class LaboratoriesController < ApplicationController
   
-  #load_and_authorize_resource :professor, :course, :schedule
+  load_and_authorize_resource :professor, :course, :schedule
   skip_load_and_authorize_resource :professor, :course, :schedule
   before_filter :authenticate_user!
   
@@ -30,7 +30,6 @@ class LaboratoriesController < ApplicationController
   # GET /laboratories/new.json
   def new
     @laboratory = Laboratory.new
-    authorize! :create, @laboratory
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,7 +40,6 @@ class LaboratoriesController < ApplicationController
   # GET /laboratories/1/edit
   def edit
     @laboratory = Laboratory.find(params[:id])
-    authorize! :update, @laboratory
   end
 
   # POST /laboratories
@@ -80,7 +78,6 @@ class LaboratoriesController < ApplicationController
   # DELETE /laboratories/1.json
   def destroy
     @laboratory = Laboratory.find(params[:id])
-    authorize! :destroy, @laboratory
     @laboratory.destroy
 
     respond_to do |format|
@@ -111,7 +108,6 @@ class LaboratoriesController < ApplicationController
 
   def assign
     @laboratory = Laboratory.all
-    #authorize! :asignar, @laboratory
     respond_to do |format|
         format.html # search.html.erb
         format.json { render json: @laboratory }
@@ -121,11 +117,38 @@ class LaboratoriesController < ApplicationController
   def assignuser
     @laboratory = Laboratory.find(params[:id])
     @user = User.all
-    authorize! :asignacion, @laboratory
     respond_to do |format|
         format.html # search.html.erb
         format.json { render json: @laboratory }
     end
   end
+  def find
+    @laboratory = nil
+    @filter_capacity = Laboratory.order("capacity DESC").find(:all,:select => "DISTINCT laboratories.capacity")
+    @filter_floor = Laboratory.order("floor ASC").find(:all,:select => "DISTINCT laboratories.floor")
+    @filter_numComputers = Laboratory.order("numComputers DESC").find(:all,:select => "DISTINCT laboratories.numComputers")    
+    @filter_sw = Software.all
 
+    numComputers = params[:numComputers]
+    sw = params[:software_id]
+    projector = params[:projector]
+
+
+    if(sw.present?)
+      @Laboratory = Laboratory.find(:all,:joins =>[:softwares])
+
+      if(searchN != '' and searchN.present?)
+        @Laboratory = Laboratory.find(:all,:joins =>[:softwares],:select => "laboratories.*, softwares.name as software")
+        @prof_filter = Laboratory.find(:all,:joins =>[:softwares] ,:select => "laboratories.*, softwares.name as software",:conditions => ['software.name like ?' , "%#{sw}%"])
+        @Laboratory = @Laboratory & @prof_filter
+      end
+      if(numComputers.blank? and sw.blank? and projector.blank? and sound.blank? and sw.blank?)
+        @laboratory = nil
+      end
+    end
+    respond_to do |format|
+         format.html # search.html.erb
+        format.json { render :xml => @laboratory}
+      end
+    end
 end

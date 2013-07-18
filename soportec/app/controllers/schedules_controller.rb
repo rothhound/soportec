@@ -127,4 +127,21 @@ class SchedulesController < ApplicationController
       format.json { render :xml => @schedule }
     end
   end
+  def dynamic_create
+    @schedule = Schedule.new(:start => params[:start], :end => params[:end], :laboratory_id => params[:schedule][:laboratory_id], :course_id => params[:schedule][:course_id], :day_id => params[:schedule][:day_id])
+    @eap=Eap.all
+    @profesor = Professor.find(params[:profesor][:id])
+    @profesor.course_id = @schedule.course_id
+    @profesor.save
+    
+    respond_to do |format|
+      if @schedule.save
+        format.html { redirect_to dynamic_new_schedules_path, notice: 'Schedule was successfully created.' }
+        format.json { render :xml => @schedule, status: :created, location: @schedule }
+      else
+        format.html { redirect_to dynamic_new_schedules_path, notice: 'No se pudo guardar.' }
+        format.json { render :xml => @schedule.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 end

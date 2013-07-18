@@ -39,8 +39,8 @@
 <% end %>
 <div id='calendar'></div>
 <div id="event_edit_container">
-<div class="span6 centered panel">
-  <%= form_for(@schedule) do |f| %>
+
+  <%= form_tag :action => 'dynamic_create', :method=>"GET" do %>
   <% if @schedule.errors.any? %>
     <div id="alert alert-error">
       <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
@@ -53,36 +53,36 @@
     </div>
   <% end %>
   <div class="field">
-      <%= f.label :Laboratorio%>
-      <%= f.collection_select :laboratory_id, @laboratory , :id, :number, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <label for="laboratory_id">Laboratorio:</label>
+      <%= collection_select :schedule, :laboratory_id, @laboratory , :id, :number, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="field">
-      <%= f.label :Dia%>
-      <%= f.collection_select :day_id, @day,:description,:description, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <label for="day_id">Day:</label>
+      <%= collection_select :schedule, :day_id, @day,:description,:description, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="field">
-    <%= f.label :Inicio %><br />
-    <%= f.time_select :start %>
+    <label for="start">Inicio:</label>
+    <%= time_select :start ,:start, :style=>"width:50px" %>
   </div>
   <div class="field">
-    <%= f.label :Fin %><br />
-    <%= f.time_select :end %>
+    <label for="end">Fin:</label>
+    <%= time_select :end, :end %>
   </div>
 <%= debug(@schedule.start) %>
 <p id="course_field">
   <label for="course_id">Curso:</label>
-  <%= f.collection_select :course_id, @course, :id, :name, {:prompt => "Select a course" }%>
+  <%= collection_select :schedule, :course_id, @course, :id, :name, {:prompt => "Select a course" }%>
 </p>
   <div class="field">
-      <%= f.label :Profesor%>
-      <%= collection_select :profesor ,:id, @professor ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <label for="id">Profesor:</label>
+      <%= collection_select :schedule ,:id, @professor ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="actions">
-      <input class="btn btn-primary" name="commit" type="submit" value="Registrar" />
+      <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
+      <input class="btn btn-primary span1" name="commit1" />
   </div>
 <% end %>
 
-</div>
 </div>
 <div id='calendar'></div>
 <div id="event_edit_container2">
