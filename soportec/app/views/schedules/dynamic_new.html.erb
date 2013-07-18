@@ -1,0 +1,81 @@
+<h1>Prueba de busqueda de laboratorio <%= @codigo %></h1>
+<% if @laboratory1.size != 0 %>
+<table class="table">
+<table class="table">
+  <tr>
+    <th>Dia</th>
+    <th>Inicio</th>
+    <th>Fin</th>
+    <th>Curso</th>
+    <th>Profesor</th>
+    
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @laboratory1.each do |laboratory| %>
+  <tr>
+    <td><%= laboratory.day_id %></td>
+    <td><%= laboratory.start %></td>
+    <td><%= laboratory.end %></td>
+    <td><%= laboratory.title %></td>
+    <td><%= laboratory.body%><%= laboratory.lastname%></td>
+    <td><%= link_to 'Show', laboratory %></td>
+    <td><%= link_to 'Edit', edit_laboratory_path(laboratory) %></td>
+    <td><%= link_to 'Destroy', laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+<% end %>
+  </table>
+  <% content_for :head do %>
+<%= javascript_tag "var laboratories = #{@lab};"%>
+<%= javascript_include_tag 'search' %>
+
+<% end %>
+<div id='calendar'></div>
+<div id="event_edit_container">
+<div class="span6 centered panel">
+  <%= form_for(@schedule) do |f| %>
+  <% if @schedule.errors.any? %>
+    <div id="alert alert-error">
+      <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+
+      <ul>
+      <% @schedule.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+      <%= f.label :Laboratorio%>
+      <%= f.collection_select :laboratory_id, @laboratory , :id, :number, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+  </div>
+  <div class="field">
+      <%= f.label :Dia%>
+      <%= f.collection_select :day_id, @day,:description,:description, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+  </div>
+  <div class="field">
+    <%= f.label :start %><br />
+    <%= f.time_select :start %>
+  </div>
+  <div class="field">
+    <%= f.label :end %><br />
+    <%= f.time_select :end %>
+  </div>
+
+<p id="course_field">
+  <label for="course_id">Curso:</label>
+  <%= f.collection_select :course_id, @course, :id, :name, {:prompt => "Select a course" }%>
+</p>
+  <div class="field">
+      <%= f.label :Profesor%>
+      <%= collection_select :profesor ,:id, @professor ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+  </div>
+  <div class="actions">
+      <%= f.submit 'Registrar', :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+
+</div>
+</div>
