@@ -11,5 +11,6 @@ class User < ActiveRecord::Base
 
   belongs_to :role
   has_one :laboratory
-  validates :code, :username, :name, :email, uniqueness: true
+  validates :code, :name, :email, uniqueness: true
+  #validates :code, :username, :name, :email, uniqueness: true
 end

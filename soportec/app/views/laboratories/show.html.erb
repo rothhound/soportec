@@ -10,6 +10,10 @@
   <table class="table">
     <tbody>
       <tr>
+        <% user = laboratory.user == nil ? "No asignado" : laboratory.user[:name] %>
+        <th>Responsable</th><td><%= user %></td>
+      </tr>
+      <tr>
         <th>Capacidad</th>
         <td><%= @laboratory.capacity %></td>
       </tr>

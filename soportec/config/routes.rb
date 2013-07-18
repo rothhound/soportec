@@ -18,19 +18,25 @@ Soportec::Application.routes.draw do
     end
   end
 
-  resources :schedules
+  resources :schedules do
+  	collection do
+      match 'dynamic_new'
+  	end
+  end
 
   resources :eaps
 
   resources :courses do
     collection do
       get 'manage'
+      get 'search'
     end
   end
 
   resources :professors do
     collection do
       get 'manage'
+      get 'search'
     end
   end
 
@@ -43,6 +49,7 @@ Soportec::Application.routes.draw do
   resources :softwares do
     collection do
       get 'manage'
+      get 'search'
     end
   end
 
@@ -60,6 +67,8 @@ Soportec::Application.routes.draw do
     end
   end
 
+  match 'about' => 'main#about', :as => :about
+  match 'contact' => 'main#contact', :as => :contact
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

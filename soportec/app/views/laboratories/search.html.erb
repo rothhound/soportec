@@ -1,5 +1,6 @@
-<h1>Prueba de busqueda de laboratorio <%= @codigo %></h1>
 
+<h1>Prueba de busqueda de laboratorio <%= @codigo %></h1>
+<% if @laboratory1.size != 0 %>
 <table class="table">
 <table class="table">
   <tr>
@@ -13,7 +14,7 @@
     <th></th>
     <th></th>
   </tr>
-  <% @laboratories.each do |laboratory| %>
+  <% @laboratory1.each do |laboratory| %>
   <tr>
     <td><%= laboratory.day_id %></td>
     <td><%= laboratory.start %></td>
@@ -27,32 +28,37 @@
 <% end %>
 
   </table>
+  <% content_for :head do %>
+<%= javascript_tag "var laboratories = #{@lab};"%>
+<%= javascript_include_tag 'search' %>
+
+<% end %>
 <div id='calendar'></div>
 <div id="event_edit_container">
-		<form>
-			<input type="hidden" />
-			<ul>
-				<li>
-					<span>Date: </span><span class="date_holder"></span> 
-				</li>
-				<li>
-					<label for="start">Start Time: </label><span class="start1"></span>
-				</li>
-				<li>
-					<label for="end">End Time: </label><span class="end1"></span>
-				</li>
-				<li>
-					<label for="title">Curso: </label><span class="title1"></span>
-				</li>
-				<li>
-					<label for="body">Docente: </label><span class="body1"></span>
-				</li>
-			</ul>
-		</form>
-	</div>
+	<form>
+		<input type="hidden" />
+		<ul>
+			<li>
+				<span>Date: </span><span class="date_holder"></span> 
+			</li>
+			<li>
+				<label for="start">Start Time: </label><span class="start1"></span>
+			</li>
+			<li>
+				<label for="end">End Time: </label><span class="end1"></span>
+			</li>
+			<li>
+				<label for="title">Curso: </label><span class="title1"></span>
+			</li>
+			<li>
+				<label for="body">Docente: </label><span class="body1"></span>
+			</li>
+		</ul>
+	</form>
+</div>
+<% else %>
+	
+	<h2> No hay horarios asignados</h2>
+	
+<% end %>
 
-<%= form_tag :action => 'search', :method=>"GET" do%>
-    <p>Codigo:</p>
-    <%= collection_select :id, :number, @laboratory1, :number, :number %>
-    <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
-<%end%>

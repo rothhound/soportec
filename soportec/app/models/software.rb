@@ -1,5 +1,5 @@
 class Software < ActiveRecord::Base
-  attr_accessible :name, :version
+  attr_accessible :name, :version, :category_id
 
   belongs_to :category
 

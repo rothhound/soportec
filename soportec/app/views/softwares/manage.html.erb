@@ -2,9 +2,9 @@
 
 <table class="table">
   <tr>
-    <th>Name</th>
+    <th>Nombre</th>
     <th>Version</th>
-    <th></th>
+    <th>Categoria</th>
     <th></th>
     <th></th>
   </tr>
@@ -13,6 +13,7 @@
   <tr>
     <td><%= software.name %></td>
     <td><%= software.version %></td>
+    <td><%= software.description %></td>
     <td><%= link_to 'Ver', software %></td>
     <td><%= link_to 'Editar', edit_software_path(software) %></td>
     <td><%= link_to 'Eliminar', software, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
@@ -23,3 +24,4 @@
 <br />
 
 <%= link_to 'Nuevo Software', new_software_path, :class => 'btn btn-primary' %>
+<%= link_to 'Buscar Software', {controller: "softwares" ,action: "search"}, :class => 'btn btn-primary' %>

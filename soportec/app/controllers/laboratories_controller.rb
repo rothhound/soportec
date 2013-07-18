@@ -86,11 +86,12 @@ class LaboratoriesController < ApplicationController
   end
 
   def search    
-    @laboratory1 = Laboratory.all
-    @laboratories = Laboratory.find(:all ,:joins => {:schedules  => {course: :professors}}, :select => "*,schedules.id as id, laboratories.id as lab_id,courses.name as title, professors.name as body, courses.group_id as group_id", :conditions => {:id => params[:id]})
+    @laboratories = Laboratory.all
+    @laboratory1 = Laboratory.find(:all ,:joins => {:schedules  => {course: :professor}}, :select => "*,schedules.id as id, laboratories.id as lab_id,courses.name as title, professors.name as body, courses.group_id as group_id", :conditions => {:id => params[:lab][:number]})
+    @lab= @laboratory1.to_json(:only => [ :id, :day_id ,:start ,:end,:title, :body, :lastname, :group_id])
     respond_to do |format|
       	format.html # search.html.erb
-      	format.json { render json: @laboratories.to_json(:only => [ :id, :day_id ,:start ,:end,:title, :body, :lastname, :group_id])}
+      	format.json { render json: @laboratories }      	
     end
   end
 

@@ -90,4 +90,43 @@ class ProfessorsController < ApplicationController
       format.json { render json: @professors }
     end
   end
+
+  def search
+    
+    #@courses = Professor.find(:all,:joins => [:course], :select => "professors.course_id as curso, CONVERT(CONCAT(courses.name,' - G',courses.group_id,' - 20.',courses.eap_id) USING utf8) as dato")
+    @courses = Course.find(:all,:select => "DISTINCT courses.name")
+
+    searchN =  params[:name]
+    searchA =  params[:lastname]
+    searchC =  params[:curso] 
+
+    if(searchN.present? or searchA.present? or searchC.present?)
+      @professors = Professor.find(:all,:joins => [:course] ,:select => "professors.*, courses.name as curso")
+
+      if(searchN != '' and searchN.present?)
+        @professorsN = Professor.find(:all,:joins => [:course] ,:select => "professors.*, courses.name as curso",:conditions => ['professors.name like ?' , "%#{searchN}%"])
+        @professors = @professors & @professorsN
+      end
+
+      if(searchA != '' and searchA.present?)
+        @professorsA = Professor.find(:all,:joins => [:course] ,:select => "professors.*, courses.name as curso",:conditions => ['lastname like ?' , "%#{searchA}%"])
+        @professors = @professors & @professorsA
+      end
+
+      search = searchC[:curso_name]
+
+      if(searchC.present? and search.present?)
+        @professorsC = Professor.find(:all,:joins => [:course] ,:select => "professors.*, courses.name as curso",:conditions => ['courses.name like ?' , "#{search}"])
+        @professors = @professors & @professorsC
+      end
+      if(searchN.blank? and searchA.blank? and search.blank?)
+        @professors = nil
+      end
+    end
+
+    respond_to do |format|
+      format.html # search.html.erb
+      format.json { render json: @professors }
+    end
+  end
 end

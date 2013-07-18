@@ -2,9 +2,6 @@
 
 <%= form_tag :action => 'search', :method=>"GET" do%>
 
-    <!--%= label :nombre %><br /-->
-    <!--%= text_field :name %-->
-
 	<%= label_tag(:name, "Nombre:") %>
   	<%= text_field_tag(:name) %>
     <br />
@@ -13,15 +10,39 @@
   	<%= text_field_tag(:profesor) %>
     <br />
 
-    EAP:
-    <%= collection_select :eap_id, :name, @eaps, :name, :name,:prompt => "SELECCIONE UNA EAP" %>
+    <%= label_tag(:eap_id, "E.A.P.:") %>
+    <%= collection_select :eap_id, :eap, @eaps, :id, :name,:prompt => "Seleccione una EAP" %>
     <br />
 
-    Grupo:
-    <%= collection_select :group_id, :name, @groups, :name, :name, :prompt => "SELECCIONE UN GRUPO" %>
+    <%= label_tag(:group_id, "Grupo:") %>
+    <%= collection_select :group_id, :group, @groups, :id, :name, :prompt => "Seleccione un grupo" %>
     <br />
 
-    <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
-
-
+    <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %> |
+    <%= link_to 'Atras', {controller: "courses" ,action: "manage"}, :class => 'btn-small btn-primary' %>
 <%end%>
+
+<% if @courses.present? %>
+    RESULTADOS:
+    <table class="table">
+      <tr>
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Grupo</th>
+        <th>E.A.P.</th>
+        <th>Profesor</th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.code %></td>
+        <td><%= course.name %></td>
+        <td><%= course.groups %></td>
+        <td><%= course.eaps %></td>
+        <td><%= course.profesor %></td>
+      </tr>
+    <% end %>
+    </table>
+<% end %>

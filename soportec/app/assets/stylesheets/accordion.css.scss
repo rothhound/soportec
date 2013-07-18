@@ -7,14 +7,12 @@
         border-radius: 0px;
 
         .accordion-heading {
-            height: 34px;
-            border-top: 1px solid #0088cc; /* inner stroke */
-            border-bottom: 1px solid #002a80; /* inner stroke */
-            background-color: #0044cc; /* layer fill content */
-            background-image: -o-linear-gradient(90deg, #0088cc 0%, #0C4DA2 100%); 
-            background-image: -moz-linear-gradient(top, #0088cc, #0C4DA2);
-            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0C4DA2));
+            height: 35px;
+            border-top: 1px solid #516B8E; /* inner stroke */
+            border-bottom: 1px solid #122845; /* inner stroke */
+            background-color: #475578;
             list-style-type:none;
+            font-size: 15px;
 
             a {
                 color: #fff; /* text color */
@@ -25,26 +23,46 @@
 
             .active {
                 width: 182px;
-                height: 34px;
-                border: 1px solid #5b5b5b; /* inner stroke */
-                background-color: #353535; /* layer fill content */
-                background-image: -o-linear-gradient(90deg, #0C4DA2 0%, #0088cc 100%); 
-                background-image: -moz-linear-gradient(top, #0C4DA2, #0088cc);
-                background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0C4DA2), to(#0088cc));
+                height: 40px;
+                border-top: 1px solid #516B8E; /* inner stroke */
+                border-bottom: 1px solid #122845;
+                background-color: #475578;
             }
+        }
+
+        .accordion-heading.last {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .accordion-heading.first {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
         }
 
         .accordion-body {
             background-color: #d7d7d7; 
             .accordion-inner {
-                padding: 5px 10px;
+                margin: 0;
+                padding: 0;
                 ul {
                     list-style: none;
+                    margin: 0;
+                    padding: 0;
                     li {
+                        border-right: 1px solid rgba(187, 187, 187, 0.75);
+                        border-left: 1px solid rgba(187, 187, 187, 0.75);
+                        border-bottom: 1px solid rgba(187, 187, 187, 0.75);
+                        padding: 4px 25px;
                         a {
+                            font-size: 13px;
                             line-height: 28px;
                             color: #666;
                             font-weight: bold;
+                            text-decoration: none;
+                        }
+                        &:hover {
+                            background-color: #F0F0F0;
                         }
                     }
                 }

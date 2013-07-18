@@ -1,8 +1,8 @@
-<div class="span6 centered">
-  <%= form_for(@professor, html: {class: "form-horizontal"}) do |f| %>
+<div class="span4 centered">
+  <%= form_for(@professor) do |f| %>
     <% if @professor.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@professor.errors.count, "error") %> prohibited this professor from being saved:</h2>
+        <h2><%= pluralize(@professor.errors.count, "error") %> no permitieron guardar el usuario:</h2>
 
         <ul>
         <% @professor.errors.full_messages.each do |msg| %>
@@ -12,34 +12,20 @@
       </div>
     <% end %>
 
-    <div class="control-group">
-      <%= f.label :code, "Código:", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :code %>
-      </div>
+    <div class="field">
+      <%= f.label :code %><br />
+      <%= f.text_field :code %>
     </div>
-
-    <div class="control-group">
-      <%= f.label :name, "Nombre:", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :name %>
-      </div>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
     </div>
-
-    <div class="control-group">
-      <%= f.label :lastname, "Apellidos:", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :lastname %>
-      </div>
+    <div class="field">
+      <%= f.label :lastname %><br />
+      <%= f.text_field :lastname %>
     </div>
-
-    <div class="button-container">
-      <div class="button">
-        <%= f.submit "Aceptar", :class => "btn btn-primary" %>
-      </div>
-      <div class="button">
-        <%= link_to 'Atrás', professors_path %>
-      </div>
+    <div class="actions">
+      <%= f.submit "Ingresar", :class => "btn btn-primary" %>
     </div>
   <% end %>
 </div>

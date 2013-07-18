@@ -1,5 +1,41 @@
+<h1>Prueba de busqueda de laboratorio <%= @codigo %></h1>
+<% if @laboratory1.size != 0 %>
+<table class="table">
+<table class="table">
+  <tr>
+    <th>Dia</th>
+    <th>Inicio</th>
+    <th>Fin</th>
+    <th>Curso</th>
+    <th>Profesor</th>
+    
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @laboratory1.each do |laboratory| %>
+  <tr>
+    <td><%= laboratory.day_id %></td>
+    <td><%= laboratory.start %></td>
+    <td><%= laboratory.end %></td>
+    <td><%= laboratory.title %></td>
+    <td><%= laboratory.body%><%= laboratory.lastname%></td>
+    <td><%= link_to 'Show', laboratory %></td>
+    <td><%= link_to 'Edit', edit_laboratory_path(laboratory) %></td>
+    <td><%= link_to 'Destroy', laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+<% end %>
+  </table>
+  <% content_for :head do %>
+<%= javascript_tag "var laboratories = #{@lab};"%>
+<%= javascript_include_tag 'search' %>
 
-<%= form_for(@schedule) do |f| %>
+<% end %>
+<div id='calendar'></div>
+<div id="event_edit_container">
+<div class="span6 centered panel">
+  <%= form_for(@schedule) do |f| %>
   <% if @schedule.errors.any? %>
     <div id="alert alert-error">
       <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
@@ -41,3 +77,5 @@
   </div>
 <% end %>
 
+</div>
+</div>
