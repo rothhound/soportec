@@ -5,12 +5,15 @@
 <div class="row">
   <div class="span5 well centered">
     <h4><%= link_to "Laboratorio #{laboratory.number}", laboratory %></h4>
-    <table class="table table-condensed">
+    <table class="table table-condensed centered">
       <tbody>
-
         <tr>
-          <% user = laboratory.user == nil ? "No asignado" : laboratory.user[:name] %>
-          <th>Responsable</th><td><%= user %></td>
+          <th>Responsable</th>
+          <% if laboratory.user == nil %>
+            <td>No asignado</td>
+          <% else %>
+            <td><%= link_to laboratory.user[:name], :controller => 'users', :action => 'show', :id => laboratory.user[:id] %></td>
+          <% end %>
         </tr>
         <tr>
           <th>Capacidad</th><td><%= laboratory.capacity %></td>
@@ -29,12 +32,15 @@
         </tr>
       </tbody>
     </table>
-    <% if can? :update, laboratory %>
-        <%= link_to 'Editar', edit_laboratory_path(laboratory) %>
-    <% end %>
-    <% if can? :destroy, laboratory %>
-        <%= link_to 'Eliminar', laboratory, method: :delete, data: { confirm: '¿Esta seguro?' } %>
-    <% end %> 
+    <div class="button-container left">
+      <% if can? :update, laboratory %>
+        <div class="button"><%= link_to 'Editar', edit_laboratory_path(laboratory) %></div>
+      <% end %>
+      |
+      <% if can? :destroy, laboratory %>
+        <div class="button"><%= link_to 'Eliminar', laboratory, method: :delete, data: { confirm: '¿Esta seguro?' } %></div>
+      <% end %> 
+    </div>
   </div>
 </div>
 <br />

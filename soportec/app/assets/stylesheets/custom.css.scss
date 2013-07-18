@@ -14,9 +14,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 2.5em;
     letter-spacing: -2px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
@@ -24,7 +24,7 @@ h1 {
 h2 {
     font-size: 1.7em;
     letter-spacing: -1px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     text-align: center;
     font-weight: normal;
     color: #999;
@@ -113,7 +113,23 @@ footer {
     text-align: center;
     .button {
         display: inline-block;
-        padding: 10px 10px;
+        padding: 5px 10px;
+    }
+}
+
+.button-container.left{
+    text-align: left;
+    .button {
+        display: inline-block;
+        padding: 5px 10px;
+    }
+}
+
+.button-container.right {
+    text-align: right;
+    .button {
+        display: inline-block;
+        padding: 5px 10px;
     }
 }
 
@@ -220,4 +236,14 @@ footer {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
   *zoom: 1;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+}
+
+.centered {
+  tbody {
+    tr {
+      td {
+        text-align: center;
+      }
+    }
+  }
 }
