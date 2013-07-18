@@ -18,7 +18,11 @@ Soportec::Application.routes.draw do
     end
   end
 
-  resources :schedules
+  resources :schedules do
+  	collection do
+      match 'dynamic_new'
+  	end
+  end
 
   resources :eaps
 

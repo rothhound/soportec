@@ -1,5 +1,6 @@
-<h1>Prueba de busqueda de laboratorio <%= @codigo %></h1>
 
+<h1>Prueba de busqueda de laboratorio <%= @codigo %></h1>
+<% if @laboratory1.size != 0 %>
 <table class="table">
 <table class="table">
   <tr>
@@ -55,3 +56,9 @@
 		</ul>
 	</form>
 </div>
+<% else %>
+	
+	<h2> No hay horarios asignados</h2>
+	
+<% end %>
+

@@ -103,7 +103,19 @@ class SchedulesController < ApplicationController
   end
 
   #dynamic courses
-  def dynamic_course
-  	@courses = Courses.join(:eap)
+  def dynamic_new
+    @schedule = Schedule.new
+    @course = Course.all
+    @professor = Professor.all    
+    @laboratory = Laboratory.all
+    @laboratory1 = Laboratory.find(:all ,:joins => {:schedules  => {course: :professor}}, :select => "*,schedules.id as id, laboratories.id as lab_id,courses.name as title, professors.name as body, courses.group_id as group_id", :conditions => {:id => 1})
+    @lab= @laboratory1.to_json(:only => [ :id, :day_id ,:start ,:end,:title, :body, :lastname, :group_id])
+    @eap=Eap.all
+    @day = Day.all
+    @current_method = "new"
+    respond_to do |format|
+      format.html # dynamic_new.html.erb
+      format.json { render :xml => @schedule }
+    end
   end
 end
