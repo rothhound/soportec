@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   
-  load_and_authorize_resource :eap , :group
+  #load_and_authorize_resource :eap , :group
   skip_load_and_authorize_resource :eap, :group
   before_filter :authenticate_user!
 
@@ -32,6 +32,7 @@ class CoursesController < ApplicationController
   # GET /courses/new.json
   def new
     @course = Course.new
+    authorize! :create, @course
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,6 +43,7 @@ class CoursesController < ApplicationController
   # GET /courses/1/edit
   def edit
     @course = Course.find(params[:id])
+    authorize! :edit, @course
   end
 
   # POST /courses
@@ -80,6 +82,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1.json
   def destroy
     @course = Course.find(params[:id])
+    authorize! :destroy, @course
     @course.destroy
 
     respond_to do |format|

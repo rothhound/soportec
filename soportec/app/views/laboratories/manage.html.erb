@@ -40,7 +40,7 @@
 <br />
 <% end %>
 
-<% if can? :create, @laboratories %>
+<% if can? :create, @laboratories.first %>
   <%= link_to 'Nuevo Laboratory', new_laboratory_path, :class => 'btn btn-primary' %>
 <% end %>
 <br />

@@ -1,6 +1,6 @@
 class ComputersController < ApplicationController
 
-  load_and_authorize_resource :laboratory
+  #load_and_authorize_resource :laboratory
   skip_load_and_authorize_resource :laboratory
   before_filter :authenticate_user!
 
@@ -30,7 +30,7 @@ class ComputersController < ApplicationController
   # GET /computers/new.json
   def new
     @computer = Computer.new
-
+    authorize! :create, @computer
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @computer }
@@ -40,6 +40,7 @@ class ComputersController < ApplicationController
   # GET /computers/1/edit
   def edit
     @computer = Computer.find(params[:id])
+    authorize! :edit, @computer
   end
 
   # POST /computers
@@ -78,6 +79,7 @@ class ComputersController < ApplicationController
   # DELETE /computers/1.json
   def destroy
     @computer = Computer.find(params[:id])
+    authorize! :destroy, @computer
     @computer.destroy
 
     respond_to do |format|

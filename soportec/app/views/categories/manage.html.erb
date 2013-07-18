@@ -12,7 +12,7 @@
   <tr>
     <td><%= category.description %></td>
     <td><%= link_to 'Ver', category %></td>
-    <% if can? :update, categories %>
+    <% if can? :update, category %>
       <td><%= link_to 'Editar', edit_category_path(category) %></td>
     <% end %>
     <% if can? :destroy, category %>
@@ -24,6 +24,6 @@
 
 <br />
 
-<% if can? :create, @categories %>
+<% if can? :create, @categories.first %>
   <%= link_to 'Nueva Categoria', new_category_path, :class => 'btn btn-primary' %>
 <% end %>

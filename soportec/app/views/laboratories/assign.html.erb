@@ -17,7 +17,9 @@
               <%= laboratory.user[:name] %>
         <% end %>
     </td>
-    <td><%= link_to 'Asignar responsable', :controller=>"laboratories", :action=>"assignuser", :id=>laboratory.id %>
+    <% if can? :asignacion, laboratory %>
+      <td><%= link_to 'Asignar responsable', :controller=>"laboratories", :action=>"assignuser", :id=>laboratory.id %>
+    <% end %>
     </td>
   </tr>
   <%end%>

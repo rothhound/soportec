@@ -1,6 +1,6 @@
 class SchedulesController < ApplicationController
 
-  load_and_authorize_resource :day, :laboratory, :course
+  #load_and_authorize_resource :day, :laboratory, :course
   skip_load_and_authorize_resource :day, :laboratory, :course
   before_filter :authenticate_user!
 
@@ -36,6 +36,7 @@ class SchedulesController < ApplicationController
   # GET /schedules/new.json
   def new
     @schedule = Schedule.new
+    authorize! :create, @schedule
     @course = Course.all
     @professor = Professor.all
     @laboratory= Laboratory.all
@@ -51,6 +52,7 @@ class SchedulesController < ApplicationController
   # GET /schedules/1/edit
   def edit
     @schedule = Schedule.find(params[:id])
+    authorize! :update, @schedule
     @course = Course.all
     @professor = Professor.all
     @day = Day.all
@@ -99,6 +101,7 @@ class SchedulesController < ApplicationController
   # DELETE /schedules/1.json
   def destroy
     @schedule = Schedule.find(params[:id])
+    authorize! :destroy, @schedule
     @schedule.destroy
 
     respond_to do |format|
@@ -110,6 +113,7 @@ class SchedulesController < ApplicationController
   #dynamic courses
   def dynamic_new
     @schedule = Schedule.new
+    authorize! :dynamic, @schedule
     @course = Course.all
     @professor = Professor.all    
     @laboratory = Laboratory.all

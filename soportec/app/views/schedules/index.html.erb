@@ -27,6 +27,6 @@
 
 <br />
 
-<% if can? :create, @schedules %>
+<% if can? :create, @schedules.first %>
   <%= link_to 'Nuevo Horario', new_schedule_path, :class => 'btn btn-primary'%>
 <% end %>

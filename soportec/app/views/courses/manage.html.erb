@@ -16,10 +16,10 @@
     <td><%= course.groups %></td>
     <td><%= course.eaps %></td>
     <td><%= link_to 'Ver', course %></td>
-    <% if can? :update, @courses %>
+    <% if can? :update, course %>
       <td><%= link_to 'Editar', edit_course_path(course) %></td>
     <% end %>
-    <% if can? :destroy, @courses %>
+    <% if can? :destroy, course %>
       <td><%= link_to 'Eliminar', course, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
     <% end %>
   </tr>
@@ -28,7 +28,7 @@
 
 <br />
 
-<% if can? :create, @courses %>
+<% if can? :create, @courses.first %>
   <%= link_to 'Nuevo Curso', new_course_path, :class => 'btn btn-primary' %>
 <% end %>
 <%= link_to 'Buscar Curso', {controller: "courses" ,action: "search"}, :class => 'btn btn-primary' %>

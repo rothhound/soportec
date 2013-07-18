@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  load_and_authorize_resource :role
+  #load_and_authorize_resource :role
   skip_load_and_authorize_resource :role
   before_filter :authenticate_user!
   
@@ -31,6 +31,7 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
     @user = User.new
+    authorize! :create, @user
     @roles = Role.all
     @current_method = "new"
 
@@ -43,6 +44,8 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    authorize! :update, @user
+    #authorize! :editar, @user
     @roles = Role.all
     @current_method = "update"
   end
@@ -83,6 +86,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
+    authorize! :destroy, @user
     @user.destroy
 
     respond_to do |format|
@@ -94,6 +98,7 @@ class UsersController < ApplicationController
   # GET /manage
   def manage
     @users = User.all
+    #authorize! :read, @users
     @roles = Role.all
     respond_to do |format|
       format.html # manage.html.erb

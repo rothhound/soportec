@@ -36,6 +36,6 @@
 
 <br />
 
-<% if can? :create, @computers %>
+<% if can? :create, @computers.first %>
   <%= link_to 'Nueva Computadora', new_computer_path, :class => 'btn btn-primary' %>
 <% end %>
