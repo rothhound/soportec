@@ -21,9 +21,13 @@
     <td><%= laboratory.end %></td>
     <td><%= laboratory.title %></td>
     <td><%= laboratory.body%><%= laboratory.lastname%></td>
-    <td><%= link_to 'Show', laboratory %></td>
-    <td><%= link_to 'Edit', edit_laboratory_path(laboratory) %></td>
-    <td><%= link_to 'Destroy', laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Ver', laboratory %></td>
+    <% if can? :update, @professors %>
+      <td><%= link_to 'Editar', edit_laboratory_path(laboratory) %></td>
+    <% end %>
+    <% if can? :destroy, laboratory %>
+      <td><%= link_to 'Eliminar', laboratory, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 <% end %>

@@ -45,9 +45,11 @@
     </table>
 
     <div class="button-container">
+        <% if can? :editar, @user %>
         <div class="button">
             <%= link_to 'Editar ', edit_user_path(@user), :class => 'btn btn-primary'%>
         </div>
+        <% end %>        
         <div class="button">
             <%= link_to 'Volver', users_path, :class=> 'btn'  %>
         </div>

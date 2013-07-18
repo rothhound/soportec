@@ -1,7 +1,7 @@
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> no pudo ser creado:</h2>
 
       <ul>
         <% @user.errors.full_messages.each do |msg| %>
@@ -12,19 +12,19 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email,"Email:" %><br />
     <%= f.email_field :email %>
   </div>
   <div class="field">
-    <%= f.label :code %><br />
+    <%= f.label :code, "Codigo:" %><br />
     <%= f.text_field :code %>
   </div>
   <div class="field">
-    <%= f.label :username %><br />
+    <%= f.label :username,"Username:" %><br />
     <%= f.text_field :username %>
   </div>
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name,"Nombre:" %><br />
     <%= f.text_field :name %>
   </div>
   <% if @current_method == "new" %>
@@ -38,10 +38,12 @@
     </div>
     
 <% end %>
+<% if can? :assign_roles, User %>
 <div class="field">
-	  	<%= f.label :role%>
-		<%= f.collection_select :role_id, @roles ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
-	</div>
+      <%= f.label :role,"Rol:"%>
+    <%= f.collection_select :role_id, @roles ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+  </div>
+<% end %>
   <div class="actions">
     <%= f.submit 'Actualizar', :class => 'btn btn-primary' %>
   </div>

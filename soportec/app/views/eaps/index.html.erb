@@ -1,8 +1,8 @@
-<h1>Listing eaps</h1>
+<h1>Lista de E.A.P.</h1>
 
 <table class="table">
   <tr>
-    <th>Name</th>
+    <th>Nombre</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,13 +11,13 @@
 <% @eaps.each do |eap| %>
   <tr>
     <td><%= eap.name %></td>
-    <td><%= link_to 'Show', eap %></td>
-    <td><%= link_to 'Edit', edit_eap_path(eap) %></td>
-    <td><%= link_to 'Destroy', eap, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Ver', eap %></td>
+    <td><%= link_to 'Editar', edit_eap_path(eap) %></td>
+    <td><%= link_to 'Eliminar', eap, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Eap', new_eap_path, :class => 'btn btn-primary' %>
+<%= link_to 'Nueva E.A.P', new_eap_path, :class => 'btn btn-primary' %>

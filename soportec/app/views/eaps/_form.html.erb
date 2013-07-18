@@ -1,7 +1,7 @@
 <%= form_for(@eap) do |f| %>
   <% if @eap.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@eap.errors.count, "error") %> prohibited this eap from being saved:</h2>
+      <h2><%= pluralize(@eap.errors.count, "error") %> no pudo ser creado:</h2>
 
       <ul>
       <% @eap.errors.full_messages.each do |msg| %>
@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name,"Nombre:" %><br />
     <%= f.text_field :name %>
   </div>
   <div class="actions">

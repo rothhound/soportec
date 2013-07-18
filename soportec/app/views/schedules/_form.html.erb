@@ -20,11 +20,11 @@
       <%= f.collection_select :day_id, @day,:description,:description, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="field">
-    <%= f.label :start %><br />
+    <%= f.label :start,"Inicio;" %><br />
     <%= f.time_select :start %>
   </div>
   <div class="field">
-    <%= f.label :end %><br />
+    <%= f.label :end,"Fin:" %><br />
     <%= f.time_select :end %>
   </div>
 

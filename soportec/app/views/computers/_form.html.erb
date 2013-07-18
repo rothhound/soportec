@@ -1,7 +1,7 @@
 <%= form_for(@computer) do |f| %>
   <% if @computer.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@computer.errors.count, "error") %> prohibited this computer from being saved:</h2>
+      <h2><%= pluralize(@computer.errors.count, "error") %> no pudo ser creado:</h2>
 
       <ul>
       <% @computer.errors.full_messages.each do |msg| %>
@@ -12,31 +12,31 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :ram %><br />
+    <%= f.label :ram,"RAM:" %><br />
     <%= f.text_field :ram %>
   </div>
   <div class="field">
-    <%= f.label :processor %><br />
+    <%= f.label :processor,"Procesador:" %><br />
     <%= f.text_field :processor %>
   </div>
   <div class="field">
-    <%= f.label :motherboard %><br />
+    <%= f.label :motherboard,"Placa madre:" %><br />
     <%= f.text_field :motherboard %>
   </div>
   <div class="field">
-    <%= f.label :display %><br />
+    <%= f.label :display,"Monitor: " %><br />
     <%= f.text_field :display %>
   </div>
   <div class="field">
-    <%= f.label :mouse %><br />
+    <%= f.label :mouse,"Mouse:" %><br />
     <%= f.text_field :mouse %>
   </div>
   <div class="field">
-    <%= f.label :keyboard %><br />
+    <%= f.label :keyboard,"Teclado" %><br />
     <%= f.text_field :keyboard %>
   </div>
   <div class="field">
-    <%= f.label :videocard %><br />
+    <%= f.label :videocard,"Tarjeta de Video" %><br />
     <%= f.text_field :videocard %>
   </div>
   <div class="actions">

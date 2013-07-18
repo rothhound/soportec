@@ -2,7 +2,7 @@
   <%= form_for(@professor) do |f| %>
     <% if @professor.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@professor.errors.count, "error") %> no permitieron guardar el usuario:</h2>
+        <h2><%= pluralize(@professor.errors.count, "error") %> no permitieron guardar:</h2>
 
         <ul>
         <% @professor.errors.full_messages.each do |msg| %>
@@ -13,15 +13,15 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :code %><br />
+      <%= f.label :code, "Codigo:" %><br />
       <%= f.text_field :code %>
     </div>
     <div class="field">
-      <%= f.label :name %><br />
+      <%= f.label :name,"Nombre:" %><br />
       <%= f.text_field :name %>
     </div>
     <div class="field">
-      <%= f.label :lastname %><br />
+      <%= f.label :lastname,"Apellido:" %><br />
       <%= f.text_field :lastname %>
     </div>
     <div class="actions">

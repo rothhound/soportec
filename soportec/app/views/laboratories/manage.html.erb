@@ -29,14 +29,20 @@
         </tr>
       </tbody>
     </table>
-    <%= link_to 'Editar', edit_laboratory_path(laboratory) %>
-    <%= link_to 'Eliminar', laboratory, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% if can? :update, laboratory %>
+        <%= link_to 'Editar', edit_laboratory_path(laboratory) %>
+    <% end %>
+    <% if can? :destroy, laboratory %>
+        <%= link_to 'Eliminar', laboratory, method: :delete, data: { confirm: '¿Esta seguro?' } %>
+    <% end %> 
   </div>
 </div>
 <br />
 <% end %>
 
-<%= link_to 'Nuevo Laboratory', new_laboratory_path, :class => 'btn btn-primary' %>
+<% if can? :create, @laboratories %>
+  <%= link_to 'Nuevo Laboratory', new_laboratory_path, :class => 'btn btn-primary' %>
+<% end %>
 <br />
 
 <h2>Busqueda de Laboratorios <%= @codigo %></h2>

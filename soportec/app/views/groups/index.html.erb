@@ -1,8 +1,8 @@
-<h1>Listing groups</h1>
+<h1>Lista de Grupos</h1>
 
 <table class="table">
   <tr>
-    <th>Name</th>
+    <th>Nombre</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,13 +11,13 @@
 <% @groups.each do |group| %>
   <tr>
     <td><%= group.name %></td>
-    <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
-    <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Ver', group %></td>
+    <td><%= link_to 'Editar', edit_group_path(group) %></td>
+    <td><%= link_to 'Eliminar', group, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Group', new_group_path, :class => 'btn btn-primary' %>
+<%= link_to 'Nuevo Grupo', new_group_path, :class => 'btn btn-primary' %>

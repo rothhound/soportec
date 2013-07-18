@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Nombre:</b>
   <%= @software.name %>
 </p>
 
@@ -11,9 +11,13 @@
 </p>
 
 <p>
-  <b>Category:</b>
+  <b>Categoria:</b>
   <%= @software.description %>
 </p>
 
-<%= link_to 'Edit', edit_software_path(@software) %> |
-<%= link_to 'Back', softwares_path %>
+<% if can? :update, @software %>
+       <%= link_to 'Editar', edit_software_path(@software) %> |
+<% end %>
+
+<%= link_to 'Atras', softwares_path %>
+

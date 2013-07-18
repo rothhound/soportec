@@ -2,9 +2,9 @@
 
 <table class="table">
   <tr>
-    <th>Code</th>
-    <th>Name</th>
-    <th>Lastname</th>
+    <th>Codigo</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,13 +16,20 @@
     <td><%= professor.name %></td>
     <td><%= professor.lastname %></td>
     <td><%= link_to 'Ver', professor %></td>
-    <td><%= link_to 'Editar', edit_professor_path(professor) %></td>
-    <td><%= link_to 'Eliminar', professor, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+   <% if can? :update, @professors %>
+      <td><%= link_to 'Editar', edit_professor_path(professor) %></td>
+    <% end %>
+    <% if can? :destroy, @professors %>
+      <td><%= link_to 'Eliminar', professor, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+    <% end %>    
+    
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Nuevo Profesor', new_professor_path, :class => 'btn btn-primary' %>
+<% if can? :create, @categories %>
+  <%= link_to 'Nuevo Profesor', new_professor_path, :class => 'btn btn-primary' %>
+<% end %>
 <%= link_to 'Buscar Profesor', {controller: "professors" ,action: "search"}, :class => 'btn btn-primary' %>

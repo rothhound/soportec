@@ -6,25 +6,27 @@
   <% end %>
 
   <p>
-    <b>Code:</b>
+    <b>Codigo:</b>
     <%= @professor.code %>
   </p>
 
   <p>
-    <b>Name:</b>
+    <b>Nombre:</b>
     <%= @professor.name %>
   </p>
 
   <p>
-    <b>Lastname:</b>
+    <b>Apellido:</b>
     <%= @professor.lastname %>
   </p>
   <div class="button-container">
+    <% if can? :update, @professor %>
+      <div class="button">
+        <%= link_to 'Editar', edit_professor_path(@professor), :class => "btn btn-primary" %>
+      </div>
+    <% end %>
     <div class="button">
-      <%= link_to 'Editar', edit_professor_path(@professor), :class => "btn btn-primary" %>
-    </div>
-    <div class="button">
-      <%= link_to 'Atrás', professors_path %>
+      <%= link_to 'Atrás', professors_path, :class => "btn"  %>
     </div>
   </div>
 </div>

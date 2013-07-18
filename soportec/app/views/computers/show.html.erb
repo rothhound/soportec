@@ -3,22 +3,22 @@
 </div>
 
 <p>
-  <b>Ram:</b>
+  <b>RAM:</b>
   <%= @computer.ram %>
 </p>
 
 <p>
-  <b>Processor:</b>
+  <b>Procesador:</b>
   <%= @computer.processor %>
 </p>
 
 <p>
-  <b>Motherboard:</b>
+  <b>Placa madre:</b>
   <%= @computer.motherboard %>
 </p>
 
 <p>
-  <b>Display:</b>
+  <b>Monitor:</b>
   <%= @computer.display %>
 </p>
 
@@ -28,15 +28,17 @@
 </p>
 
 <p>
-  <b>Keyboard:</b>
+  <b>Teclado:</b>
   <%= @computer.keyboard %>
 </p>
 
 <p>
-  <b>Videocard:</b>
+  <b>Tarjeta de video:</b>
   <%= @computer.videocard %>
 </p>
 
+<% if can? :update, @computer %>
+  <%= link_to 'Editar', edit_computer_path(@computer) %> |
+<% end %>
 
-<%= link_to 'Edit', edit_computer_path(@computer) %> |
-<%= link_to 'Back', computers_path %>
+<%= link_to 'Atras', computers_path %>
