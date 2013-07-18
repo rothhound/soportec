@@ -12,6 +12,7 @@
             border-bottom: 1px solid #122845; /* inner stroke */
             background-color: #475578;
             list-style-type:none;
+            font-size: 15px;
 
             a {
                 color: #fff; /* text color */
@@ -42,14 +43,26 @@
         .accordion-body {
             background-color: #d7d7d7; 
             .accordion-inner {
-                padding: 5px 10px;
+                margin: 0;
+                padding: 0;
                 ul {
                     list-style: none;
+                    margin: 0;
+                    padding: 0;
                     li {
+                        border-right: 1px solid rgba(187, 187, 187, 0.75);
+                        border-left: 1px solid rgba(187, 187, 187, 0.75);
+                        border-bottom: 1px solid rgba(187, 187, 187, 0.75);
+                        padding: 4px 25px;
                         a {
+                            font-size: 13px;
                             line-height: 28px;
                             color: #666;
                             font-weight: bold;
+                            text-decoration: none;
+                        }
+                        &:hover {
+                            background-color: #F0F0F0;
                         }
                     }
                 }
