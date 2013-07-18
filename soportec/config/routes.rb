@@ -58,6 +58,7 @@ Soportec::Application.routes.draw do
       get 'manage'
       match 'assign'
       match 'assignuser'
+      match 'find'
     end
   end
 
