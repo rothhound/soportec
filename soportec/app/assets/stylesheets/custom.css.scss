@@ -43,6 +43,14 @@ footer {
     color: #999;
     small {
         font-size: 13px;
+        a {
+          color: #0C4EA2;
+          font-weight: bold;
+          &:hover {
+            text-decoration: none;
+            color: #0C4EA2;
+          }
+        }
     }
 
     .pull-right{
