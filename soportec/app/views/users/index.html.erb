@@ -1,27 +1,31 @@
-<h1>Listing users</h1>
+<h1>Listado de Usuarios</h1>
 
 <table class="table">
   <tr>
+    <!-- <th>Usuario</th> -->
+    <th>Nombre</th>
     <th>Email</th>
-    <th>Username</th>
-    <th>Code</th>
-    <th>Name</th>
+    <th>Código</th>
+    <th>Rol</th>
     <th colspan="3"></th>
   </tr>
 
+
   <% @users.each do |user| %>
     <tr>
-      <td><%= user.email %></td>
-      <td><%= user.username %></td>
-      <td><%= user.code %></td>
+      <!-- <td><%= user.username %></td> -->
       <td><%= user.name %></td>
-      <td><%= link_to 'Show', user %></td>
-      <td><%= link_to 'Edit', edit_user_path(user) %></td>
-      <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= user.email %></td>
+      <td><%= user.code %></td>
+      <% role = user.role == nil ? "No tiene rol" : user.role[:name] %>
+      <td><%= role %> </td>
+      <td><%= link_to 'Ver', user %></td>
+      <td><%= link_to 'Editar', edit_user_path(user) %></td>
+      <td><%= link_to 'Eliminar', user, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New user', new_user_path, :class => 'btn btn-primary' %>
+<%= link_to 'Nuevo Usuario', new_user_path, :class => 'btn btn-primary' %>
