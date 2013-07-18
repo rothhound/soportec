@@ -1,4 +1,9 @@
 class SchedulesController < ApplicationController
+
+  load_and_authorize_resource :day, :laboratory, :course
+  skip_load_and_authorize_resource :day, :laboratory, :course
+  before_filter :authenticate_user!
+
   # GET /schedules
   # GET /schedules.json
   def index

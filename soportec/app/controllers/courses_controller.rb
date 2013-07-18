@@ -1,4 +1,9 @@
 class CoursesController < ApplicationController
+  
+  load_and_authorize_resource :eap , :group
+  skip_load_and_authorize_resource :eap, :group
+  before_filter :authenticate_user!
+
   # GET /courses
   # GET /courses.json
   def index

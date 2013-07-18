@@ -1,4 +1,9 @@
 class ProfessorsController < ApplicationController
+
+  load_and_authorize_resource :course
+  skip_load_and_authorize_resource :course
+  before_filter :authenticate_user!
+
   # GET /professors
   # GET /professors.json
   def index

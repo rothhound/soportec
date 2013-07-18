@@ -1,9 +1,11 @@
 class LaboratoriesController < ApplicationController
+  
+  load_and_authorize_resource :professor, :course, :schedule
+  skip_load_and_authorize_resource :professor, :course, :schedule
   before_filter :authenticate_user!
   
   # GET /laboratories
   # GET /laboratories.json
-
   def index
     @laboratories = Laboratory.all
 

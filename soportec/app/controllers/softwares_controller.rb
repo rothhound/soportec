@@ -1,4 +1,9 @@
 class SoftwaresController < ApplicationController
+
+  load_and_authorize_resource :category
+  skip_load_and_authorize_resource :category
+  before_filter :authenticate_user!
+  
   # GET /softwares
   # GET /softwares.json
   def index

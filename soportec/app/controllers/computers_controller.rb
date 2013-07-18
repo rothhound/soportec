@@ -1,4 +1,9 @@
 class ComputersController < ApplicationController
+
+  load_and_authorize_resource :laboratory
+  skip_load_and_authorize_resource :laboratory
+  before_filter :authenticate_user!
+
   # GET /computers
   # GET /computers.json
   def index

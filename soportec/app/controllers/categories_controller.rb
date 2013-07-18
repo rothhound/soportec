@@ -1,4 +1,8 @@
 class CategoriesController < ApplicationController
+
+  load_and_authorize_resource
+  before_filter :authenticate_user!
+
   # GET /categories
   # GET /categories.json
   def index

@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
+
+  load_and_authorize_resource :role
+  skip_load_and_authorize_resource :role
+  before_filter :authenticate_user!
+  
   # GET /users
   # GET /users.xml
-  #load_and_authorize_resource
-  
   def index
     @users = User.all
     @roles = Role.all
@@ -16,6 +19,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
+    @role = Role.find(@user.role_id)
 
     respond_to do |format|
       format.html # show.html.erb
