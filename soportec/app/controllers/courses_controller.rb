@@ -93,7 +93,10 @@ class CoursesController < ApplicationController
 
   # GET /manage
   def manage
-    @courses = Course.find(:all, :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
+    @courses_sys = Course.where(:eap_id => 1).order(:code).page(params[:page_sys]).per(10)
+    @courses_soft = Course.where(:eap_id => 2).order(:code).page(params[:page_soft]).per(10)
+
+    #@courses = Course.find(:all, :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
 
     respond_to do |format|
       format.html # manage.html.erb

@@ -90,7 +90,7 @@ class ProfessorsController < ApplicationController
 
   # GET /manage
   def manage
-    @professors = Professor.all
+    @professors = Professor.order(:lastname).page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # manage.html.erb

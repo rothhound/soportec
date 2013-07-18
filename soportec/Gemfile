@@ -9,6 +9,7 @@ gem 'activerecord-jdbcsqlite3-adapter'
 gem 'activerecord-jdbcmysql-adapter'
 gem 'devise'
 gem 'cancan'
+gem 'kaminari'
 
 gem 'jruby-openssl'
 

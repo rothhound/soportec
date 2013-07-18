@@ -238,7 +238,7 @@ footer {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
 }
 
-.centered {
+table.centered {
   tbody {
     tr {
       td {
@@ -246,4 +246,8 @@ footer {
       }
     }
   }
+}
+
+.pagination {
+  text-align: center;
 }

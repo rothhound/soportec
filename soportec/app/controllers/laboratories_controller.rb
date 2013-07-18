@@ -101,7 +101,7 @@ class LaboratoriesController < ApplicationController
 
   # GET /manage
   def manage
-    @laboratories = Laboratory.all
+    @laboratories = Laboratory.order(:number).page(params[:page]).per(5)
 
     respond_to do |format|
       format.html # manage.html.erb

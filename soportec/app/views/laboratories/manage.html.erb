@@ -1,6 +1,10 @@
 <h1>Laboratorios</h1>
 <h2>Listado</h2>
 
+<div class="centered">
+  <%= paginate @laboratories %>
+</div>
+
 <% @laboratories.each do |laboratory| %>
 <div class="row">
   <div class="span5 well centered">

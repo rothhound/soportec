@@ -1,34 +1,18 @@
 <h1>Mantenimiento de Cursos</h1>
 
-<table class="table">
-  <tr>
-    <th>Código</th>
-    <th>Nombre</th>
-    <th>Grupo</th>
-    <th>E.A.P.</th>
-    <th></th>
-  </tr>
+<h2>Ingeniería de Sistemas</h2>
 
-<% @courses.each do |course| %>
-  <tr>
-    <td><%= course.code %></td>
-    <td><%= course.name %></td>
-    <td><%= course.groups %></td>
-    <td><%= course.eaps %></td>
-    <td><%= link_to 'Ver', course %></td>
-    <% if can? :update, course %>
-      <td><%= link_to 'Editar', edit_course_path(course) %></td>
-    <% end %>
-    <% if can? :destroy, course %>
-      <td><%= link_to 'Eliminar', course, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
-    <% end %>
-  </tr>
-<% end %>
-</table>
+<%= render partial: "list", locals: {courses: @courses_sys, page: "page_sys"} %>
+
+<hr>
+
+<h2>Ingeniería de Software</h2>
+
+<%= render partial: "list", locals: {courses: @courses_soft, page: "page_soft"} %>
 
 <br />
 
-<% if can? :create, @courses.first %>
+<% if can? :create, Course %>
   <%= link_to 'Nuevo Curso', new_course_path, :class => 'btn btn-primary' %>
 <% end %>
 <%= link_to 'Buscar Curso', {controller: "courses" ,action: "search"}, :class => 'btn btn-primary' %>
