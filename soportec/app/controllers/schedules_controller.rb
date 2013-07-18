@@ -58,11 +58,11 @@ class SchedulesController < ApplicationController
   # POST /schedules.json
   def create
     @schedule = Schedule.new(params[:schedule])
-    @course = Course.all
-    @professor = Professor.all
-    @laboratory= Laboratory.all
     @eap=Eap.all
-    @day = Day.all
+    @profesor = Professor.find(params[:profesor][:id])
+    @profesor.course_id = @schedule.course_id
+    @profesor.save
+    
     respond_to do |format|
       if @schedule.save
         format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }

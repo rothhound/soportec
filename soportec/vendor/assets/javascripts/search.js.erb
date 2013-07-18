@@ -162,36 +162,29 @@ $(document).ready(function() {
 
 
    function getEventData() {
+   	
       var year = new Date().getFullYear();
       var month = new Date().getMonth();
       var day = new Date().getDate();
-      var dia = new Date().getDay();       
-	  console.log(document.URL.concat(".json"));
-      var json = (function () {
-	    var json = null;
-	    $.ajax({
-	        'async': false,
-	        'global': false,
-	        'url': document.URL.concat(".json"),
-	        'dataType': "json",
-	        'success': function (data) {
-	        	if(dia==0){
-	        		dia=7;
-	        	}
-	        	for(horario in data){
-	        		var name="".concat(data[horario].lastname);
-	        		data[horario].body=name.concat(", ".concat(data[horario].body));
-		  			data[horario].end=new Date(year, month, day+data[horario].day_id-dia, parseInt(data[horario].end));
-		  			data[horario].title=data[horario].title+" G"+data[horario].group_id;
-		  			data[horario].start=new Date(year, month, day+data[horario].day_id-dia, parseInt(data[horario].start));
-		  		//console.log(data[horario]);
-		  		}
-	            json = data;
-	        }
-	    });
-	    return json;})();
+      var dia = new Date().getDay();  
+      var data;
+	  console.log(laboratories.length)
+	  if(dia==0){
+	  	dia=7;
+	  }
+	  for (i=0; i<=laboratories.length-1; i++){
+	  	var name="".concat(laboratories[i].lastname);
+	    laboratories[i].body=name.concat(", ".concat(laboratories[i].body));
+		laboratories[i].end=new Date(year, month, day+laboratories[i].day_id-dia, parseInt(laboratories[i].end));
+		laboratories[i].title=laboratories[i].title+" G"+laboratories[i].group_id;
+		laboratories[i].start=new Date(year, month, day+laboratories[i].day_id-dia, parseInt(laboratories[i].start));
+		console.log(laboratories[i]);
+      }
+	  //console.log(document.URL.concat("/1.json"));
+      
+	    
 //console.log(json[0]);
-      return json;
+      return laboratories;
    }
 
 

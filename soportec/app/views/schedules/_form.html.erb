@@ -13,7 +13,7 @@
   <% end %>
   <div class="field">
       <%= f.label :Laboratorio%>
-      <%= f.collection_select :laboratory_id, @laboratory , :floor, :number, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <%= f.collection_select :laboratory_id, @laboratory , :id, :number, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="field">
       <%= f.label :Dia%>
@@ -27,19 +27,14 @@
     <%= f.label :end %><br />
     <%= f.time_select :end %>
   </div>
-  
 
-  <p>
-  <label for="eap">EAP:</label>
-  <%= collection_select :id, @eap, :id, :name, :prompt => "Select a eap" %>
-</p>
 <p id="course_field">
   <label for="course_id">Curso:</label>
   <%= f.collection_select :course_id, @course, :id, :name, {:prompt => "Select a course" }%>
 </p>
   <div class="field">
       <%= f.label :Profesor%>
-      <%= f.collection_select :id, @professor ,:lastname, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <%= collection_select :profesor ,:id, @professor ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="actions">
       <%= f.submit 'Registrar', :class => 'btn btn-primary' %>
