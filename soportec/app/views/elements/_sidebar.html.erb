@@ -8,7 +8,9 @@
         <div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
             <div class="accordion-inner">
                 <ul>
-                    <li><%= link_to 'Laboratorio asignado', :controller => 'laboratories', :action => 'show', :id => current_user.laboratory[:id] %></li>
+                    <% if current_user.laboratory != nil %>
+                        <li><%= link_to 'Laboratorio asignado', :controller => 'laboratories', :action => 'show', :id => current_user.laboratory[:id] %></li>
+                    <% end %>
                     <li><%= link_to 'Perfil de Usuario', :controller => 'users', :action =>'show', :id=>current_user.id %></li>
                     <li><%= link_to 'Configuracion de Cuenta', :controller=>"users", :action=>"edit", :id=>current_user.id %></li>
                 </ul>
