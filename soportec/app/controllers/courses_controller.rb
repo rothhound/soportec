@@ -8,7 +8,14 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     #@courses = Course.all
-    @courses = Course.find(:all, :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
+    if params[:professor_id].present?
+      @professor = Professor.find(params[:professor_id])
+      @courses = @professor.courses
+    else
+      @courses = Course.all
+    end
+    
+    #@courses = Course.find(:all, :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -97,6 +104,19 @@ class CoursesController < ApplicationController
     @courses_soft = Course.where(:eap_id => 2).order(:code).page(params[:page_soft]).per(10)
 
     #@courses = Course.find(:all, :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
+
+    respond_to do |format|
+      format.html # manage.html.erb
+      format.json { render json: @courses }
+    end
+  end
+
+  def add
+    @professor = Professor.find(params[:professor_id])
+    courses = @professor.courses.build
+    @courses = @professor.courses
+
+    @total_courses = Course.all
 
     respond_to do |format|
       format.html # manage.html.erb

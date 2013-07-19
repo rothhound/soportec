@@ -6,8 +6,7 @@ class Laboratory < ActiveRecord::Base
   has_one :state
   belongs_to :user
 
-  has_many :laboratories_softwares
-  has_many :softwares, :through => :laboratories_softwares
+  has_and_belongs_to_many :softwares
 
   validates :user_id, uniqueness: true
   #scope :unassigned, where(:user_id => nil)

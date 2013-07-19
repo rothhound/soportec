@@ -1,0 +1,26 @@
+<h2>Añadir</h2>
+
+<div class="span5 centered">
+  
+  <%= form_for(@professor) do |f| %>
+    <%= f.fields_for :courses do |q| %>
+      <div class="control-group">
+        <%= q.label :id, "E.A.P.:", :class => "control-label" %>
+        <div class="controls">
+          <%= q.collection_select :id, @total_courses, :id, :name, :prompt => "   --- Seleccione un Curso ---   " %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="button-container">
+      <div class="button">
+        <%= f.submit "Aceptar", :class => 'btn btn-primary' %>
+      </div>
+      <div class="button">
+        <%= link_to "Cancelar", courses_path, :class => 'btn' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= debug(@professor) %>
+<%= debug(@total_courses) %>

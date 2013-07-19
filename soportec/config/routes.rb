@@ -39,6 +39,12 @@ Soportec::Application.routes.draw do
       get 'manage'
       get 'search'
     end
+
+    resources :courses do
+      collection do
+        get 'add'
+      end
+    end
   end
 
   resources :categories do

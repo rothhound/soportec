@@ -1,4 +1,6 @@
-<div class="span4 centered">
+<h1>Datos del Profesor</h1>
+<div class="span3 centered">
+  <h2>Información Personal</h2>
   <% if notice.present? %>
     <div class="alert alert-info">
         <%= notice %>
@@ -12,13 +14,9 @@
 
   <p>
     <b>Nombre:</b>
-    <%= @professor.name %>
+    <%= "#{@professor.lastname}, #{@professor.name}" %>
   </p>
 
-  <p>
-    <b>Apellido:</b>
-    <%= @professor.lastname %>
-  </p>
   <div class="button-container">
     <% if can? :update, @professor %>
       <div class="button">
@@ -29,4 +27,17 @@
       <%= link_to 'Atrás', professors_path, :class => "btn"  %>
     </div>
   </div>
+
+  <h2>Cursos</h2>
+  <div class="span5 centered">
+
+
+
+    <div class="button-container">
+      <div class="button">
+        
+      </div>
+    </div>
+  </div>
 </div>
+<%= debug(@courses) %>    

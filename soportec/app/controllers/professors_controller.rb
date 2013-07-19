@@ -19,6 +19,7 @@ class ProfessorsController < ApplicationController
   # GET /professors/1.json
   def show
     @professor = Professor.find(params[:id])
+    @courses = @professor.courses
 
     respond_to do |format|
       format.html # show.html.erb
@@ -134,4 +135,5 @@ class ProfessorsController < ApplicationController
       format.json { render json: @professors }
     end
   end
+
 end
