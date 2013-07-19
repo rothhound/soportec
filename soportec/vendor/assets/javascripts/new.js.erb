@@ -30,6 +30,7 @@ $(document).ready(function() {
          return calEvent.readOnly != true;
       },*/
       eventNew : function(calEvent, $event) {
+      	//window.location = "/schedules/new"
          var $dialogContent = $("#event_edit_container");
          resetForm($dialogContent);
          var startField = $dialogContent.find("select[name='start']").val(calEvent.start);
@@ -42,20 +43,25 @@ $(document).ready(function() {
 				.button()
 				.click(function( event ) {
 					$dialogContent.dialog("destroy");
-	               	$dialogContent.hide();
-	               	$('#calendar').weekCalendar("removeUnsavedEvents");
-					$dialogContent.dialog("close");
+	               $dialogContent.hide();
+	               $('#calendar').weekCalendar("removeUnsavedEvents");
+	               $dialogContent.dialog("close");
 			});
 		});
 
          $dialogContent.dialog({
             modal: true,
             title: "New Calendar Event",
-            
+            close: function() {
+               $dialogContent.dialog("destroy");
+               $dialogContent.hide();
+               $('#calendar').weekCalendar("removeUnsavedEvents");
+            }
          }).show();
 
          $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
          setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));
+         
 
       },
       /*eventDrop : function(calEvent, $event) {
@@ -123,7 +129,7 @@ $(document).ready(function() {
          $dialogContent.find(".end1").text(calEvent.end.toHHMMSS());
          $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
          $dialogContent.find(".title1").text(calEvent.title);
-         //$(window).resize().resize(); //fixes a bug in modal overlay size ??
+         $(window).resize().resize(); //fixes a bug in modal overlay size ??
 
       },
       eventMouseover : function(calEvent, $event) {
