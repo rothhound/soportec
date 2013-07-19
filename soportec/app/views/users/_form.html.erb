@@ -38,12 +38,21 @@
     </div>
     
 <% end %>
+
 <% if can? :assign_roles, User %>
 <div class="field">
       <%= f.label :role,"Rol:"%>
     <%= f.collection_select :role_id, @roles ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
 <% end %>
+
+<% if can? :assign_roles2, User %>
+<div class="field">
+      <%= f.label :role,"Rol:"%>
+    <%= f.collection_select :role_id, Role.find(:all,:conditions => ["id != 1"]) ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+  </div>
+<% end %>
+
   <div class="actions">
     <%= f.submit 'Actualizar', :class => 'btn btn-primary' %>
   </div>
