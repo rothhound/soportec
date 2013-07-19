@@ -38,8 +38,8 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.new
     authorize! :create, @schedule
 
-    @course1 = Course.find(:all,:joins => [:eap , :group] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, eaps.name, groups.name) as curso",:order => "courses.name")
-    @course2 = Course.find(:all,:joins => [:eap , :group, :professor] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, eaps.name, groups.name) as curso",:order => "courses.name")#Course.find(:all, :joins => [:professor])
+    @course1 = Course.find(:all,:joins => [:eap , :group] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, groups.name, eaps.name) as curso",:order => "courses.name")
+    @course2 = Course.find(:all,:joins => [:eap , :group, :professor] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, groups.name, eaps.name) as curso",:order => "courses.name")#Course.find(:all, :joins => [:professor])
     @course=@course1-@course2
 
     #@professor = Professor.all
@@ -122,8 +122,8 @@ class SchedulesController < ApplicationController
     @schedule = Schedule.new
     authorize! :dynamic, @schedule
 
-    @course1 = Course.find(:all,:joins => [:eap , :group] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, eaps.name, groups.name) as curso",:order => "courses.name")
-    @course2 = Course.find(:all,:joins => [:eap , :group, :professor] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, eaps.name, groups.name) as curso",:order => "courses.name")#Course.find(:all, :joins => [:professor])
+    @course1 = Course.find(:all,:joins => [:eap , :group] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, groups.name, eaps.name) as curso",:order => "courses.name")
+    @course2 = Course.find(:all,:joins => [:eap , :group, :professor] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, groups.name, eaps.name) as curso",:order => "courses.name")#Course.find(:all, :joins => [:professor])
     @course=@course1-@course2
 
 
