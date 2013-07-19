@@ -37,8 +37,15 @@ class SchedulesController < ApplicationController
   def new
     @schedule = Schedule.new
     authorize! :create, @schedule
-    @course = Course.all
-    @professor = Professor.all
+
+    @course1 = Course.find(:all,:joins => [:eap , :group] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, eaps.name, groups.name) as curso",:order => "courses.name")
+    @course2 = Course.find(:all,:joins => [:eap , :group, :professor] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, eaps.name, groups.name) as curso",:order => "courses.name")#Course.find(:all, :joins => [:professor])
+    @course=@course1-@course2
+
+    #@professor = Professor.all
+
+    @professor = Professor.find(:all, :select =>"CONCAT_ws(' ',name,lastname) as datos", :order => "name" )
+
     @laboratory= Laboratory.all
     @eap=Eap.all
     @day = Day.all
@@ -66,7 +73,7 @@ class SchedulesController < ApplicationController
   def create
     @schedule = Schedule.new(params[:schedule])
     @eap=Eap.all
-    @profesor = Professor.find(params[:profesor][:id])
+    @profesor = Professor.find(params[:profesor][:id], :select)
     @profesor.course_id = @schedule.course_id
     @profesor.save
     
@@ -114,8 +121,15 @@ class SchedulesController < ApplicationController
   def dynamic_new
     @schedule = Schedule.new
     authorize! :dynamic, @schedule
-    @course = Course.all
-    @professor = Professor.all    
+
+    @course1 = Course.find(:all,:joins => [:eap , :group] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, eaps.name, groups.name) as curso",:order => "courses.name")
+    @course2 = Course.find(:all,:joins => [:eap , :group, :professor] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, eaps.name, groups.name) as curso",:order => "courses.name")#Course.find(:all, :joins => [:professor])
+    @course=@course1-@course2
+
+
+    #@professor = Professor.all   
+    @professor = Professor.find(:all, :select =>"CONCAT_ws(' ',name,lastname) as datos", :order => "name" )
+
     @laboratory = Laboratory.all
     @laboratory1 = Laboratory.find(:all ,:joins => {:schedules  => {course: :professor}}, :select => "*,schedules.id as id, laboratories.id as lab_id,courses.name as title, professors.name as body, courses.group_id as group_id", :conditions => {:id => 1})
     @lab= @laboratory1.to_json(:only => [ :id, :day_id ,:start ,:end,:title, :body, :lastname, :group_id])

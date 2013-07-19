@@ -19,7 +19,7 @@
     <td><%= laboratory.start %></td>
     <td><%= laboratory.end %></td>
     <td><%= laboratory.title %></td>
-    <td><%= laboratory.body%><%= laboratory.lastname%></td>
+    <td><%= laboratory.body%> <%= laboratory.lastname%></td>
   </tr>
 <% end %>
 <% end %>
@@ -61,14 +61,14 @@
     <label for="end">Fin:</label>
     <%= f.time_select :end %>
   </div>
-<%= debug(@schedule.start) %>
+<!--%= debug(@schedule.start) %-->
 <p id="course_field">
   <label for="course_id">Curso:</label>
-  <%= f.collection_select :course_id, @course, :id, :name, {:prompt => "Select a course" }%>
+  <%= f.collection_select :course_id, @course, :id, :curso, {:prompt => "Seleccione un curso" }%>
 </p>
   <div class="field">
       <label for="id">Profesor:</label>
-      <%= collection_select :course_id, :professor_id, @professor ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <%= collection_select :course_id, :professor_id, @professor ,:id, :datos,{:prompt => "Seleccione un profesor"}%>
   </div>
   <div class="actions">
       <%= f.submit 'Registrar', :class => 'btn-small btn-primary' %>
