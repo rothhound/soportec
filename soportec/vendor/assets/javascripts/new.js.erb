@@ -38,6 +38,12 @@ $(document).ready(function() {
          var titleField = $dialogContent.find("input[name='commit']").val("Registrar");
          var titleField = $dialogContent.find("input[name='commit1']").val("Cerrar");
          var bodyField = $dialogContent.find("textarea[name='body']");
+         $dialogContent.find("input[name='schedule[end(1i)]']").val(new Date().getFullYear());
+         $dialogContent.find("input[name='schedule[end(2i)]']").val(new Date().getMonth());
+         $dialogContent.find("input[name='schedule[end(3i)]']").val(new Date().getDate());
+         $dialogContent.find("input[name='schedule[start(1i)]']").val(new Date().getFullYear());
+         $dialogContent.find("input[name='schedule[start(2i)]']").val(new Date().getMonth());
+         $dialogContent.find("input[name='schedule[start(3i)]']").val(new Date().getDate());
          $(function() {
 			$( "input[name=commit1]" )
 				.button()
