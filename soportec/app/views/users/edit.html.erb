@@ -1,9 +1,3 @@
 <h1>Editar Usuario</h1>
 
-<div class="span6 centered">
-    <div class="span4 centered">
-        <%= render 'form' %>
-    </div>
-    <%= link_to 'Ver', @user %> |
-    <%= link_to 'Atras', users_path %>
-</div>
+<%= render partial: 'form', locals: {action: 'Editar'} %>

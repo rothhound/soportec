@@ -1,59 +1,86 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> no pudo ser creado:</h2>
+<div class="span6 centered">
+  <%= form_for(@user, html: { :class => 'form-horizontal'}) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> no pudo ser creado:</h2>
 
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="control-group">
+      <%= f.label :email, "E-mail:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.email_field :email %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :code, "Código:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :code %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :username, "Usuario:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :username %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :name, "Nombre:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+
+    <% if @current_method == "new" %>
+      <div class="control-group">
+        <%= f.label :password, "Contraseña:", :class => "control-label" %>
+        <div class="controls">
+          <%= f.password_field :password %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :password_confirmation, "Confirme su contraseña:", :class => "control-label" %>
+        <div class="controls">
+          <%= f.password_field :password_confirmation %>
+        </div>
+      </div>    
+  <% end %>
+
+  <% if can? :assign_roles, User %>
+    <div class="control-group">
+      <%= f.label :role_id, "Rol:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.collection_select :role_id, @roles ,:id, :name, :prompt => "Seleccione un rol" %>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email,"Email:" %><br />
-    <%= f.email_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :code, "Codigo:" %><br />
-    <%= f.text_field :code %>
-  </div>
-  <div class="field">
-    <%= f.label :username,"Username:" %><br />
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :name,"Nombre:" %><br />
-    <%= f.text_field :name %>
-  </div>
-  <% if @current_method == "new" %>
-    <div class="field">
-      	<%= f.label :password %><br />
-      	<%= f.password_field :password %>
+  <% if can? :assign_roles2, User %>
+    <div class="control-group">
+      <%= f.label :role_id, "Rol:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.collection_select :role_id, Role.find(:all,:conditions => ["id != 1"]) ,:id, :name, :prompt => "Seleccione un rol" %>
+      </div>
     </div>
-    <div class="field">
-      	<%= f.label :password_confirmation %><br />
-    	<%= f.password_field :password_confirmation %>
+  <% end %>
+
+    <div class="button-container">
+      <div class="button">
+        <%= f.submit action, :class => 'btn btn-primary' %>
+      </div>
+      <div class="button">
+        <%= link_to "Atrás", manage_users_path %>
+      </div>
     </div>
-    
-<% end %>
-
-<% if can? :assign_roles, User %>
-<div class="field">
-      <%= f.label :role,"Rol:"%>
-    <%= f.collection_select :role_id, @roles ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
-  </div>
-<% end %>
-
-<% if can? :assign_roles2, User %>
-<div class="field">
-      <%= f.label :role,"Rol:"%>
-    <%= f.collection_select :role_id, Role.find(:all,:conditions => ["id != 1"]) ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
-  </div>
-<% end %>
-
-  <div class="actions">
-    <%= f.submit 'Actualizar', :class => 'btn btn-primary' %>
-  </div>
-<% end %>
+  <% end %>
+</div>
