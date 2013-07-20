@@ -8,7 +8,8 @@ class Ability
         can :manage, :all
         cannot :assign_roles2 , User
     elsif user.role_id == 2 #secretaria
-        can [:create,:destroy,:update], [Computer,Course,Laboratory,Professor,Schedule,Software]
+        #can [:create,:destroy,:update,:destroy], [Computer,Course,Laboratory,Professor,Schedule,Software]
+        can :manage, [Computer,Course,Laboratory,Professor,Schedule,Software]
         can [:update,:editar],User
         can :read , [Computer,Course,Laboratory,Professor,Schedule,Software,User]
         can :asignacion, Laboratory

@@ -5,17 +5,21 @@
   <p>Laboratorio: <%= @state.laboratory_id %>
   <p>Estado Actual : <%= @state.description %><p>
 
-  <%= form_for @state, url: {action: 'dynamic_create'} do |f| %>
-    <% if @state.errors.any? %>
+  <%= form_for @state1, url: {action: 'dynamic_create'} do |f| %>
+    <% if @state1.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@stat1e.errors.count, "error") %> no pudo ser creado:</h2>
+        <h2><%= pluralize(@state1.errors.count, "error") %> no pudo ser creado:</h2>
         <ul>
-        <% @state.errors.full_messages.each do |msg| %>
+        <% @state1.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
         </ul>
       </div>
     <% end %>
+
+    <div class="field">
+      <%= f.hidden_field :laboratory_id, :value => "#{@state.laboratory_id}" %>
+    </div>
 
     <div class="field">
       <%= f.label :description,"Disponibilidad:" %><br />
@@ -28,5 +32,6 @@
       </div>
       <button class="btn" onclick="self.close()">Cancelar</button>
     </div>
+
   <% end %>
 </div>

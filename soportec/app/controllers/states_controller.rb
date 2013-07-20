@@ -135,24 +135,23 @@ class StatesController < ApplicationController
   end
 
   def dynamic_create
-
-    @state = State.new(params[:state])
+    @state1 = State.new(params[:state])
     
     respond_to do |format|
-      if @state.save
-        format.html { redirect_to @state, notice: 'state was successfully created.' }
-        format.json { render :xml => @state, status: :created, location: @state }
+      if @state1.save
+        format.html { redirect_to @state1, notice: 'state was successfully created.' }
+        format.json { render :xml => @state1, status: :created, location: @state }
       else
-        format.html { redirect_to @state, notice: 'No se pudo guardar.' }
-        format.json { render :xml => @state.errors, status: :unprocessable_entity }
+        format.html { redirect_to @state1, notice: 'No se pudo guardar.' }
+        format.json { render :xml => @state1.errors, status: :unprocessable_entity }
       end
     end
   end
 
 def change
     @state = State.find(params[:id])
-    @state1 = Schedule.new(params[:state])
-    @laboratory = Laboratory.all
+    @state1 = State.new
+
     authorize! :create, @state
     
     @current_method = "new"
