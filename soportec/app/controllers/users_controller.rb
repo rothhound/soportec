@@ -97,7 +97,7 @@ class UsersController < ApplicationController
 
   # GET /manage
   def manage
-    @users = User.all
+    @users = User.order(:name).page(params[:page]).per(10)
     #authorize! :read, @users
     @roles = Role.all
 
