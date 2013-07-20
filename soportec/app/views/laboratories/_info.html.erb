@@ -1,0 +1,41 @@
+  <div class="span5 well centered">
+    <h4><%= link_to "Laboratorio #{laboratory.number}", laboratory %></h4>
+    <table class="table table-condensed centered">
+      <tbody>
+        <tr>
+          <th>Responsable</th>
+          <% if laboratory.user == nil %>
+            <td>No asignado</td>
+          <% else %>
+            <td><%= link_to laboratory.user[:name], :controller => 'users', :action => 'show', :id => laboratory.user[:id] %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <th>Capacidad</th><td><%= laboratory.capacity %></td>
+        </tr>
+        <tr>
+          <th>Numero de Computadoras</th><td><%= laboratory.numComputers %></td>
+        </tr>
+        <tr>
+          <th>Aire Acondicionado</th><td><%= laboratory.airConditioning == 1 ?  "Si" : "No"%></td>
+        </tr>
+        <tr>
+          <th>Proyector</th><td><%= laboratory.projector == 1 ?  "Si" : "No" %></td>
+        </tr>
+        <tr>
+          <th>Sonido</th><td><%= laboratory.sound == 1 ?  "Si" : "No" %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="button-container left">
+      <% if can? :update, laboratory %>
+        <div class="button"><%= link_to 'Editar', edit_laboratory_path(laboratory) %></div>
+      <% end %>
+      |
+      <% if can? :destroy, laboratory %>
+        <div class="button"><%= link_to 'Eliminar', laboratory, method: :delete, data: { confirm: '¿Esta seguro?' } %></div>
+      <% end %> 
+    </div>
+  </div>
+
+<br />

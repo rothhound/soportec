@@ -98,7 +98,7 @@ class LaboratoriesController < ApplicationController
 
   # GET /manage
   def manage
-    @laboratories = Laboratory.order(:number).page(params[:page]).per(5)
+    @laboratories = Laboratory.order(:number).page(params[:page]).per(1)
 
     @laboratory = Laboratory.new
 
