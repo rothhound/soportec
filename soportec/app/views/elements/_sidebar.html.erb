@@ -42,8 +42,8 @@
         <div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
             <div class="accordion-inner">
                 <ul>
-                    <li><%= link_to 'Verificar Horario Actual', '#' %></li>
-                    <li><%= link_to 'Modificar Horario Actual', '#' %></li>
+                    <li><%= link_to 'Verificar Horario Actual', :controller => 'laboratories', :action => 'search' %></li>
+                    <li><%= link_to 'Modificar Horario Actual', :controller => 'schedules', :action => 'dyamic_new' %></li>
                     <li><%= link_to 'Asignar Horario Semestral', '#' %></li>
                 </ul>
             </div>

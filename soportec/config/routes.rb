@@ -57,6 +57,7 @@ Soportec::Application.routes.draw do
     collection do
       get 'manage'
       get 'responsibles'
+      match 'search'
       match 'find'
     end
 

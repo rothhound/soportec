@@ -14,10 +14,9 @@
   <hr>
 </div>
 
-<!-- <h2>Busqueda de Laboratorios <%= @codigo %></h2>
+<h2>Busqueda de Laboratorios <%= @codigo %></h2>
 <%= form_tag :action => 'search' do%>
     <span>Codigo:</span>
-    <%= collection_select :lab, :number, @laboratories, :number, :number %>
+    <%= collection_select :labo, :number, Laboratory.all, :number, :number %>
     <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
 <% end %>
- -->

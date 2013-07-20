@@ -90,8 +90,15 @@ class LaboratoriesController < ApplicationController
   end
 
   def search    
+  	@pred = 1
+  	if(current_user.role_id == 3)
+  		@pred = current_user.laboratory.id
+  	end
+  	if(params[:labo].present?)
+  		@pred = params[:labo][:number]
+  	end
     @laboratories = Laboratory.all
-    @laboratory1 = Laboratory.find(:all ,:joins => {:schedules  => {course: :professor}}, :select => "*,schedules.id as id, laboratories.id as lab_id,courses.name as title, professors.name as body, courses.group_id as group_id", :conditions => {:id => params[:lab][:number]})
+    @laboratory1 = Laboratory.find(:all ,:joins => {:schedules  => {course: :professor}}, :select => "*,schedules.id as id, laboratories.id as lab_id,courses.name as title, professors.name as body, courses.group_id as group_id", :conditions => {:id => @pred})
     @lab= @laboratory1.to_json(:only => [ :id, :day_id ,:start ,:end,:title, :body, :lastname, :group_id])
     respond_to do |format|
       	format.html # search.html.erb
