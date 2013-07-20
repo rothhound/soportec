@@ -26,7 +26,7 @@
         <div id="collapseTwo" class="accordion-body collapse" style="height: 0px; ">
             <div class="accordion-inner">
                 <ul>
-                    <li><%= link_to 'Verificar Estado Actual', :controller => 'schedules', :action => 'index' %></li>
+                    <li><%= link_to 'Verificar Estado Actual', :controller => 'states', :action => 'list' %></li>
                     <li><%= link_to 'Asignar Responsable', :controller=>"laboratories", :action=>"responsibles" %></li>
                 </ul>
             </div>
@@ -63,6 +63,7 @@
                     <li><%= link_to 'Usuarios', :controller => 'users', :action => 'manage' %></li>
                     <li><%= link_to 'Profesores', :controller => 'professors', :action => 'manage' %></li>
                     <li><%= link_to 'Cursos', :controller => 'courses', :action => 'manage' %></li>
+                    <li><%= link_to 'Softwares', :controller => 'softwares', :action => 'manage' %></li>
                 </ul>                 
             </div>
          </div>
