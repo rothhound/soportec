@@ -1,4 +1,3 @@
-
 <h1>Prueba de busqueda de laboratorio <%= @codigo %></h1>
 <% if @laboratory1.size != 0 %>
 <table class="table">
@@ -21,18 +20,11 @@
     <td><%= laboratory.end %></td>
     <td><%= laboratory.title %></td>
     <td><%= laboratory.body%><%= laboratory.lastname%></td>
-    <td><%= link_to 'Ver', laboratory %></td>
-    <% if can? :update, @professors %>
-      <td><%= link_to 'Editar', edit_laboratory_path(laboratory) %></td>
-    <% end %>
-    <% if can? :destroy, laboratory %>
-      <td><%= link_to 'Eliminar', laboratory, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
-    <% end %>
   </tr>
 <% end %>
 <% end %>
   </table>
-  <% content_for :head do %>
+ <% content_for :head do %>
 <%= javascript_tag "var laboratories = #{@lab};"%>
 <%= javascript_include_tag 'new' %>
 
@@ -40,7 +32,8 @@
 <div id='calendar'></div>
 <div id="event_edit_container">
 
-  <%= form_tag :action => 'dynamic_create', :method=>"GET" do %>
+  <%= form_for @schedule, url: {action: 'dynamic_create'} do |f| %>
+
   <% if @schedule.errors.any? %>
     <div id="alert alert-error">
       <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
@@ -54,32 +47,32 @@
   <% end %>
   <div class="field">
       <label for="laboratory_id">Laboratorio:</label>
-      <%= collection_select :schedule, :laboratory_id, @laboratory , :id, :number, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <%= f.collection_select :laboratory_id, @laboratory , :id, :number, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="field">
       <label for="day_id">Day:</label>
-      <%= collection_select :schedule, :day_id, @day,:description,:description, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <%= f.collection_select :day_id, @day,:id,:description, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="field">
     <label for="start">Inicio:</label>
-    <%= time_select :start ,:start, :style=>"width:50px" %>
+    <%= f.time_select :start, :style=>"width:50px" %>
   </div>
   <div class="field">
     <label for="end">Fin:</label>
-    <%= time_select :end, :end %>
+    <%= f.time_select :end %>
   </div>
 <%= debug(@schedule.start) %>
 <p id="course_field">
   <label for="course_id">Curso:</label>
-  <%= collection_select :schedule, :course_id, @course, :id, :name, {:prompt => "Select a course" }%>
+  <%= f.collection_select :course_id, @course, :id, :name, {:prompt => "Select a course" }%>
 </p>
   <div class="field">
       <label for="id">Profesor:</label>
-      <%= collection_select :schedule ,:id, @professor ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <%= collection_select :course_id, :professor_id, @professor ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="actions">
-      <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
-      <input class="btn btn-primary span1" name="commit1" />
+      <%= f.submit 'Registrar', :class => 'btn-small btn-primary' %>
+      <input class="btn-small btn-primary span1" name="commit1" value="Cerrar" />
   </div>
 <% end %>
 

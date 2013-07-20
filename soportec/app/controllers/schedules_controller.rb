@@ -1,5 +1,5 @@
 class SchedulesController < ApplicationController
-
+  protect_from_forgery :except => :dynamic_create
   #load_and_authorize_resource :day, :laboratory, :course
   skip_load_and_authorize_resource :day, :laboratory, :course
   before_filter :authenticate_user!
@@ -128,9 +128,9 @@ class SchedulesController < ApplicationController
     end
   end
   def dynamic_create
-    @schedule = Schedule.new(:start => params[:start], :end => params[:end], :laboratory_id => params[:schedule][:laboratory_id], :course_id => params[:schedule][:course_id], :day_id => params[:schedule][:day_id])
+    @schedule = Schedule.new(params[:schedule])
     @eap=Eap.all
-    @profesor = Professor.find(params[:profesor][:id])
+    @profesor = Professor.find(params[:course_id][:professor_id])
     @profesor.course_id = @schedule.course_id
     @profesor.save
     
