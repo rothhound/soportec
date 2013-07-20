@@ -23,6 +23,7 @@ class Ability
         cannot :editar , User, :role_id => 1 
         cannot :update , User, :role_id => 1 
         cannot :destroy , User, :role_id => 1 
+        cannot :update , State
         cannot :manage, [Category,Eap,Group]
 
     elsif user.role_id == 3 #bolsista
@@ -30,8 +31,9 @@ class Ability
         can :update , User, :id => user.id
         can :read, [Course,Laboratory,Professor,Schedule,Software,State]
         can :dynamic,State
+        can :create, State
 
-        cannot [:update, :create, :detroyt, :ver], State
+        cannot [:update, :destroy, :leer], State
         cannot [:create,:destroy,:update], [Category,Computer,Course,Eap,Group,Laboratory,Professor,Schedule,Software]
         cannot :asignar, Laboratory
     else
