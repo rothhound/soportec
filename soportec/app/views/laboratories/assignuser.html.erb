@@ -1,11 +1,23 @@
-<h1>Asignar Responsable</h1>
-<%= form_for(@laboratory) do |f| %>
-<div class="field">
-    <%= f.label :user_id%>
-    <%= f.collection_select :user_id, @user ,:id, :name, :prompt => "Seleccione un Responsable"%>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Asignar', :class => 'btn btn-primary' %>
-  </div>
-<%end%>
+<h1>Asignar responsable del <%= "Laboratorio #{@laboratory[:id]}" %></h1>
+
+<% if @user.empty? %>
+  <hr>
+  <h2>No hay usuarios para realizar la asignación.</h2>
+  <p class="text-centered"><%= link_to "Volver", responsibles_laboratories_path, :class => "btn" %></p>
+<% else %>
+<div class="span4 centered">
+  <%= form_for(@laboratory) do |f| %>
+  <div class="field">
+      <%= f.label :user_id%>
+      <%= f.collection_select :user_id, @user ,:id, :name, :prompt => "Seleccione un Responsable"%>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Asignar', :class => 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+<% end %>
+
+
+
 

@@ -56,9 +56,12 @@ Soportec::Application.routes.draw do
   resources :laboratories do
     collection do
       get 'manage'
-      match 'assign'
-      match 'assignuser'
+      get 'responsibles'
       match 'find'
+    end
+
+    member do
+      get 'assignuser'
     end
   end
 

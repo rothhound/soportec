@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class LaboratoriesController < ApplicationController
   
   load_and_authorize_resource :professor, :course, :schedule
@@ -49,7 +52,7 @@ class LaboratoriesController < ApplicationController
 
     respond_to do |format|
       if @laboratory.save
-        format.html { redirect_to @laboratory, notice: 'Laboratory was successfully created.' }
+        format.html { redirect_to @laboratory, notice: 'Laboratorio creado con éxito.' }
         format.json { render json: @laboratory, status: :created, location: @laboratory }
       else
         format.html { render action: "new" }
@@ -65,7 +68,7 @@ class LaboratoriesController < ApplicationController
 
     respond_to do |format|
       if @laboratory.update_attributes(params[:laboratory])
-        format.html { redirect_to @laboratory, notice: 'Laboratory was successfully updated.' }
+        format.html { redirect_to @laboratory, notice: 'Laboratorio actualizado con éxito.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -108,7 +111,7 @@ class LaboratoriesController < ApplicationController
     end
   end
 
-  def assign
+  def responsibles
     @laboratory = Laboratory.all
     respond_to do |format|
         format.html # search.html.erb
@@ -119,11 +122,17 @@ class LaboratoriesController < ApplicationController
   def assignuser
     @laboratory = Laboratory.find(params[:id])
     @user = User.all
+
+    Laboratory.all.each do |l|
+      @user.delete(l.user)
+    end
+
     respond_to do |format|
-        format.html # search.html.erb
+        format.html # asignuser.html.erb
         format.json { render json: @laboratory }
     end
   end
+
   def find
     @laboratory = nil
     @filter_capacity = Laboratory.order("capacity DESC").find(:all,:select => "DISTINCT laboratories.capacity")
