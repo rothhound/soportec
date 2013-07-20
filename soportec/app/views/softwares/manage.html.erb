@@ -15,13 +15,19 @@
     <td><%= software.version %></td>
     <td><%= software.description %></td>
     <td><%= link_to 'Ver', software %></td>
-    <td><%= link_to 'Editar', edit_software_path(software) %></td>
-    <td><%= link_to 'Eliminar', software, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+    <% if can? :update, software %>
+      <td><%= link_to 'Editar', edit_software_path(software) %></td>
+    <% end %>
+    <% if can? :destroy, software %>
+      <td><%= link_to 'Eliminar', software, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Nuevo Software', new_software_path, :class => 'btn btn-primary' %>
+<% if can? :create, @software %>
+  <%= link_to 'Nuevo Software', new_software_path, :class => 'btn btn-primary' %>
+<% end %>
 <%= link_to 'Buscar Software', {controller: "softwares" ,action: "search"}, :class => 'btn btn-primary' %>

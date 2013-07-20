@@ -1,4 +1,9 @@
 class SoftwaresController < ApplicationController
+
+  #load_and_authorize_resource :category
+  skip_load_and_authorize_resource :category
+  before_filter :authenticate_user!
+  
   # GET /softwares
   # GET /softwares.json
   def index
@@ -25,7 +30,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares/new.json
   def new
     @software = Software.new
-
+    authorize! :create, @software
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @software }
@@ -35,6 +40,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares/1/edit
   def edit
     @software = Software.find(params[:id])
+    authorize! :update, @software
   end
 
   # POST /softwares
@@ -73,6 +79,7 @@ class SoftwaresController < ApplicationController
   # DELETE /softwares/1.json
   def destroy
     @software = Software.find(params[:id])
+    authorize! :destroy, @software
     @software.destroy
 
     respond_to do |format|
@@ -85,6 +92,7 @@ class SoftwaresController < ApplicationController
   def manage
     @softwares = Software.find(:all, :joins => [:category] ,:select =>"softwares.id, softwares.name, softwares.version,categories.description as description")
 
+    @software = Software.new
     respond_to do |format|
       format.html # manage.html.erb
       format.json { render json: @softwares }

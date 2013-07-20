@@ -1,0 +1,33 @@
+<div class="span4 centered">
+  <% if notice.present? %>
+    <div class="alert alert-info">
+        <%= notice %>
+    </div>
+  <% end %>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @state.description %>
+</p>
+
+<p>
+  <b>Laboratorio:</b>
+  <%= @state.laboratory_id %>
+</p>
+
+<p>
+  <b>Fecha:</b>
+  <%= @state.created_at %>
+</p>
+
+  <div class="button-container">
+  	<% if can? :update, @state %>
+      <div class="button">
+        <%= link_to 'Editar', edit_state_path(@state), :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+    <div class="button">
+      <%= link_to 'Atrás', states_path, :class => "btn"  %>
+    </div>
+  </div>
+</div>

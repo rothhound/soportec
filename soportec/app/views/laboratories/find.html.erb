@@ -1,0 +1,82 @@
+<h1>BUSQUEDA DE LABORATORIOS POR FILTRO</h1>
+<div class="span6 centered panel">
+<%= form_tag :action => 'find', :method=>"GET" do%>
+	<div class="field">
+		<%= label_tag(:aforo , "Aforo:") %>
+		<%= collection_select :capacity, :capacity, @filter_capacity ,:capacity, :capacity ,:prompt => "Seleccione" %>
+	</div>
+	<div class="field">
+		<%= label_tag(:floor , "Piso:") %>
+		<%= collection_select :floor, :floor, @filter_floor ,:floor, :floor ,:prompt => "Seleccione" %>
+	</div>
+	<div class="field">
+		<%= label_tag(:numComputers , "Numero de Computadoras:") %>
+		<%= collection_select :numComputers, :numComputers, @filter_numComputers ,:numComputers, :numComputers ,:prompt => "Seleccione" %>
+	</div>
+	<div class="field">
+		<%= label_tag(:Software , "Software:") %>
+		<%= collection_select :software_id, :software_id, @filter_sw ,:name ,:name ,:prompt => "Seleccione" %>
+	</div>
+	<div class="control-group">
+      <div class="controls">
+      	<div style="display:inline-block; margin-right:40px;">
+      	<%= label_tag(:projector, "Proyector:")%>
+      	</div>
+        <div style="display:inline-block; margin-right:40px;">
+          <%= radio_button_tag(:projector, "1") %>
+		  <%= label_tag(:projector, "SI") %>
+        </div>
+        <div style="display:inline-block;">
+          <%= radio_button_tag(:projector, "0") %>
+          <%= label_tag(:projector, "NO") %>
+        </div>
+      </div>
+
+      <div class="controls">
+      	<div style="display:inline-block; margin-right:40px;">
+      	<%= label_tag(:sound, "Sonido:")%>
+      	</div>
+        <div style="display:inline-block; margin-right:40px;">
+          <%= radio_button_tag(:sound, "1") %>
+		  <%= label_tag(:sound, "SI") %>
+        </div>
+        <div style="display:inline-block;">
+          <%= radio_button_tag(:sound, "0") %>
+          <%= label_tag(:sound, "NO") %>
+        </div>
+      </div>
+    </div>
+    <div class="button-container">
+      <div class="button">
+        <%= submit_tag("Ingresar", :class => "btn btn-primary") %>
+      </div>
+      <div class="button">
+        <%= link_to 'Atrás', laboratories_path %>
+      </div>
+    </div>
+  <div>
+<% end %>
+    <% if @laboratory.present? %>
+    RESULTADOS:
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Piso</th>
+        <th>Capacity</th>
+        <th>Software</th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @laboratory.each do |laboratory| %>
+      <tr>
+        <td><%= laboratory.name %></td>
+        <td><%= laboratory.floor %></td>
+        <td><%= laboratory.capacity %></td>
+        <td><%= laboratory.software %></td>
+      </tr>
+    <% end %> 
+    </table>
+  </div>
+  <% end %>
+</div>

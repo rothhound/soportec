@@ -1,0 +1,34 @@
+<div class="centered">
+  <%= paginate courses, :param_name => page %>
+</div>
+
+<div class="span7 centered">
+  <table class="table">
+    <tr>
+      <th>Código</th>
+      <th style="width:170px;">Nombre</th>
+      <th>Grupo</th>
+      <th>E.A.P.</th>
+      <th colspan=2></th>
+    </tr>
+
+  <% courses.each do |course| %>
+    <tr>
+      <td><%= course.code %></td>
+      <td><%= link_to course.name, course %></td>
+      <td><%= course.group[:name] %></td>
+      <td><%= course.eap[:name] %></td>
+      <% if can? :update, course %>
+        <td><%= link_to 'Editar', edit_course_path(course) %></td>
+      <% end %>
+      <% if can? :destroy, course %>
+        <td><%= link_to 'Eliminar', course, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>  
+</div>
+
+<div class="centered">
+  <%= paginate courses %>
+</div>

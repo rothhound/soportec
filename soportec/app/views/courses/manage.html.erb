@@ -1,28 +1,22 @@
 <h1>Mantenimiento de Cursos</h1>
 
-<table class="table">
-  <tr>
-    <th>Código</th>
-    <th>Nombre</th>
-    <th>Grupo</th>
-    <th>E.A.P.</th>
-    <th></th>
-  </tr>
+<h2>Ingeniería de Sistemas</h2>
 
-<% @courses.each do |course| %>
-  <tr>
-    <td><%= course.code %></td>
-    <td><%= course.name %></td>
-    <td><%= course.groups %></td>
-    <td><%= course.eaps %></td>
-    <td><%= link_to 'Ver', course %></td>
-    <td><%= link_to 'Editar', edit_course_path(course) %></td>
-    <td><%= link_to 'Eliminar', course, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
-  </tr>
-<% end %>
-</table>
+<%= render partial: "list", locals: {courses: @courses_sys, page: "page_sys"} %>
+
+<hr>
+
+<h2>Ingeniería de Software</h2>
+
+<%= render partial: "list", locals: {courses: @courses_soft, page: "page_soft"} %>
 
 <br />
 
-<%= link_to 'Nuevo Curso', new_course_path, :class => 'btn btn-primary' %>
-<%= link_to 'Buscar Curso', {controller: "courses" ,action: "search"}, :class => 'btn btn-primary' %>
+<div class="span7 centered">
+  <div class="button-container">
+  <% if can? :create, @course %>
+    <div class="button"><%= link_to 'Nuevo Curso', new_course_path, :class => 'btn btn-primary' %></div>
+  <% end %>
+  <div class="button"><%= link_to 'Buscar Curso', {controller: "courses" ,action: "search"}, :class => 'btn btn-primary' %></div>
+  </div>
+</div>

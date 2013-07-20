@@ -1,0 +1,37 @@
+<h1>Cambiar de estado</h1>
+
+<div class="span4 centered">
+  
+  <p>Laboratorio: <%= @state.laboratory_id %>
+  <p>Estado Actual : <%= @state.description %><p>
+
+  <%= form_for @state1, url: {action: 'dynamic_create'} do |f| %>
+    <% if @state1.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@state1.errors.count, "error") %> no pudo ser creado:</h2>
+        <ul>
+        <% @state1.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.hidden_field :laboratory_id, :value => "#{@state.laboratory_id}" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description,"Disponibilidad:" %><br />
+      <%= f.select(:description, options_for_select([['Seleccione Disponibilidad', 1],['Libre', 'Libre'], ['En Mantenimiento', 'En Mantenimiento'], ['En Clase', 'En Clase']],1)) %>
+    </div>
+
+    <div class="button-container">
+      <div class="button">
+        <%= f.submit "Cambiar", :class => 'btn btn-primary' %>
+      </div>
+      <button class="btn" onclick="self.close()">Cancelar</button>
+    </div>
+
+  <% end %>
+</div>

@@ -1,33 +1,42 @@
 <h1>Busqueda de Cursos</h1>
 
-<%= form_tag :action => 'search', :method=>"GET" do%>
+<div class="span3 centered">
+    <%= form_tag :action => 'search', :method=>"GET" do%>
+        <%= label_tag(:name, "Nombre:") %>
+        <%= text_field_tag(:name) %>
+        <br />
 
-	<%= label_tag(:name, "Nombre:") %>
-  	<%= text_field_tag(:name) %>
-    <br />
+        <%= label_tag(:profesor, "Profesor:") %>
+        <%= text_field_tag(:profesor) %>
+        <br />
 
-    <%= label_tag(:profesor, "Profesor:") %>
-  	<%= text_field_tag(:profesor) %>
-    <br />
+        <%= label_tag(:eap_id, "E.A.P.:") %>
+        <%= collection_select :eap_id, :eap, @eaps, :id, :name,:prompt => "Seleccione una EAP" %>
+        <br />
 
-    <%= label_tag(:eap_id, "E.A.P.:") %>
-    <%= collection_select :eap_id, :eap, @eaps, :id, :name,:prompt => "Seleccione una EAP" %>
-    <br />
+        <%= label_tag(:group_id, "Grupo:") %>
+        <%= collection_select :group_id, :group, @groups, :id, :name, :prompt => "Seleccione un grupo" %>
+        <br />
+        <br />
+        
+        <div class="button-container">
+            <div class="button"><%= submit_tag 'Buscar', :class => 'btn btn-primary' %></div>
+            <div class="button"><%= link_to 'Atras', {controller: "courses" ,action: "manage"}, :class => 'btn' %></div>
+        </div>
+         
+        
+    <%end%>
+</div>
 
-    <%= label_tag(:group_id, "Grupo:") %>
-    <%= collection_select :group_id, :group, @groups, :id, :name, :prompt => "Seleccione un grupo" %>
-    <br />
-
-    <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %> |
-    <%= link_to 'Atras', {controller: "courses" ,action: "manage"}, :class => 'btn-small btn-primary' %>
-<%end%>
+<hr>
 
 <% if @courses.present? %>
-    RESULTADOS:
+<h2>Resultados:</h2>
+<div class="span7 centered">
     <table class="table">
       <tr>
         <th>Código</th>
-        <th>Nombre</th>
+        <th style="width:150px;">Nombre</th>
         <th>Grupo</th>
         <th>E.A.P.</th>
         <th>Profesor</th>
@@ -38,11 +47,14 @@
     <% @courses.each do |course| %>
       <tr>
         <td><%= course.code %></td>
-        <td><%= course.name %></td>
+        <td><%= link_to course.name, course %></td>
         <td><%= course.groups %></td>
         <td><%= course.eaps %></td>
         <td><%= course.profesor %></td>
       </tr>
     <% end %>
     </table>
+</div>
+<% else %>
+    <h2>No se hallaron resultados para la búsqueda.</h2>
 <% end %>

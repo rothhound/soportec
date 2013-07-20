@@ -1,0 +1,31 @@
+<h1>Registro de Estados</h1>
+
+<table class="table">
+  <tr>
+    <th>Descripcion</th>
+    <th>Laboratorio</th>
+    <th>Fecha</th>
+    <th></th>
+  </tr>
+
+<% @states.each do |state| %>
+  <tr>
+    <td><%= state.description %></td>
+    <td><%= state.laboratory_id %></td>
+    <td><%= state.created_at %></td>
+    <td><%= link_to 'Ver', state %></td>
+    <% if can? :update, state %>
+      <td><%= link_to 'Editar', edit_state_path(state) %></td>
+    <% end %>
+    <% if can? :destroy, state %>
+      <td><%= link_to 'Eliminar', state, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+    <% end %>  
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if can? :create, @state %>
+  <%= link_to 'Nuevo Estado', new_state_path, :class => 'btn btn-primary' %>
+<% end %>

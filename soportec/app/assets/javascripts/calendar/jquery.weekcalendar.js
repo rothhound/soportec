@@ -46,11 +46,11 @@
                   }
               }, // 0 = Sunday, 1 = Monday, 2 = Tuesday, ... , 6 = Saturday
         useShortDayNames: false,
-        timeSeparator: ' to ',
+        timeSeparator: ' hasta ',
         startParam: 'start',
         endParam: 'end',
         businessHours: {start: 8, end: 18, limitDisplay: false},
-        newEventText: 'New Event',
+        newEventText: 'Nuevo Horario',
         timeslotHeight: 20,
         defaultEventLength: 2,
         timeslotsPerHour: 4,
@@ -130,10 +130,10 @@
         eventBody: function(calEvent, calendar) {
           return calEvent.title;
         },
-        shortMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        longMonths: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        shortDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        longDays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        shortMonths: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+        longMonths: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+        shortDays: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+        longDays: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
         /* multi-users options */
         /**
          * the available users for calendar.
@@ -1246,13 +1246,15 @@
             var date = this.options.date,
                 start = self._cloneDate(self.element.data('startDate')),
                 end = self._dateLastDayOfWeek(new Date(this._cloneDate(self.element.data('endDate')).getTime() - (MILLIS_IN_DAY))),
-                title = this._getCalendarTitle(),
+                //title = this._getCalendarTitle(),
+                title = 'Laboratorio ',
                 date_format = options.dateFormat;
 
+
             // replace the placeholders contained in the title
-            title = title.replace('%start%', self._formatDate(start, date_format));
+            /*title = title.replace('%start%', self._formatDate(start, date_format));
             title = title.replace('%end%', self._formatDate(end, date_format));
-            title = title.replace('%date%', self._formatDate(date, date_format));
+            title = title.replace('%date%', self._formatDate(date, date_format));*/
 
             $('.wc-toolbar .wc-title', self.element).html(title);
           }
@@ -2511,7 +2513,8 @@
           return options.getHeaderDate(date, this.element);
         }
         var dayName = options.useShortDayNames ? options.shortDays[date.getDay()] : options.longDays[date.getDay()];
-        return dayName + (options.headerSeparator) + this._formatDate(date, options.dateFormat);
+        //return dayName + (options.headerSeparator) + this._formatDate(date, options.dateFormat);
+        return dayName;
       },
 
 

@@ -8,7 +8,9 @@
         <div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
             <div class="accordion-inner">
                 <ul>
-                    <li><%= link_to 'Laboratorio asignado', '#' %></li>
+                    <% if current_user.laboratory != nil %>
+                        <li><%= link_to 'Laboratorio asignado', :controller => 'laboratories', :action => 'show', :id => current_user.laboratory[:id] %></li>
+                    <% end %>
                     <li><%= link_to 'Perfil de Usuario', :controller => 'users', :action =>'show', :id=>current_user.id %></li>
                     <li><%= link_to 'Configuracion de Cuenta', :controller=>"users", :action=>"edit", :id=>current_user.id %></li>
                 </ul>
@@ -25,7 +27,7 @@
             <div class="accordion-inner">
                 <ul>
                     <li><%= link_to 'Verificar Estado Actual', :controller => 'schedules', :action => 'index' %></li>
-                    <li><%= link_to 'Asignar Responsable', :controller=>"laboratories", :action=>"assign" %></li>
+                    <li><%= link_to 'Asignar Responsable', :controller=>"laboratories", :action=>"responsibles" %></li>
                 </ul>
             </div>
         </div>
@@ -40,8 +42,8 @@
         <div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
             <div class="accordion-inner">
                 <ul>
-                    <li><%= link_to 'Verificar Horario Actual', '#' %></li>
-                    <li><%= link_to 'Modificar Horario Actual', '#' %></li>
+                    <li><%= link_to 'Verificar Horario Actual', :controller => 'laboratories', :action => 'search' %></li>
+                    <li><%= link_to 'Modificar Horario Actual', :controller => 'schedules', :action => 'dyamic_new' %></li>
                     <li><%= link_to 'Asignar Horario Semestral', '#' %></li>
                 </ul>
             </div>

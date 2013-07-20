@@ -10,7 +10,7 @@
   <table class="table">
     <tbody>
       <tr>
-        <% user = laboratory.user == nil ? "No asignado" : laboratory.user[:name] %>
+        <% user = @laboratory.user == nil ? "No asignado" : @laboratory.user[:name] %>
         <th>Responsable</th><td><%= user %></td>
       </tr>
       <tr>
@@ -40,11 +40,13 @@
 
     </tbody>
   </table>
-  
-  <div class="button-container">
-    <div class="button">
-      <%= link_to 'Editar', edit_laboratory_path(@laboratory), :class => "btn btn-primary" %>
-    </div>
+
+<div class="button-container">
+    <% if can? :update, @laboratory %>
+      <div class="button">
+        <%= link_to 'Editar', edit_laboratory_path(@laboratory), :class => "btn btn-primary" %>
+      </div>
+    <% end %>
     <div class="button">
       <%= link_to 'Atrás', laboratories_path, :class => "btn" %>
     </div>

@@ -1,4 +1,9 @@
 class ProfessorsController < ApplicationController
+
+  #load_and_authorize_resource #:course
+  skip_load_and_authorize_resource :course
+  before_filter :authenticate_user!
+
   # GET /professors
   # GET /professors.json
   def index
@@ -14,7 +19,7 @@ class ProfessorsController < ApplicationController
   # GET /professors/1.json
   def show
     @professor = Professor.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @professor }
@@ -25,7 +30,7 @@ class ProfessorsController < ApplicationController
   # GET /professors/new.json
   def new
     @professor = Professor.new
-
+    authorize! :create, @professor
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @professor }
@@ -35,6 +40,7 @@ class ProfessorsController < ApplicationController
   # GET /professors/1/edit
   def edit
     @professor = Professor.find(params[:id])
+    authorize! :update, @professor
   end
 
   # POST /professors
@@ -73,6 +79,7 @@ class ProfessorsController < ApplicationController
   # DELETE /professors/1.json
   def destroy
     @professor = Professor.find(params[:id])
+    authorize! :destroy, @professor
     @professor.destroy
 
     respond_to do |format|
@@ -83,7 +90,9 @@ class ProfessorsController < ApplicationController
 
   # GET /manage
   def manage
-    @professors = Professor.all
+    @professors = Professor.order(:lastname).page(params[:page]).per(10)
+
+    @professor = Professor.new
 
     respond_to do |format|
       format.html # manage.html.erb
@@ -92,8 +101,6 @@ class ProfessorsController < ApplicationController
   end
 
   def search
-    
-    #@courses = Professor.find(:all,:joins => [:course], :select => "professors.course_id as curso, CONVERT(CONCAT(courses.name,' - G',courses.group_id,' - 20.',courses.eap_id) USING utf8) as dato")
     @courses = Course.find(:all,:select => "DISTINCT courses.name")
 
     searchN =  params[:name]

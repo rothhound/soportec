@@ -1,9 +1,9 @@
-<h1>Listing schedules</h1>
+<h1>Lista de Horarios</h1>
 
 <table class="table">
   <tr>
-    <th>Star</th>
-    <th>End</th>
+    <th>Inicio</th>
+    <th>Fin</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,13 +13,20 @@
   <tr>
     <td><%= schedule.start %></td>
     <td><%= schedule.end %></td>
-    <td><%= link_to 'Show', schedule %></td>
-    <td><%= link_to 'Edit', edit_schedule_path(schedule) %></td>
-    <td><%= link_to 'Destroy', schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+    <td><%= link_to 'Ver', schedule %></td>
+    <% if can? :update, schedule %>
+      <td><%= link_to 'Editar', edit_schedule_path(schedule) %></td>
+    <% end %>
+    <% if can? :destroy, schedule %>
+      <td><%= link_to 'Eliminar', schedule, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
+    <% end %>    
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Schedule', new_schedule_path, :class => 'btn btn-primary'%>
+<% if can? :create, @schedules.first %>
+  <%= link_to 'Nuevo Horario', new_schedule_path, :class => 'btn btn-primary'%>
+<% end %>

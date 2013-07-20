@@ -1,4 +1,4 @@
-<div class="span6 centered panel">
+<div class="span6 centered">
   <%= form_for(@laboratory, html: {class: "form-horizontal"}) do |f| %>
     <% if @laboratory.errors.any? %>
       <div id="error_explanation">
@@ -48,7 +48,7 @@
           <%= f.label :airConditioning, "Si" %>
         </div>
         <div style="display:inline-block;">
-          <%= f.radio_button :airConditioning, "0", :checked => true %>
+          <%= f.radio_button :airConditioning, "0" %>
           <%= f.label :airConditioning, "No" %>
         </div>
       </div>
@@ -62,7 +62,7 @@
           <%= f.label :projector, "Si" %>
         </div>
         <div style="display:inline-block;">
-          <%= f.radio_button :projector, "0", :checked => true %>
+          <%= f.radio_button :projector, "0" %>
           <%= f.label :projector, "No" %>
         </div>
       </div>
@@ -76,7 +76,7 @@
           <%= f.label :sound, "Si" %>
         </div>
         <div style="display:inline-block;">
-          <%= f.radio_button :sound, "0", :checked => true %>
+          <%= f.radio_button :sound, "0" %>
           <%= f.label :sound, "No" %>
         </div>
       </div>
@@ -87,7 +87,7 @@
         <%= f.submit "Ingresar", :class => "btn btn-primary" %>
       </div>
       <div class="button">
-        <%= link_to 'Atrás', laboratories_path %>
+        <%= link_to 'Atrás', manage_laboratories_path %>
       </div>
     </div>
   <% end %>

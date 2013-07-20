@@ -1,10 +1,12 @@
-<div class="span6 centered panel">
+<% c = user_signed_in? ? "span7 centered" : "span7 centered panel" %>
+<div class="<%= c %>">
     <h1>Acerca del Proyecto</h1>
     <div class="row">
-        <div class="span5 centered">
+        <div class="span6 centered">
             <p style="text-align: justify;">Proyecto desarrollado para la Oficina de Soporte Técnico de la Facultad
                 de Ingeniería de Sistemas e Informática por los alumnos de la Escuela Académico
                 Profesional de Ingeniería de Software de la Universidad Nacional Mayor de San Marcos.</p>
+                <br>
             <p>
                 <h2 style="text-align: left;">Integrantes:</h2>
                 <ol>
@@ -13,6 +15,22 @@
                     <li>Huamán Silva, Alexander</li>
                     <li>Montoya Suárez, Gianfranco</li>
                 </ol>
+            </p>
+            <br>
+            <p> 
+                <h2 style="text-align: left;">Características:</h2>
+                El proyecto se llevó a cabo utilizando tecnologías ágiles que permitieron mejorar la productividad durante el desarrollo del producto, tales como:
+            </p>
+            <br>
+            <p>
+                <ul>
+                    <li>Ruby on Rails 3.2, montado sobre JRuby (Interprete de Ruby que corre sobre la JVM)</li>
+                    <li>ActiveRecord como el ORM</li>
+                    <li>Bootstrap 2.2</li>
+                    <li>SASS como preprocesador de CSS</li>
+                    <li>JQuery para interacciones y scripting</li>
+                    <li>MySQL para la base de datos</li>
+                </ul>
             </p>
         </div>
     </div>    

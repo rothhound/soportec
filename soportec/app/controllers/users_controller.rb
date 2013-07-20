@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
+
+  #load_and_authorize_resource :role
+  skip_load_and_authorize_resource :role
+  before_filter :authenticate_user!
+  
   # GET /users
   # GET /users.xml
-  #load_and_authorize_resource
-  
   def index
     @users = User.all
     @roles = Role.all
@@ -16,6 +19,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
+    @role = Role.find(@user.role_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,6 +31,7 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
     @user = User.new
+    authorize! :create, @user
     @roles = Role.all
     @current_method = "new"
 
@@ -39,6 +44,8 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    authorize! :update, @user
+    #authorize! :editar, @user
     @roles = Role.all
     @current_method = "update"
   end
@@ -79,6 +86,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
+    authorize! :destroy, @user
     @user.destroy
 
     respond_to do |format|
@@ -89,8 +97,11 @@ class UsersController < ApplicationController
 
   # GET /manage
   def manage
-    @users = User.all
+    @users = User.order(:name).page(params[:page]).per(10)
+    #authorize! :read, @users
     @roles = Role.all
+
+    @user = User.new
     respond_to do |format|
       format.html # manage.html.erb
       format.xml  { render :xml => @users }

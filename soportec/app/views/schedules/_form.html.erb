@@ -17,24 +17,24 @@
   </div>
   <div class="field">
       <%= f.label :Dia%>
-      <%= f.collection_select :day_id, @day,:description,:description, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <%= f.collection_select :day_id, @day,:id,:description, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="field">
-    <%= f.label :start %><br />
+    <%= f.label :start,"Inicio;" %><br />
     <%= f.time_select :start %>
   </div>
   <div class="field">
-    <%= f.label :end %><br />
+    <%= f.label :end,"Fin:" %><br />
     <%= f.time_select :end %>
   </div>
 
 <p id="course_field">
   <label for="course_id">Curso:</label>
-  <%= f.collection_select :course_id, @course, :id, :name, {:prompt => "Select a course" }%>
+  <%= f.collection_select :course_id, @course, :id, :curso, {:prompt => "Seleccione un curso" }%>
 </p>
   <div class="field">
       <%= f.label :Profesor%>
-      <%= collection_select :profesor ,:id, @professor ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <%= collection_select :course_id, :professor_id, @professor ,:id, :datos,{:prompt => "Seleccione un profesor"}%>
   </div>
   <div class="actions">
       <%= f.submit 'Registrar', :class => 'btn btn-primary' %>

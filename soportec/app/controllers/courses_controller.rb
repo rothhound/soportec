@@ -1,4 +1,9 @@
 class CoursesController < ApplicationController
+  
+  #load_and_authorize_resource :eap , :group
+  skip_load_and_authorize_resource :eap, :group
+  before_filter :authenticate_user!
+
   # GET /courses
   # GET /courses.json
   def index
@@ -27,6 +32,7 @@ class CoursesController < ApplicationController
   # GET /courses/new.json
   def new
     @course = Course.new
+    authorize! :create, @course
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,6 +43,7 @@ class CoursesController < ApplicationController
   # GET /courses/1/edit
   def edit
     @course = Course.find(params[:id])
+    authorize! :edit, @course
   end
 
   # POST /courses
@@ -75,6 +82,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1.json
   def destroy
     @course = Course.find(params[:id])
+    authorize! :destroy, @course
     @course.destroy
 
     respond_to do |format|
@@ -85,7 +93,10 @@ class CoursesController < ApplicationController
 
   # GET /manage
   def manage
-    @courses = Course.find(:all, :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
+    @courses_sys = Course.where(:eap_id => 1).order(:code).page(params[:page_sys]).per(10)
+    @courses_soft = Course.where(:eap_id => 2).order(:code).page(params[:page_soft]).per(10)
+
+    @course = Course.new
 
     respond_to do |format|
       format.html # manage.html.erb

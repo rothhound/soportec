@@ -1,41 +1,19 @@
-<h1>Prueba de busqueda de laboratorio <%= @codigo %></h1>
-<% if @laboratory1.size != 0 %>
-<table class="table">
-<table class="table">
-  <tr>
-    <th>Dia</th>
-    <th>Inicio</th>
-    <th>Fin</th>
-    <th>Curso</th>
-    <th>Profesor</th>
-    
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <% @laboratory1.each do |laboratory| %>
-  <tr>
-    <td><%= laboratory.day_id %></td>
-    <td><%= laboratory.start %></td>
-    <td><%= laboratory.end %></td>
-    <td><%= laboratory.title %></td>
-    <td><%= laboratory.body%><%= laboratory.lastname%></td>
-    <td><%= link_to 'Show', laboratory %></td>
-    <td><%= link_to 'Edit', edit_laboratory_path(laboratory) %></td>
-    <td><%= link_to 'Destroy', laboratory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<h1>Horario editable laboratorio <%= @pred %></h1>
+<%= form_tag :action => 'dynamic_new' do%>
+    <span>Codigo:</span>
+    <%= collection_select :labo, :number, Laboratory.all, :number, :number, :selected => @pred %>
+    <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
 <% end %>
-<% end %>
-  </table>
-  <% content_for :head do %>
+ <% content_for :head do %>
 <%= javascript_tag "var laboratories = #{@lab};"%>
-<%= javascript_include_tag 'search' %>
+<%= javascript_include_tag 'new' %>
 
 <% end %>
 <div id='calendar'></div>
 <div id="event_edit_container">
-<div class="span6 centered panel">
-  <%= form_for(@schedule) do |f| %>
+
+  <%= form_for @schedule, url: {action: 'dynamic_create'} do |f| %>
+
   <% if @schedule.errors.any? %>
     <div id="alert alert-error">
       <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
@@ -48,34 +26,58 @@
     </div>
   <% end %>
   <div class="field">
-      <%= f.label :Laboratorio%>
+      <label for="laboratory_id">Laboratorio:</label>
       <%= f.collection_select :laboratory_id, @laboratory , :id, :number, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="field">
-      <%= f.label :Dia%>
-      <%= f.collection_select :day_id, @day,:description,:description, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <label for="day_id">Day:</label>
+      <%= f.collection_select :day_id, @day,:id,:description, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="field">
-    <%= f.label :start %><br />
-    <%= f.time_select :start %>
+    <label for="start">Inicio:</label>
+    <%= f.time_select :start, :style=>"width:50px" %>
   </div>
   <div class="field">
-    <%= f.label :end %><br />
+    <label for="end">Fin:</label>
     <%= f.time_select :end %>
   </div>
-
+<!--%= debug(@schedule.start) %-->
 <p id="course_field">
   <label for="course_id">Curso:</label>
-  <%= f.collection_select :course_id, @course, :id, :name, {:prompt => "Select a course" }%>
+  <%= f.collection_select :course_id, @course, :id, :curso, {:prompt => "Seleccione un curso" }%>
 </p>
   <div class="field">
-      <%= f.label :Profesor%>
-      <%= collection_select :profesor ,:id, @professor ,:id, :name, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
+      <label for="id">Profesor:</label>
+      <%= collection_select :course_id, :professor_id, @professor ,:id, :datos,{:prompt => "Seleccione un profesor"}%>
   </div>
   <div class="actions">
-      <%= f.submit 'Registrar', :class => 'btn btn-primary' %>
+      <%= f.submit 'Registrar', :class => 'btn-small btn-primary' %>
+      <input class="btn-small btn-primary span1" name="commit1" value="Cerrar" />
   </div>
 <% end %>
 
 </div>
+<div id='calendar'></div>
+<div id="event_edit_container2">
+	<form>
+		<input type="hidden" />
+		<ul>
+			<li>
+				<span>Date: </span><span class="date_holder"></span> 
+			</li>
+			<li>
+				<label for="start">Hora de Inicio: </label><span class="start1"></span>
+			</li>
+			<li>
+				<label for="end">Hora de Fin: </label><span class="end1"></span>
+			</li>
+			<li>
+				<label for="title">Curso: </label><span class="title1"></span>
+			</li>
+			<li>
+				<label for="body">Docente: </label><span class="body1"></span>
+			</li>
+		</ul>
+	</form>
 </div>
+

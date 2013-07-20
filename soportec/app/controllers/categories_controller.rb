@@ -1,4 +1,8 @@
 class CategoriesController < ApplicationController
+
+  load_and_authorize_resource
+  before_filter :authenticate_user!
+
   # GET /categories
   # GET /categories.json
   def index
@@ -85,6 +89,7 @@ class CategoriesController < ApplicationController
   def manage
     @categories = Category.all
 
+    @category = Category.new
     respond_to do |format|
       format.html # manage.html.erb
       format.json { render json: @categories }
