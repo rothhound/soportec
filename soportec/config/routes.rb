@@ -71,7 +71,10 @@ Soportec::Application.routes.draw do
   resources :states  do
     collection do
       get 'manage'
-      match 'dynamic_new'
+      match 'list'
+    end
+    member do
+      get 'change'
     end
   end
 

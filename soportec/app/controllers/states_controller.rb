@@ -104,7 +104,7 @@ class StatesController < ApplicationController
   end
 
   #dynamic states
-  def dynamic_new
+  def list
     
     @state = State.new
     authorize! :dynamic, @state
@@ -136,16 +136,31 @@ class StatesController < ApplicationController
 
   def dynamic_create
 
-    @state = Schedule.new(params[:state])
+    @state = State.new(params[:state])
     
     respond_to do |format|
       if @state.save
-        format.html { redirect_to dynamic_new_states_path, notice: 'state was successfully created.' }
+        format.html { redirect_to @state, notice: 'state was successfully created.' }
         format.json { render :xml => @state, status: :created, location: @state }
       else
-        format.html { redirect_to dynamic_new_states_path, notice: 'No se pudo guardar.' }
+        format.html { redirect_to @state, notice: 'No se pudo guardar.' }
         format.json { render :xml => @state.errors, status: :unprocessable_entity }
       end
     end
   end
+
+def change
+    @state = State.find(params[:id])
+    @state1 = Schedule.new(params[:state])
+    @laboratory = Laboratory.all
+    authorize! :create, @state
+    
+    @current_method = "new"
+
+    respond_to do |format|
+      format.html # dynamic_new.html.erb
+      format.json { render :xml => @state }
+    end
+  end
+
 end
