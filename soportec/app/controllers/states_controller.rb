@@ -104,7 +104,7 @@ class StatesController < ApplicationController
   end
 
   #dynamic states
-  def dynamic_new
+  def list
     
     @state = State.new
     authorize! :dynamic, @state
@@ -136,7 +136,7 @@ class StatesController < ApplicationController
 
   def dynamic_create
 
-    @state = Schedule.new(params[:state])
+    @state = State.new(params[:state])
     
     respond_to do |format|
       if @state.save
