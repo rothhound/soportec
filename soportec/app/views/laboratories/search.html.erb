@@ -26,15 +26,12 @@
 <div id="event_edit_container">
 	<form>
 		<input type="hidden" />
-		<ul>
+		<ul class="schedule-info">
 			<li>
-				<span>Date: </span><span class="date_holder"></span> 
+				<label for="start">Hora de inicio:</label><span class="start1"></span>
 			</li>
 			<li>
-				<label for="start">Start Time: </label><span class="start1"></span>
-			</li>
-			<li>
-				<label for="end">End Time: </label><span class="end1"></span>
+				<label for="end">Hora de fin: </label><span class="end1"></span>
 			</li>
 			<li>
 				<label for="title">Curso: </label><span class="title1"></span>
@@ -47,7 +44,7 @@
 </div>
 <% else %>
 	
-	<h2> No hay horarios asignados</h2>
+	<h2>No hay horarios asignados.</h2>
 	
 <% end %>
 

@@ -266,3 +266,17 @@ ul.contact {
     }
   }
 }
+
+ul.schedule-info {
+  list-style: none;
+  margin: 10px 0;
+  li {
+    label {
+      display: inline-block;
+      font-weight: bold;
+    }
+    span {
+      float: right;
+    }
+  }
+}
