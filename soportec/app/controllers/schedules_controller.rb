@@ -119,6 +119,9 @@ class SchedulesController < ApplicationController
 
   def semestral_schedule
   	@laboratories = Laboratory.all
+    @lab=Laboratory.new
+    authorize! :asignar, @lab
+
   	@jlaboratories = @laboratories.to_json
   	@professors = Professor.find(:all, :select =>"id, CONCAT_ws(' ',name,lastname) as datos, name", :order => "name" )
   	@courses = Course.find(:all,:joins => [:eap , :group] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, groups.name, eaps.name) as curso, courses.name as name",:order => "courses.name")
