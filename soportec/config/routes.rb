@@ -21,6 +21,7 @@ Soportec::Application.routes.draw do
   resources :schedules do
   	collection do
       match 'dynamic_new'
+      match 'semestral_schedule'
   	end
   end
 

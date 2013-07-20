@@ -117,6 +117,15 @@ class SchedulesController < ApplicationController
     end
   end
 
+  def semestral_schedule
+  	@laboratories = Laboratory.all
+  	@jlaboratories = @laboratories.to_json
+  	@professors = Professor.find(:all, :select =>"id, CONCAT_ws(' ',name,lastname) as datos, name", :order => "name" )
+  	@courses = Course.find(:all,:joins => [:eap , :group] ,:select =>"courses.id as id, CONCAT_ws(' - ',courses.name, groups.name, eaps.name) as curso, courses.name as name",:order => "courses.name")
+    @jcourses = @courses.to_json
+    @jprofessors = @professors.to_json
+  end
+
   #dynamic courses
   def dynamic_new
     @schedule = Schedule.new
@@ -128,7 +137,7 @@ class SchedulesController < ApplicationController
 
 
     #@professor = Professor.all   
-    @professor = Professor.find(:all, :select =>"CONCAT_ws(' ',name,lastname) as datos", :order => "name" )
+    @professor = Professor.find(:all, :select =>"id, CONCAT_ws(' ',name,lastname) as datos", :order => "name" )
 
     @pred = 1
   	if(current_user.role_id == 3)

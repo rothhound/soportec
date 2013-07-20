@@ -1,0 +1,40 @@
+<h1>Horario semestral laboratorios</h1>
+<% content_for :head do %>
+<%= javascript_tag "var laboratories = #{@jlaboratories};var courses = #{@jcourses};var professors = #{@jprofessors};"%>
+<%= javascript_include_tag 'semestral' %>
+
+<% end %>
+<div id='calendar'></div>
+<div id="event_edit_container">
+		<form>
+			<input type="hidden" />
+			<ul>
+				<li>
+					<span>Date: </span><span class="date_holder"></span> 
+				</li>
+				<li>
+					<label for="Inicio">Start Time: </label><select name="start"><option value="">Select Start Time</option></select>
+				</li>
+				<li>
+					<label for="Fin">End Time: </label><select name="end"><option value="">Select End Time</option></select>
+				</li>
+				<li>
+					<label for="end">Curso: </label>
+					<%= collection_select :cur, :curso_id, @courses, :id, :curso%>
+				</li>
+				<li>
+					<label for="end">Profesor: </label>
+					<%= collection_select :pro, :profesor_id, @professors, :id, :datos%>
+				</li>
+			</ul>
+		</form>
+	</div>
+	<br/>
+	<br/>
+<div>
+<%= form_tag :action => 'dynamic_new' do%>
+    <span>Laboratorio:</span>
+    <%= collection_select :labo, :number, Laboratory.all, :number, :number, :selected => @pred %>
+    <%= submit_tag 'asignar', :class => 'btn-small btn-primary' %>
+<% end %>
+</div>

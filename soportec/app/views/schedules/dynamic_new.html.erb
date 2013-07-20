@@ -1,6 +1,6 @@
 <h1>Horario editable laboratorio <%= @pred %></h1>
 <%= form_tag :action => 'dynamic_new' do%>
-    <span>Codigo:</span>
+    <span>Laboratorio:</span>
     <%= collection_select :labo, :number, Laboratory.all, :number, :number, :selected => @pred %>
     <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
 <% end %>
@@ -30,7 +30,7 @@
       <%= f.collection_select :laboratory_id, @laboratory , :id, :number, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="field">
-      <label for="day_id">Day:</label>
+      <label for="day_id">Dia:</label>
       <%= f.collection_select :day_id, @day,:id,:description, option={} ,{:class=>"selectpicker span1", :style=>"width:120px"}%>
   </div>
   <div class="field">
