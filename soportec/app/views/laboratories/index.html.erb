@@ -1,1 +1,10 @@
-<h2>laboratories#index</h2>
+<div class="span6 centered">
+    <% if current_user.laboratory.present? %>
+        <h2>Tu Laboratorio:</h2>
+        <%= render partial: "info", locals: {laboratory: current_user.laboratory} %>
+    <% else %>
+    <h2>Aún no tienes un laboratorio asignado.</h2>
+    <% end %>
+</div>
+
+<%= debug(@cur) %>

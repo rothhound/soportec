@@ -1,6 +1,3 @@
 <h1>Editar profesor</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Ver', @professor %> |
-<%= link_to 'Atras', professors_path %>
+<%= render partial: 'form', locals: {action: 'Editar'} %>

@@ -1,5 +1,5 @@
 <h1>Nuevo Profesor</h1>
 
-<%= render 'form' %>
+<%= render partial: 'form', locals: {action: 'Ingresar'} %>
 
-<%= link_to 'Atras', professors_path %>
+<%= link_to 'Atrás', manage_professors_path %>

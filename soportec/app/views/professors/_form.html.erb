@@ -1,5 +1,5 @@
-<div class="span4 centered">
-  <%= form_for(@professor) do |f| %>
+<div class="span6 centered">
+  <%= form_for(@professor, html: { :class => 'form-horizontal'}) do |f| %>
     <% if @professor.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@professor.errors.count, "error") %> no permitieron guardar:</h2>
@@ -12,20 +12,30 @@
       </div>
     <% end %>
 
-    <div class="field">
-      <%= f.label :code, "Codigo:" %><br />
-      <%= f.text_field :code %>
+    <div class="control-group">
+      <%= f.label :code, "Código:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :code %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :name,"Nombre:" %><br />
-      <%= f.text_field :name %>
+
+    <div class="control-group">
+      <%= f.label :name, "Nombre:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :name %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :lastname,"Apellido:" %><br />
-      <%= f.text_field :lastname %>
+
+    <div class="control-group">
+      <%= f.label :lastname, "Apellidos:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :lastname %>
+      </div>
     </div>
-    <div class="actions">
-      <%= f.submit "Ingresar", :class => "btn btn-primary" %>
+
+    <div class="button-container">
+      <div class="button"><%= f.submit action, :class => "btn btn-primary" %></div>
+      <div class="button"><%= link_to "Atrás", manage_professors_path, :class => "btn" %></div>
     </div>
   <% end %>
 </div>

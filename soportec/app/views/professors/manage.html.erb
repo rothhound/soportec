@@ -14,8 +14,7 @@
 <% @professors.each do |professor| %>
   <tr>
     <td><%= professor.code %></td>
-    <td><%= "#{professor.lastname}, #{professor.name}" %></td>
-    <td><%= link_to 'Ver', professor %></td>
+    <td><%= link_to "#{professor.lastname}, #{professor.name}", professor %></td>
    <% if can? :update, professor %>
       <td><%= link_to 'Editar', edit_professor_path(professor) %></td>
     <% end %>
