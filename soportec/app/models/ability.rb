@@ -13,9 +13,11 @@ class Ability
         can :read , [Computer,Course,Laboratory,Professor,Schedule,Software,User]
         can :asignacion, Laboratory
         can :dynamic, Schedule
+        can :dynamic, State
         can :assign_roles2, User
         can :create, User
         can :destroy, User
+        can :manage, State
 
         cannot :editar , User, :role_id => 1 
         cannot :update , User, :role_id => 1 
@@ -26,8 +28,9 @@ class Ability
     elsif user.role_id == 3 #bolsista
         can :editar , User, :id => user.id
         can :update , User, :id => user.id
-        can :read, [Course,Laboratory,Professor,Schedule,Software]
-        
+        can :read, [Course,Laboratory,Professor,Schedule,Software,State]
+
+        cannot [:update, :create, :detroyt, :ver], State
         cannot [:create,:destroy,:update], [Category,Computer,Course,Eap,Group,Laboratory,Professor,Schedule,Software]
         cannot :asignar, Laboratory
         #cannot [:read,,:assign_roles] , User

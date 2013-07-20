@@ -68,6 +68,13 @@ Soportec::Application.routes.draw do
     end
   end
 
+  resources :states  do
+    collection do
+      get 'manage'
+      match 'dynamic_new'
+    end
+  end
+
   match 'about' => 'main#about', :as => :about
   match 'contact' => 'main#contact', :as => :contact
 
