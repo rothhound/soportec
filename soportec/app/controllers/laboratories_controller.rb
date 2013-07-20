@@ -89,7 +89,12 @@ class LaboratoriesController < ApplicationController
     end
   end
 
-  def search    
+  def search
+    @total_labs = Laboratory.all
+    @total_labs.each do |l|
+      l[:name] = "Laboratorio #{l[:number]}"
+    end
+    
   	@pred = 1
   	if(current_user.role_id == 3)
   		@pred = current_user.laboratory.id
@@ -109,6 +114,11 @@ class LaboratoriesController < ApplicationController
   # GET /manage
   def manage
     @laboratories = Laboratory.order(:number).page(params[:page]).per(1)
+
+    @labs = Laboratory.all
+    @labs.each do |l|
+      l[:name] = "Laboratorio #{l[:number]}"
+    end
 
     @laboratory = Laboratory.new
 

@@ -14,9 +14,16 @@
   <hr>
 </div>
 
-<h2>Busqueda de Laboratorios <%= @codigo %></h2>
-<%= form_tag :action => 'search' do%>
-    <span>Codigo:</span>
-    <%= collection_select :labo, :number, Laboratory.all, :number, :number %>
-    <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
-<% end %>
+<h2>Busqueda de Laboratorios</h2>
+
+<div class="span5">
+  <%= form_tag({ :action => 'search' }, { :class => 'form-horizontal' }) do %>
+    <div class="control-group">
+      <%= label_tag :labo, "Elija un laboratorio:", :class => "control-label" %>
+      <div class="controls">
+        <%= collection_select :labo, :number, @labs, :number, :name %>
+        <%= submit_tag 'Buscar', :class => 'btn-small btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>
