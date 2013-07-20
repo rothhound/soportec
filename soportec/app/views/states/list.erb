@@ -1,0 +1,28 @@
+<h1>Estado de Laboratorios</h1>
+
+<% if @laboratory.present? %>
+  <table class="table">
+    <table class="table">  
+      <tr>
+        <% @laboratory.each do |laboratory| %>
+          <th><%= laboratory.id %></th>
+        <% end %>  
+      </tr>
+
+      <tr>
+        <% @stateL.each do |state| %>
+            <% if state != nil %>
+              <td> <a href="javascript:ventanaSecundaria(<%= state.id %>+'/change')"><%= state.description %></a></td>
+            <% end %>
+          <% end %>
+      </tr>
+    </table>
+  </table>
+
+<% end %>
+
+<script language=javascript> 
+  function ventanaSecundaria (URL){ 
+    window.open(URL,"ventana","width=120,'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'") 
+  } 
+</script> 

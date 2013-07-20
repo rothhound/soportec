@@ -73,6 +73,9 @@ Soportec::Application.routes.draw do
       get 'manage'
       match 'dynamic_new'
     end
+    member do
+      get 'change'
+    end
   end
 
   match 'about' => 'main#about', :as => :about
