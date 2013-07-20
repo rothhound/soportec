@@ -12,7 +12,11 @@
 
 <br />
 
-<% if can? :create, @course %>
-  <%= link_to 'Nuevo Curso', new_course_path, :class => 'btn btn-primary' %>
-<% end %>
-<%= link_to 'Buscar Curso', {controller: "courses" ,action: "search"}, :class => 'btn btn-primary' %>
+<div class="span7 centered">
+  <div class="button-container">
+  <% if can? :create, @course %>
+    <div class="button"><%= link_to 'Nuevo Curso', new_course_path, :class => 'btn btn-primary' %></div>
+  <% end %>
+  <div class="button"><%= link_to 'Buscar Curso', {controller: "courses" ,action: "search"}, :class => 'btn btn-primary' %></div>
+  </div>
+</div>
