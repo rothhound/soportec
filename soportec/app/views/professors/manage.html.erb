@@ -33,7 +33,7 @@
 
 <br />
 
-<% if can? :create, @professors.first %>
+<% if can? :create, @professor %>
   <%= link_to 'Nuevo Profesor', new_professor_path, :class => 'btn btn-primary' %>
 <% end %>
 <%= link_to 'Buscar Profesor', {controller: "professors" ,action: "search"}, :class => 'btn btn-primary' %>

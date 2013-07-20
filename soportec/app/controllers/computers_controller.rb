@@ -91,7 +91,7 @@ class ComputersController < ApplicationController
   # GET /manage
   def manage
     @computers = Computer.all
-
+    @computer = Computer.new
     respond_to do |format|
       format.html # manage.html.erb
       format.json { render json: @computers }

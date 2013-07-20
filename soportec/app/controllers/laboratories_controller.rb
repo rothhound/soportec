@@ -100,6 +100,8 @@ class LaboratoriesController < ApplicationController
   def manage
     @laboratories = Laboratory.order(:number).page(params[:page]).per(5)
 
+    @laboratory = Laboratory.new
+
     respond_to do |format|
       format.html # manage.html.erb
       format.json { render json: @laboratories }

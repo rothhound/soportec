@@ -141,6 +141,7 @@ class SchedulesController < ApplicationController
       format.json { render :xml => @schedule }
     end
   end
+  
   def dynamic_create
     @schedule = Schedule.new(params[:schedule])
     @eap=Eap.all

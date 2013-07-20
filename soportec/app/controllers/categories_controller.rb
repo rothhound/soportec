@@ -89,6 +89,7 @@ class CategoriesController < ApplicationController
   def manage
     @categories = Category.all
 
+    @category = Category.new
     respond_to do |format|
       format.html # manage.html.erb
       format.json { render json: @categories }

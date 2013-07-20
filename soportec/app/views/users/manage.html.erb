@@ -32,6 +32,6 @@
 
 <br />
 
-<% if can? :create, @users.first %>
+<% if can? :create, @user %>
   <%= link_to 'Nuevo Usuario', new_user_path, :class => 'btn btn-primary' %>
 <% end %>

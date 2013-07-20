@@ -100,6 +100,8 @@ class UsersController < ApplicationController
     @users = User.all
     #authorize! :read, @users
     @roles = Role.all
+
+    @user = User.new
     respond_to do |format|
       format.html # manage.html.erb
       format.xml  { render :xml => @users }

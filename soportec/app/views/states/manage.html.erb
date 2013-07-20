@@ -26,6 +26,6 @@
 
 <br />
 
-<% if can? :create, @states.first %>
+<% if can? :create, @state %>
   <%= link_to 'Nuevo Estado', new_state_path, :class => 'btn btn-primary' %>
 <% end %>

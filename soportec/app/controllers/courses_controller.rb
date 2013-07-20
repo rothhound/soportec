@@ -96,7 +96,7 @@ class CoursesController < ApplicationController
     @courses_sys = Course.where(:eap_id => 1).order(:code).page(params[:page_sys]).per(10)
     @courses_soft = Course.where(:eap_id => 2).order(:code).page(params[:page_soft]).per(10)
 
-    #@courses = Course.find(:all, :joins => [:eap , :group] ,:select =>"courses.id, courses.code, courses.name, eaps.name as eaps, groups.name as groups" )
+    @course = Course.new
 
     respond_to do |format|
       format.html # manage.html.erb

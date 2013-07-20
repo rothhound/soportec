@@ -92,6 +92,8 @@ class ProfessorsController < ApplicationController
   def manage
     @professors = Professor.order(:lastname).page(params[:page]).per(10)
 
+    @professor = Professor.new
+
     respond_to do |format|
       format.html # manage.html.erb
       format.json { render json: @professors }

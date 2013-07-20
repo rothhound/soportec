@@ -12,7 +12,7 @@
 
 <br />
 
-<% if can? :create, Course %>
+<% if can? :create, @course %>
   <%= link_to 'Nuevo Curso', new_course_path, :class => 'btn btn-primary' %>
 <% end %>
 <%= link_to 'Buscar Curso', {controller: "courses" ,action: "search"}, :class => 'btn btn-primary' %>

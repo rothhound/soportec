@@ -95,8 +95,8 @@ class StatesController < ApplicationController
 
   def manage
     @states = State.all
-    state = State.new
-    authorize! :leer, state
+    @state = State.new
+    authorize! :leer, @state
     respond_to do |format|
       format.html # manage.html.erb
       format.json { render json: @states }
@@ -111,17 +111,19 @@ class StatesController < ApplicationController
 
     @laboratory = Laboratory.all
 
-    @state1 = State.find(:all, :conditions => ["id = 1"]).last
-    @state2 = State.find(:all, :conditions => ["id = 2"]).last
-    @state3 = State.find(:all, :conditions => ["id = 3"]).last
-    @state4 = State.find(:all, :conditions => ["id = 4"]).last
-    @state5 = State.find(:all, :conditions => ["id = 5"]).last
-    @state6 = State.find(:all, :conditions => ["id = 6"]).last
-    @state7 = State.find(:all, :conditions => ["id = 7"]).last
-    @state8 = State.find(:all, :conditions => ["id = 8"]).last
-    @state9 = State.find(:all, :conditions => ["id = 9"]).last
+    @state1 = State.find(:all, :conditions => ["laboratory_id = 1"]).last
+    @state2 = State.find(:all, :conditions => ["laboratory_id = 2"]).last
+    @state3 = State.find(:all, :conditions => ["laboratory_id = 3"]).last
+    @state4 = State.find(:all, :conditions => ["laboratory_id = 4"]).last
+    @state5 = State.find(:all, :conditions => ["laboratory_id = 5"]).last
+    @state6 = State.find(:all, :conditions => ["laboratory_id = 6"]).last
+    @state7 = State.find(:all, :conditions => ["laboratory_id = 7"]).last
+    @state8 = State.find(:all, :conditions => ["laboratory_id = 8"]).last
+    @state9 = State.find(:all, :conditions => ["laboratory_id = 9"]).last
 
-    @stateL = @state1 || @state2 || @state3 || @state4 || @state5 || @state6 || @state7 || @state8 || @state9
+    @stateL = []
+
+    @stateL.push(@state1, @state2, @state3, @state4, @state5, @state6 , @state7 , @state8, @state9)
 
     @estado = @stateL.to_json(:only => [ :id, :laboratory_id ,:description])    
 

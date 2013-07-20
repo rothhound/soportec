@@ -92,6 +92,7 @@ class SoftwaresController < ApplicationController
   def manage
     @softwares = Software.find(:all, :joins => [:category] ,:select =>"softwares.id, softwares.name, softwares.version,categories.description as description")
 
+    @software = Software.new
     respond_to do |format|
       format.html # manage.html.erb
       format.json { render json: @softwares }

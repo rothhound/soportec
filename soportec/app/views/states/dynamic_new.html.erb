@@ -1,16 +1,21 @@
 <h1>Estado de Laboratorios</h1>
-<% if @stateL.present? %>
+
+<% if @laboratory.present? %>
   <table class="table">
-    <table class="table">
-      <% @stateL.each do |state| %>
-        <tr>
-          <th><%= state.laboratory_id %></td>
-        </tr>
-        </tr>
-          <td><%= link_to state.description, state %></td>
-          <!--td><%= state.description %></td-->
-        </tr>
-      <% end %>
-    <!--% end %-->
+    <table class="table">  
+      <tr>
+        <% @laboratory.each do |laboratory| %>
+          <th><%= laboratory.id %></th>
+        <% end %>  
+      </tr>
+
+      <tr>
+        <% @stateL.each do |state| %>
+          <% if state != nil %>
+            <td><%= link_to state.description, state %></td>
+          <% end %>
+        <% end %>
+      </tr>
     </table>
+  </table>
 <% end %>

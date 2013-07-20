@@ -24,6 +24,6 @@
 
 <br />
 
-<% if can? :create, @categories.first %>
+<% if can? :create, @category %>
   <%= link_to 'Nueva Categoria', new_category_path, :class => 'btn btn-primary' %>
 <% end %>
